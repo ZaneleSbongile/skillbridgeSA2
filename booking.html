@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillBridge SA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body data-page="book">
+    <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">S</span>
+      <span>Skill<span>Bridge</span><small>SA</small></span>
+    </a>
+    <button class="menu-toggle">☰</button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="internships.html">Internships</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="link-btn" data-route="signin"><a href="signin.html">Sign in</a></button>
+      <button class="btn btn-red" data-route="signup"><a href="signup.html">Join SkillBridge</a></button>
+    </div>
+  </header>
+  
+ <main>
+  <section class="page-hero">
+    <div class="eyebrow" style="justify-content:center">Secure a trusted service</div>
+    <h1>Book a service</h1>
+    <p>
+      Tell the provider what you need, choose a date and pay safely through
+      third-party escrow.
+    </p>
+  </section>
+
+  <section class="section" style="max-width:750px">
+    <form class="form-card" id="bookingForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="service">Service required</label>
+          <select id="service" required>
+            <option value="">Choose a service</option>
+            <option>Graphic design</option>
+            <option>Home repairs</option>
+            <option>Beauty and wellness</option>
+            <option>Photography</option>
+            <option>IT support</option>
+            <option>Garden services</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="provider">Preferred provider</label>
+          <select id="provider" required>
+            <option value="">Choose a provider</option>
+            <option>Ndlovu Creative Studio</option>
+            <option>Mandla Maintenance</option>
+            <option>Glow by Zinhle</option>
+            <option>Capture Cape Town</option>
+            <option>TechFix SA</option>
+            <option>Green Hands</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="bookingDate">Preferred date</label>
+          <input id="bookingDate" type="date" required>
+        </div>
+
+        <div class="form-group">
+          <label for="time">Preferred time</label>
+          <select id="time" required>
+            <option value="">Choose a time</option>
+            <option>08:00–10:00</option>
+            <option>10:00–12:00</option>
+            <option>12:00–14:00</option>
+            <option>14:00–16:00</option>
+          </select>
+        </div>
+
+        <div class="form-group wide">
+          <label for="address">Service address or online service details</label>
+          <input id="address" required placeholder="Street, suburb and city">
+        </div>
+
+        <div class="form-group wide">
+          <label for="request">Describe what you need</label>
+          <textarea id="request" required
+            placeholder="Include the size of the job, requirements and anything the provider should know."></textarea>
+        </div>
+      </div>
+
+      <div class="notice" style="margin-bottom:18px">
+        <strong>Protected payment through escrow</strong><br>
+        You will pay after submitting this booking. The independent escrow
+        partner holds the funds securely and releases them to the provider
+        only after you confirm that the work is complete. SkillBridge deducts
+        a 20% platform fee from the provider’s completed payout.
+      </div>
+
+      <button class="btn" type="submit">
+        Continue to secure payment
+      </button>
+    </form>
+  </section>
+</main>
+
+  <section class="chatbot">
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-head">
+        <strong>Bridge Assistant</strong>
+        <button id="closeChat">×</button>
+      </div>
+
+      <div class="chat-log" id="chatLog">
+        <div class="bot-msg">Hi! Ask me how to use SkillBridge.</div>
+      </div>
+
+      <div class="quick-prompts">
+        <button>How do I book?</button>
+        <button>Find internships</button>
+        <button>What are plans?</button>
+      </div>
+
+      <form id="chatForm">
+        <input id="chatInput" placeholder="Ask a question...">
+        <button>➜</button>
+      </form>
+    </div>
+
+    <button class="chat-fab" id="chatFab">✦ Need help?</button>
+  </section>
+
+  <div class="modal-backdrop" id="modal"></div>
+
+  <script>
+  document.querySelector("#bookingForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const service = document.querySelector("#service").value;
+    const provider = document.querySelector("#provider").value;
+    const date = document.querySelector("#bookingDate").value;
+
+    localStorage.setItem("skillbridge-booking-service", service);
+    localStorage.setItem("skillbridge-booking-provider", provider);
+    localStorage.setItem("skillbridge-booking-date", date);
+
+    window.location.href = "service-payment.html";
+  });
+</script>
+</body>
+</html>
