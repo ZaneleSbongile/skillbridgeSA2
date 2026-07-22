@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillBridge SA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body data-page="editprofile">
+    <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">S</span>
+      <span>Skill<span>Bridge</span><small>SA</small></span>
+    </a>
+    <button class="menu-toggle">☰</button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="internships.html">Internships</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="link-btn" data-route="signin"><a href="signin.html">Sign in</a></button>
+      <button class="btn btn-red" data-route="signup"><a href="signup.html">Join SkillBridge</a></button>
+    </div>
+  </header>
+  
+  <main>
+  <section class="page-hero">
+    <div class="eyebrow" style="justify-content:center">Keep your profile current</div>
+    <h1>Edit profile</h1>
+    <p>
+      Update the details customers, businesses and employers see on SkillBridge.
+    </p>
+  </section>
+
+  <section class="section" style="max-width:800px">
+    <form class="form-card" id="editProfileForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="fullName">Full name</label>
+          <input id="fullName" required placeholder="Your full name">
+        </div>
+
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input id="location" required placeholder="City or province">
+        </div>
+
+        <div class="form-group">
+          <label for="profileType">Profile type</label>
+          <select id="profileType">
+            <option>Customer</option>
+            <option>Service provider</option>
+            <option>Business owner</option>
+            <option>Student</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone number</label>
+          <input id="phone" type="tel" placeholder="012 345 6789">
+        </div>
+
+        <div class="form-group wide">
+          <label for="headline">Profile headline</label>
+          <input id="headline"
+            placeholder="Example: Graphic designer helping local businesses grow">
+        </div>
+
+        <div class="form-group wide">
+          <label for="bio">About you</label>
+          <textarea id="bio"
+            placeholder="Introduce yourself, your skills, experience, services or career goals."></textarea>
+        </div>
+
+        <div class="form-group wide">
+          <label for="skills">Skills or services</label>
+          <input id="skills"
+            placeholder="Example: Logo design, social media, photography">
+        </div>
+
+        <div class="form-group wide">
+          <label for="portfolio">Portfolio or website link</label>
+          <input id="portfolio" type="url"
+            placeholder="https://your-portfolio.co.za">
+        </div>
+      </div>
+
+      <div class="notice" style="margin-bottom:18px">
+        A complete profile helps customers and employers trust you. Do not add
+        private banking details, passwords or other sensitive information.
+      </div>
+
+      <div class="profile-actions">
+        <button class="btn" type="submit">Save changes</button>
+        <a class="btn btn-outline" href="profile.html">Cancel</a>
+      </div>
+    </form>
+  </section>
+</main>
+
+  <section class="chatbot">
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-head">
+        <strong>Bridge Assistant</strong>
+        <button id="closeChat">×</button>
+      </div>
+
+      <div class="chat-log" id="chatLog">
+        <div class="bot-msg">Hi! Ask me how to use SkillBridge.</div>
+      </div>
+
+      <div class="quick-prompts">
+        <button>How do I book?</button>
+        <button>Find internships</button>
+        <button>What are plans?</button>
+      </div>
+
+      <form id="chatForm">
+        <input id="chatInput" placeholder="Ask a question...">
+        <button>➜</button>
+      </form>
+    </div>
+
+    <button class="chat-fab" id="chatFab">✦ Need help?</button>
+  </section>
+
+  <div class="modal-backdrop" id="modal"></div>
+
+  <script>
+  const fields = ["fullName", "location", "profileType", "phone", "headline", "bio", "skills", "portfolio"];
+
+  fields.forEach(function (field) {
+    const savedValue = localStorage.getItem("skillbridge-" + field);
+
+    if (savedValue) {
+      document.querySelector("#" + field).value = savedValue;
+    }
+  });
+
+  const savedName = localStorage.getItem("skillbridge-name");
+
+  if (savedName) {
+    document.querySelector("#fullName").value = savedName;
+  }
+
+  document.querySelector("#editProfileForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    fields.forEach(function (field) {
+      localStorage.setItem(
+        "skillbridge-" + field,
+        document.querySelector("#" + field).value
+      );
+    });
+
+    localStorage.setItem(
+      "skillbridge-name",
+      document.querySelector("#fullName").value
+    );
+
+    alert("Your SkillBridge profile has been updated.");
+    window.location.href = "profile.html";
+  });
+</script>
+</body>
+</html>
