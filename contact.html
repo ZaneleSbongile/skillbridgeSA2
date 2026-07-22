@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact | SkillBridge SA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="contact">
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">S</span>
+      <span>Skill<span>Bridge</span><small>SA</small></span>
+    </a>
+    <button class="menu-toggle">☰</button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="internships.html">Internships</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="link-btn" data-route="signin">Sign in</button>
+      <button class="btn btn-red" data-route="signup">Join SkillBridge</button>
+    </div>
+  </header>
+
+ <main>
+  <section class="page-hero">
+    <div class="eyebrow" style="justify-content:center">We’re here to help</div>
+    <h1>Let’s start a conversation.</h1>
+    <p>
+      Have a question, partnership idea, or need support? Send us a message.
+    </p>
+  </section>
+
+  <section class="section contact-grid">
+    <div>
+      <div class="eyebrow">Contact SkillBridge</div>
+      <h2>We would love to hear from you.</h2>
+
+      <p>
+        Our team is here to help customers, service providers, businesses and
+        students get the most out of SkillBridge.
+      </p>
+
+      <p>
+        <strong>Email</strong><br>
+        hello@skillbridge.co.za
+      </p>
+
+      <p>
+        <strong>Location</strong><br>
+        South Africa
+      </p>
+
+      <p>
+        <strong>Support hours</strong><br>
+        Monday to Friday, 08:00–17:00
+      </p>
+
+      <div class="notice">
+        For booking or payment questions, include your booking reference in
+        your message so our support team can assist you faster.
+      </div>
+    </div>
+
+    <form class="form-card">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="name">Full name</label>
+          <input id="name" required placeholder="Your name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input id="email" type="email" required placeholder="you@email.com">
+        </div>
+
+        <div class="form-group wide">
+          <label for="subject">What can we help with?</label>
+          <select id="subject">
+            <option>General question</option>
+            <option>Customer booking support</option>
+            <option>Business or provider support</option>
+            <option>Student or internship support</option>
+            <option>Partnership opportunity</option>
+            <option>Escrow payment question</option>
+          </select>
+        </div>
+
+        <div class="form-group wide">
+          <label for="message">Message</label>
+          <textarea id="message" required
+            placeholder="Tell us how we can help you..."></textarea>
+        </div>
+      </div>
+
+      <button class="btn" type="submit">Send message</button>
+    </form>
+  </section>
+
+  <section class="blue-band">
+    <div class="wrap">
+      <div>
+        <h2>Want to grow with SkillBridge?</h2>
+        <p>
+          Join our growing ecosystem of customers, businesses, skilled
+          professionals and ambitious students.
+        </p>
+      </div>
+
+      <a class="btn" href="signup.html"
+         style="background:#ffc928;color:#062e66">
+        Create an account
+      </a>
+    </div>
+  </section>
+</main>
+
+  <section class="chatbot">
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-head"><strong>Bridge Assistant</strong><button id="closeChat">×</button></div>
+      <div class="chat-log" id="chatLog"><div class="bot-msg">Hi! Ask me how to use SkillBridge.</div></div>
+      <div class="quick-prompts">
+        <button>How do I book?</button>
+        <button>Find internships</button>
+        <button>What are plans?</button>
+      </div>
+      <form id="chatForm"><input id="chatInput" placeholder="Ask a question..."><button>➜</button></form>
+    </div>
+    <button class="chat-fab" id="chatFab">✦ Need help?</button>
+  </section>
+
+  <div class="modal-backdrop" id="modal"></div>
+  <script>
+  document.querySelector("form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    alert("Thank you. Your message has been sent to the SkillBridge team.");
+    this.reset();
+  });
+</script>
+</body>
+</html>
