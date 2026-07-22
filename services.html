@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Services | SkillBridge SA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="services">
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">S</span>
+      <span>Skill<span>Bridge</span><small>SA</small></span>
+    </a>
+    <button class="menu-toggle">☰</button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="internships.html">Internships</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+        <div class="nav-actions">
+      <button class="link-btn" data-route="signin"><a href="signin.html">Sign in</a></button>
+      <button class="btn btn-red" data-route="signup"><a href="signup.html">Join SkillBridge</a></button>
+    </div>
+  </header>
+
+<main>
+  <section class="page-hero">
+    <div class="eyebrow" style="justify-content:center">Discover local excellence</div>
+    <h1>Find the right person for the job.</h1>
+    <p>Browse trusted, reviewed professionals and book directly on SkillBridge.</p>
+  </section>
+
+  <section class="section">
+    <div class="filters">
+      <button class="filter active">All services</button>
+      <button class="filter">Home & repairs</button>
+      <button class="filter">Creative</button>
+      <button class="filter">Beauty & wellness</button>
+      <button class="filter">Business services</button>
+    </div>
+
+    <div class="service-grid">
+      <article class="service">
+        <div class="service-top">🛠</div>
+        <div class="service-body">
+          <span class="tag">Verified provider</span>
+          <h3>Home repairs</h3><p>Mandla Maintenance · ★ 4.8 (24)</p>
+          <div class="service-footer"><strong>From R350</strong><a class="btn" href="booking.html">Book</a></div>
+        </div>
+      </article>
+
+      <article class="service">
+        <div class="service-top">🎨</div>
+        <div class="service-body">
+          <span class="tag">Verified provider</span>
+          <h3>Graphic design</h3><p>Ndlovu Creative Studio · ★ 4.8 (24)</p>
+          <div class="service-footer"><strong>From R500</strong><a class="btn" href="booking.html">Book</a></div>
+        </div>
+      </article>
+
+      <article class="service">
+        <div class="service-top">💇🏾</div>
+        <div class="service-body">
+          <span class="tag">Verified provider</span>
+          <h3>Beauty & wellness</h3><p>Glow by Zinhle · ★ 4.8 (24)</p>
+          <div class="service-footer"><strong>From R280</strong><a class="btn" href="booking.html">Book</a></div>
+        </div>
+      </article>
+
+      <article class="service">
+        <div class="service-top">📷</div>
+        <div class="service-body">
+          <span class="tag">Verified provider</span>
+          <h3>Photography</h3><p>Capture Cape Town · ★ 4.9 (18)</p>
+          <div class="service-footer"><strong>From R900</strong><a class="btn" href="booking.html">Book</a></div>
+        </div>
+      </article>
+
+      <article class="service">
+        <div class="service-top">💻</div>
+        <div class="service-body">
+          <span class="tag">Verified provider</span>
+          <h3>IT support</h3><p>TechFix SA · ★ 4.7 (35)</p>
+          <div class="service-footer"><strong>From R400</strong><a class="btn" href="booking.html">Book</a></div>
+        </div>
+      </article>
+
+      <article class="service">
+        <div class="service-top">🌿</div>
+        <div class="service-body">
+          <span class="tag">Verified provider</span>
+          <h3>Garden services</h3><p>Green Hands · ★ 4.8 (29)</p>
+          <div class="service-footer"><strong>From R250</strong><a class="btn" href="booking.html">Book</a></div>
+        </div>
+      </article>
+    </div>
+
+    <div class="notice" style="margin-top:32px">
+      Good to know: SkillBridge deducts a transparent 20% platform fee from completed provider payments. Customers see the full booking price before paying.
+    </div>
+  </section>
+</main>
+
+  <section class="chatbot">
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-head"><strong>Bridge Assistant</strong><button id="closeChat">×</button></div>
+      <div class="chat-log" id="chatLog"><div class="bot-msg">Hi! Ask me how to use SkillBridge.</div></div>
+      <div class="quick-prompts">
+        <button>How do I book?</button>
+        <button>Find internships</button>
+        <button>What are plans?</button>
+      </div>
+      <form id="chatForm"><input id="chatInput" placeholder="Ask a question..."><button>➜</button></form>
+    </div>
+    <button class="chat-fab" id="chatFab">✦ Need help?</button>
+  </section>
+
+  <div class="modal-backdrop" id="modal"></div>
+</body>
+</html>
