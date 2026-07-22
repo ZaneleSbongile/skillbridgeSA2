@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillBridge SA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body data-page="payment">
+    <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">S</span>
+      <span>Skill<span>Bridge</span><small>SA</small></span>
+    </a>
+    <button class="menu-toggle">☰</button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="internships.html">Internships</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="link-btn" data-route="signin"><a href="signin.html">Sign in</a></button>
+      <button class="btn btn-red" data-route="signup"><a href="signup.html">Join SkillBridge</a></button>
+    </div>
+  </header>
+
+  <main id="app">
+    <div class="page-hero">
+      <div class="eyebrow">Secure Checkout</div>
+      <h1>Choose Your Billing Structure</h1>
+      <p>Select a flexible payment schedule that matches your financial preference for your Pro Innovator subscription.</p>
+    </div>
+
+    <section class="section" style="max-width:900px; padding-top:40px;">
+      <div class="plan-grid" style="grid-template-columns:1fr 1fr; gap:30px; margin-bottom:40px;">
+        <!-- Option 1 -->
+        <div class="plan featured" style="cursor:pointer;" onclick="selectPaymentOption('monthly', this)">
+          <div class="tag" style="display:inline-block; margin-bottom:10px;">Flexible</div>
+          <h3>Monthly Billing</h3>
+          <p>Pay month-to-month with total freedom to cancel anytime.</p>
+          <div class="price">R199<small style="font-size:1rem; font-weight:400;">/month</small></div>
+          <ul>
+            <li>Billed automatically every month</li>
+            <li>Cancel or change plan anytime</li>
+            <li>Full Pro feature access</li>
+          </ul>
+        </div>
+
+        <!-- Option 2 -->
+        <div class="plan" style="cursor:pointer;" onclick="selectPaymentOption('annual', this)">
+          <div class="tag" style="display:inline-block; margin-bottom:10px; background:var(--yellow); color:var(--deep);">Save 20%</div>
+          <h3>Annual Billing</h3>
+          <p>Commit to an annual pass and lock in discounted rates.</p>
+          <div class="price">R1,899<small style="font-size:1rem; font-weight:400;">/year</small></div>
+          <ul>
+            <li>Equivalent to ~R158/month</li>
+            <li>Billed once annually</li>
+            <li>Priority 24/7 support access</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <div style="margin-bottom:25px;">
+          <h3>Billing & Payment Information</h3>
+          <p style="font-size:.9rem; margin-top:5px;" id="selectedPlanSummary">Selected Plan: Monthly Billing (R199/month)</p>
+        </div>
+
+        <form id="paymentForm" onsubmit="handlePaymentSubmit(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="cardName">Name on Card</label>
+              <input type="text" id="cardName" placeholder="e.g. Sipho Dlamini" required>
+            </div>
+            <div class="form-group">
+              <label for="cardNumber">Card Number</label>
+              <input type="text" id="cardNumber" placeholder="4532 •••• •••• 8890" maxlength="19" required>
+            </div>
+            <div class="form-group">
+              <label for="expiry">Expiry Date</label>
+              <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required>
+            </div>
+            <div class="form-group">
+              <label for="cvv">CVV / CVC</label>
+              <input type="password" id="cvv" placeholder="123" maxlength="4" required>
+            </div>
+          </div>
+          <div class="notice" style="margin:25px 0;">
+            🔒 Transactions are secured with 256-bit SSL encryption. You can cancel your subscription at any time from your account settings.
+          </div>
+          <button type="submit" class="btn" style="width:100%;">Complete Secure Payment</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <section class="chatbot">
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-head">
+        <strong>Bridge Assistant</strong>
+        <button id="closeChat">×</button>
+      </div>
+
+      <div class="chat-log" id="chatLog">
+        <div class="bot-msg">Hi! Ask me how to use SkillBridge.</div>
+      </div>
+
+      <div class="quick-prompts">
+        <button>How do I book?</button>
+        <button>Find internships</button>
+        <button>What are plans?</button>
+      </div>
+
+      <form id="chatForm">
+        <input id="chatInput" placeholder="Ask a question...">
+        <button>➜</button>
+      </form>
+    </div>
+
+    <button class="chat-fab" id="chatFab">✦ Need help?</button>
+  </section>
+
+  <div class="modal-backdrop" id="modal"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
