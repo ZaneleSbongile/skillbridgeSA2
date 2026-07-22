@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillBridge SA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body data-page="servicepayment">
+    <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">S</span>
+      <span>Skill<span>Bridge</span><small>SA</small></span>
+    </a>
+    <button class="menu-toggle">☰</button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="internships.html">Internships</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="link-btn" data-route="signin"><a href="signin.html">Sign in</a></button>
+      <button class="btn btn-red" data-route="signup"><a href="signup.html">Join SkillBridge</a></button>
+    </div>
+  </header>
+  
+  <main>
+  <section class="page-hero">
+    <div class="eyebrow" style="justify-content:center">Protected payment</div>
+    <h1>Pay securely with escrow.</h1>
+    <p>
+      Your funds are held safely by an independent third-party escrow partner
+      until the work is completed.
+    </p>
+  </section>
+
+  <section class="section" style="max-width:750px">
+    <form class="form-card" id="paymentForm">
+      <div class="notice" style="margin-bottom:24px">
+        <strong>How escrow protects you</strong><br>
+        Your payment is not released to the service provider immediately.
+        It is held by an independent escrow partner while the work is being
+        done. Once you confirm that you are happy with the completed service,
+        the funds are released to the provider.
+      </div>
+
+      <h3 style="margin-bottom:15px">Booking summary</h3>
+
+      <div class="form-grid">
+        <div class="form-group wide">
+          <label for="bookingService">Service</label>
+          <input id="bookingService" value="Selected service" readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="bookingProvider">Provider</label>
+          <input id="bookingProvider" value="Selected provider" readonly>
+        </div>
+
+        <div class="form-group">
+          <label for="bookingDate">Preferred date</label>
+          <input id="bookingDate" value="Selected date" readonly>
+        </div>
+
+        <div class="form-group wide">
+          <label for="amount">Amount to be held in escrow</label>
+          <input id="amount" value="R500.00" readonly>
+        </div>
+
+        <div class="form-group wide">
+          <label for="paymentMethod">Payment method</label>
+          <select id="paymentMethod" required>
+            <option value="">Choose a payment method</option>
+            <option>Debit or credit card</option>
+            <option>Instant EFT</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="cardName">Name on card</label>
+          <input id="cardName" required placeholder="Full name on card">
+        </div>
+
+        <div class="form-group">
+          <label for="cardNumber">Card number</label>
+          <input id="cardNumber" required
+            inputmode="numeric"
+            placeholder="1234 5678 9012 3456">
+        </div>
+
+        <div class="form-group">
+          <label for="expiry">Expiry date</label>
+          <input id="expiry" required placeholder="MM/YY">
+        </div>
+
+        <div class="form-group">
+          <label for="cvv">CVV</label>
+          <input id="cvv" required inputmode="numeric" placeholder="123">
+        </div>
+      </div>
+
+      <div class="notice" style="margin:8px 0 18px">
+        SkillBridge deducts a 20% platform fee from the provider’s payout
+        after successful completion. You will only release funds after the
+        work is done and you approve it.
+      </div>
+
+      <label style="display:block;margin-bottom:18px;font-size:.88rem">
+        <input id="escrowAgreement" type="checkbox" required>
+        I understand that payment will be held in escrow and released only
+        after I confirm the work is complete.
+      </label>
+
+      <button class="btn" type="submit">
+        Pay R500.00 into escrow
+      </button>
+    </form>
+  </section>
+</main>
+
+  <section class="chatbot">
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-head">
+        <strong>Bridge Assistant</strong>
+        <button id="closeChat">×</button>
+      </div>
+
+      <div class="chat-log" id="chatLog">
+        <div class="bot-msg">Hi! Ask me how to use SkillBridge.</div>
+      </div>
+
+      <div class="quick-prompts">
+        <button>How do I book?</button>
+        <button>Find internships</button>
+        <button>What are plans?</button>
+      </div>
+
+      <form id="chatForm">
+        <input id="chatInput" placeholder="Ask a question...">
+        <button>➜</button>
+      </form>
+    </div>
+
+    <button class="chat-fab" id="chatFab">✦ Need help?</button>
+  </section>
+
+  <div class="modal-backdrop" id="modal"></div>
+
+  <script>
+  const service = localStorage.getItem("skillbridge-booking-service");
+  const provider = localStorage.getItem("skillbridge-booking-provider");
+  const date = localStorage.getItem("skillbridge-booking-date");
+
+  if (service) document.querySelector("#bookingService").value = service;
+  if (provider) document.querySelector("#bookingProvider").value = provider;
+  if (date) document.querySelector("#bookingDate").value = date;
+
+  document.querySelector("#paymentForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    localStorage.setItem("skillbridge-escrow-status", "Payment held in escrow");
+    window.location.href = "escrow-confirm.html";
+  });
+</script>
+</body>
+</html>
