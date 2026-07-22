@@ -93,19 +93,98 @@
 </main>
 
   <section class="chatbot">
-    <div class="chat-window" id="chatWindow">
-      <div class="chat-head"><strong>Bridge Assistant</strong><button id="closeChat">×</button></div>
-      <div class="chat-log" id="chatLog"><div class="bot-msg">Hi! Ask me how to use SkillBridge.</div></div>
-      <div class="quick-prompts">
-        <button>How do I book?</button>
-        <button>Find internships</button>
-        <button>What are plans?</button>
-      </div>
-      <form id="chatForm"><input id="chatInput" placeholder="Ask a question..."><button>➜</button></form>
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-head">
+      <strong>Bridge Assistant</strong>
+      <button id="closeChat" type="button">×</button>
     </div>
-    <button class="chat-fab" id="chatFab">✦ Need help?</button>
-  </section>
+    <div class="chat-log" id="chatLog">
+      <div class="bot-msg">
+        Hi! I’m Bridge. Ask me about services, bookings, internships,
+        profiles, plans, payments, or escrow.
+      </div>
+    </div>
+    <div class="quick-prompts">
+      <button type="button">How do I book?</button>
+      <button type="button">Find internships</button>
+      <button type="button">What are plans?</button>
+    </div>
+    <form id="chatForm">
+      <input id="chatInput" placeholder="Ask a question..." autocomplete="off">
+      <button type="submit">➜</button>
+    </form>
+  </div>
+  <button class="chat-fab" id="chatFab" type="button">
+    ✦ Need help?
+  </button>
+</section>
 
   <div class="modal-backdrop" id="modal"></div>
+
+
+
+
+  <script>
+  const chatWindow = document.querySelector("#chatWindow");
+  const chatFab = document.querySelector("#chatFab");
+  const closeChat = document.querySelector("#closeChat");
+  const chatForm = document.querySelector("#chatForm");
+  const chatInput = document.querySelector("#chatInput");
+  const chatLog = document.querySelector("#chatLog");
+
+  const answers = {
+    book: "Go to Services, choose a provider and press Book. Complete the booking form, then continue to secure escrow payment.",
+    service: "Open the Services page to browse trusted providers, compare options and book a service.",
+    internship: "Open Internships, choose an opportunity and press Apply now. Create a student account to apply.",
+    profile: "Open Profile to manage your information. Use Edit profile to change your details or Upgrade to view plans.",
+    plan: "Basic is free. Premium is R99 per month, and Premium Pro is R249 per month.",
+    payment: "Your payment is held by an independent third-party escrow partner until you approve the completed work.",
+    escrow: "Escrow protects customers by holding funds safely. The provider receives payment only after the customer confirms the work is complete.",
+    contact: "Open Contact us to send a message to the SkillBridge support team."
+  };
+
+  function respond(question) {
+    const text = question.toLowerCase();
+
+    const match = Object.entries(answers).find(([keyword]) =>
+      text.includes(keyword)
+    );
+
+    const answer = match
+      ? match[1]
+      : "I can help you find a service, book a provider, apply for internships, update your profile, understand plans, payments or escrow.";
+
+    chatLog.insertAdjacentHTML(
+      "beforeend",
+      `<div class="user-msg">${question}</div>
+       <div class="bot-msg">${answer}</div>`
+    );
+
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }
+
+  chatFab.addEventListener("click", function () {
+    chatWindow.classList.toggle("open");
+  });
+
+  closeChat.addEventListener("click", function () {
+    chatWindow.classList.remove("open");
+  });
+
+  chatForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    if (chatInput.value.trim()) {
+      respond(chatInput.value);
+      chatInput.value = "";
+    }
+  });
+
+  document.querySelectorAll(".quick-prompts button").forEach(function (button) {
+    button.addEventListener("click", function () {
+      respond(button.textContent);
+    });
+  });
+</script>
 </body>
 </html>
