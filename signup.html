@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillBridge SA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body data-page="signup">
+    <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">S</span>
+      <span>Skill<span>Bridge</span><small>SA</small></span>
+    </a>
+    <button class="menu-toggle">☰</button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="internships.html">Internships</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="link-btn" data-route="signin"><a href="signin.html">Sign in</a></button>
+      <button class="btn btn-red" data-route="signup"><a href="signup.html">Join SkillBridge</a></button>
+    </div>
+  </header>
+  
+  <main>
+  <section class="page-hero">
+    <div class="eyebrow" style="justify-content:center">Create your future</div>
+    <h1>Join SkillBridge</h1>
+    <p>
+      Create your free account and start finding services, growing your
+      business, or applying for opportunities.
+    </p>
+  </section>
+
+  <section class="section" style="max-width:700px">
+    <form class="form-card" id="signUpForm">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="fullName">Full name</label>
+          <input id="fullName" required placeholder="Your full name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input id="email" type="email" required placeholder="you@email.com">
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Phone number</label>
+          <input id="phone" type="tel" required placeholder="012 345 6789">
+        </div>
+
+        <div class="form-group">
+          <label for="accountType">I am joining as</label>
+          <select id="accountType" required>
+            <option value="">Select an option</option>
+            <option>Customer</option>
+            <option>Service provider</option>
+            <option>Business owner</option>
+            <option>Student</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Create password</label>
+          <input id="password" type="password" required placeholder="At least 8 characters">
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm password</label>
+          <input id="confirmPassword" type="password" required placeholder="Repeat password">
+        </div>
+
+        <div class="form-group wide">
+          <label style="font-size:.88rem">
+            <input id="terms" type="checkbox" required>
+            I agree to the SkillBridge terms, privacy policy and platform rules.
+          </label>
+        </div>
+      </div>
+
+      <button class="btn" type="submit" style="width:100%">
+        Create free account
+      </button>
+
+      <p style="text-align:center;margin:22px 0 0">
+        Already have an account?
+        <a href="signin.html" style="color:#0752aa;font-weight:700">
+          Sign in
+        </a>
+      </p>
+    </form>
+
+    <div class="notice" style="margin-top:20px">
+      Basic membership is R0. You can upgrade later to Premium or Premium Pro
+      when you need more tools and visibility.
+    </div>
+  </section>
+</main>
+
+  <section class="chatbot">
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-head">
+        <strong>Bridge Assistant</strong>
+        <button id="closeChat">×</button>
+      </div>
+
+      <div class="chat-log" id="chatLog">
+        <div class="bot-msg">Hi! Ask me how to use SkillBridge.</div>
+      </div>
+
+      <div class="quick-prompts">
+        <button>How do I book?</button>
+        <button>Find internships</button>
+        <button>What are plans?</button>
+      </div>
+
+      <form id="chatForm">
+        <input id="chatInput" placeholder="Ask a question...">
+        <button>➜</button>
+      </form>
+    </div>
+
+    <button class="chat-fab" id="chatFab">✦ Need help?</button>
+  </section>
+
+  <div class="modal-backdrop" id="modal"></div>
+
+  <script>
+  document.querySelector("#signUpForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const password = document.querySelector("#password").value;
+    const confirmPassword = document.querySelector("#confirmPassword").value;
+
+    if (password !== confirmPassword) {
+      alert("Your passwords do not match. Please try again.");
+      return;
+    }
+
+    const name = document.querySelector("#fullName").value;
+    const accountType = document.querySelector("#accountType").value;
+
+    localStorage.setItem("skillbridge-name", name);
+    localStorage.setItem("skillbridge-account-type", accountType);
+
+    alert("Welcome to SkillBridge, " + name + "!");
+    window.location.href = "profile.html";
+  });
+</script>
+</body>
+</html>
