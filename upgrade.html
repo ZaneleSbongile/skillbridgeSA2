@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillBridge SA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body data-page="upgrade">
+    <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">S</span>
+      <span>Skill<span>Bridge</span><small>SA</small></span>
+    </a>
+    <button class="menu-toggle">☰</button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="internships.html">Internships</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="link-btn" data-route="signin"><a href="signin.html">Sign in</a></button>
+      <button class="btn btn-red" data-route="signup"><a href="signup.html">Join SkillBridge</a></button>
+    </div>
+  </header>
+
+<main id="app">
+    <div class="page-hero">
+      <div class="eyebrow">Membership Tiers</div>
+      <h1>Unlock Your Full Potential</h1>
+      <p>Choose the right plan to accelerate your career growth, connect with top mentors, and access exclusive corporate placement tracks.</p>
+    </div>
+
+    <section class="section">
+      <div class="plan-grid">
+        <!-- Free Plan -->
+        <div class="plan">
+          <h3>Community Explorer</h3>
+          <p>Essential access for students starting out on their digital journey.</p>
+          <div class="price">R0<small style="font-size:1rem; font-weight:400;">/month</small></div>
+          <ul>
+            <li>Basic profile creation</li>
+            <li>Access to community board</li>
+            <li>Standard internship listings</li>
+            <li>General platform updates</li>
+          </ul>
+          <button class="btn btn-outline" style="width:100%; margin-top:20px;" onclick="location.href='signup.html'">Current Plan</button>
+        </div>
+
+        <!-- Featured / Pro Plan -->
+        <div class="plan featured">
+          <div class="tag" style="display:inline-block; margin-bottom:10px;">Most Popular</div>
+          <h3>Pro Innovator</h3>
+          <p>Designed for ambitious learners wanting direct mentorship and fast-track hiring.</p>
+          <div class="price">R199<small style="font-size:1rem; font-weight:400;">/month</small></div>
+          <ul>
+            <li>Everything in Explorer</li>
+            <li>Priority internship matching</li>
+            <li>1-on-1 monthly mentorship session</li>
+            <li>Exclusive tech workshop access</li>
+            <li>Verified digital badge</li>
+          </ul>
+          <button class="btn" style="width:100%; margin-top:20px;" onclick="alert('Proceeding to Pro checkout workflow!')">Upgrade to Pro</button>
+        </div>
+
+        <!-- Enterprise / Institution Plan -->
+        <div class="plan">
+          <h3>Enterprise Partner</h3>
+          <p>For organizations, departments, and sponsors looking to train and hire talent at scale.</p>
+          <div class="price">R999<small style="font-size:1rem; font-weight:400;">/month</small></div>
+          <ul>
+            <li>Multi-user team dashboard</li>
+            <li>Direct candidate sourcing tools</li>
+            <li>Custom branding on postings</li>
+            <li>Dedicated account support</li>
+            <li>Advanced performance metrics</li>
+          </ul>
+          <button class="btn btn-outline" style="width:100%; margin-top:20px;" onclick="location.href='contact.html'">Contact Sales</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ or Value Add Band -->
+    <div class="blue-band" style="margin-top:20px;">
+      <div class="wrap">
+        <div>
+          <h2>Need a custom institutional license?</h2>
+          <p>We work directly with universities and coding bootcamps to scale student career support.</p>
+        </div>
+        <button class="btn" style="background:var(--yellow); color:var(--deep);" onclick="location.href='contact.html'">Get in Touch</button>
+      </div>
+    </div>
+  </main>
+
+  <section class="chatbot">
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-head">
+      <strong>Bridge Assistant</strong>
+      <button id="closeChat" type="button">×</button>
+    </div>
+    <div class="chat-log" id="chatLog">
+      <div class="bot-msg">
+        Hi! I’m Bridge. Ask me about services, bookings, internships,
+        profiles, plans, payments, or escrow.
+      </div>
+    </div>
+    <div class="quick-prompts">
+      <button type="button">How do I book?</button>
+      <button type="button">Find internships</button>
+      <button type="button">What are plans?</button>
+    </div>
+    <form id="chatForm">
+      <input id="chatInput" placeholder="Ask a question..." autocomplete="off">
+      <button type="submit">➜</button>
+    </form>
+  </div>
+  <button class="chat-fab" id="chatFab" type="button">
+    ✦ Need help?
+  </button>
+</section>
+
+  <div class="modal-backdrop" id="modal"></div>
+
+
+
+
+  <script>
+  const chatWindow = document.querySelector("#chatWindow");
+  const chatFab = document.querySelector("#chatFab");
+  const closeChat = document.querySelector("#closeChat");
+  const chatForm = document.querySelector("#chatForm");
+  const chatInput = document.querySelector("#chatInput");
+  const chatLog = document.querySelector("#chatLog");
+
+  const answers = {
+    book: "Go to Services, choose a provider and press Book. Complete the booking form, then continue to secure escrow payment.",
+    service: "Open the Services page to browse trusted providers, compare options and book a service.",
+    internship: "Open Internships, choose an opportunity and press Apply now. Create a student account to apply.",
+    profile: "Open Profile to manage your information. Use Edit profile to change your details or Upgrade to view plans.",
+    plan: "Basic is free. Premium is R99 per month, and Premium Pro is R249 per month.",
+    payment: "Your payment is held by an independent third-party escrow partner until you approve the completed work.",
+    escrow: "Escrow protects customers by holding funds safely. The provider receives payment only after the customer confirms the work is complete.",
+    contact: "Open Contact us to send a message to the SkillBridge support team."
+  };
+
+  function respond(question) {
+    const text = question.toLowerCase();
+
+    const match = Object.entries(answers).find(([keyword]) =>
+      text.includes(keyword)
+    );
+
+    const answer = match
+      ? match[1]
+      : "I can help you find a service, book a provider, apply for internships, update your profile, understand plans, payments or escrow.";
+
+    chatLog.insertAdjacentHTML(
+      "beforeend",
+      `<div class="user-msg">${question}</div>
+       <div class="bot-msg">${answer}</div>`
+    );
+
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }
+
+  chatFab.addEventListener("click", function () {
+    chatWindow.classList.toggle("open");
+  });
+
+  closeChat.addEventListener("click", function () {
+    chatWindow.classList.remove("open");
+  });
+
+  chatForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    if (chatInput.value.trim()) {
+      respond(chatInput.value);
+      chatInput.value = "";
+    }
+  });
+
+  document.querySelectorAll(".quick-prompts button").forEach(function (button) {
+    button.addEventListener("click", function () {
+      respond(button.textContent);
+    });
+  });
+</script>
+
+  <script src="app.js"></script>
+</body>
+</html>
