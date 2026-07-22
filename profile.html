@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillBridge SA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body data-page="profile">
+    <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">S</span>
+      <span>Skill<span>Bridge</span><small>SA</small></span>
+    </a>
+    <button class="menu-toggle">☰</button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="internships.html">Internships</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="link-btn" data-route="signin"><a href="signin.html">Sign in</a></button>
+      <button class="btn btn-red" data-route="signup"><a href="signup.html">Join SkillBridge</a></button>
+    </div>
+  </header>
+  
+  <main>
+  <section class="page-hero">
+    <div class="eyebrow" style="justify-content:center">My SkillBridge account</div>
+    <h1>Your profile</h1>
+    <p>Manage how customers, businesses and employers see you.</p>
+  </section>
+
+  <section class="section profile-layout">
+    <aside class="profile-side">
+      <div class="avatar" id="profileInitials">TN</div>
+
+      <h3 id="displayName">Thandi Nkosi</h3>
+      <p id="displayRole">Graphic designer · Johannesburg</p>
+
+      <span class="tag">Verified profile</span>
+      <p>★ 5.0 · 42 reviews</p>
+
+      <button class="btn btn-outline" id="editProfileButton">
+        Edit profile
+      </button>
+    </aside>
+
+    <div class="profile-main">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">Account overview</div>
+          <h2>Grow your opportunity.</h2>
+        </div>
+      </div>
+
+      <div class="cards">
+        <article class="card">
+          <div class="icon">★</div>
+          <h3>Profile status</h3>
+          <p>Your profile is visible to customers and employers.</p>
+          <span class="tag">Verified</span>
+        </article>
+
+        <article class="card">
+          <div class="icon">↗</div>
+          <h3>My activity</h3>
+          <p>Bookings, applications and messages will appear here.</p>
+          <a href="internships.html">Explore opportunities →</a>
+        </article>
+
+        <article class="card">
+          <div class="icon">✦</div>
+          <h3>My plan</h3>
+          <p>You are currently on the Basic plan, free forever.</p>
+          <a href="upgrade.html">View premium plans →</a>
+        </article>
+      </div>
+
+      <div class="notice" style="margin-top:28px">
+        <strong>Upgrade when you are ready.</strong><br>
+        Basic is R0. Premium and Premium Pro give businesses and providers
+        more visibility, leads, recruitment tools and support.
+      </div>
+
+      <div class="profile-actions" style="margin-top:20px">
+        <a class="btn" href="edit-profile.html">Edit profile</a>
+        <a class="btn btn-red" href="upgrade.html">Upgrade</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+  <section class="chatbot">
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-head">
+        <strong>Bridge Assistant</strong>
+        <button id="closeChat">×</button>
+      </div>
+
+      <div class="chat-log" id="chatLog">
+        <div class="bot-msg">Hi! Ask me how to use SkillBridge.</div>
+      </div>
+
+      <div class="quick-prompts">
+        <button>How do I book?</button>
+        <button>Find internships</button>
+        <button>What are plans?</button>
+      </div>
+
+      <form id="chatForm">
+        <input id="chatInput" placeholder="Ask a question...">
+        <button>➜</button>
+      </form>
+    </div>
+
+    <button class="chat-fab" id="chatFab">✦ Need help?</button>
+  </section>
+
+  <div class="modal-backdrop" id="modal"></div>
+
+  <script>
+  const savedName = localStorage.getItem("skillbridge-name");
+  const accountType = localStorage.getItem("skillbridge-account-type");
+
+  if (savedName) {
+    document.querySelector("#displayName").textContent = savedName;
+
+    const initials = savedName
+      .split(" ")
+      .map(word => word[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase();
+
+    document.querySelector("#profileInitials").textContent = initials;
+  }
+
+  if (accountType) {
+    document.querySelector("#displayRole").textContent =
+      accountType + " · South Africa";
+  }
+
+  document.querySelector("#editProfileButton").addEventListener("click", function () {
+    window.location.href = "edit-profile.html";
+  });
+</script>
+</body>
+</html>
