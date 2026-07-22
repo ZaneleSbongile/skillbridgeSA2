@@ -590,3 +590,4 @@ document.querySelectorAll(".quick-prompts button").forEach(button => {
 });
 
 renderPage();
+
