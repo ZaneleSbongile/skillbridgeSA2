@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillBridge SA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body data-page="apply">
+    <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">S</span>
+      <span>Skill<span>Bridge</span><small>SA</small></span>
+    </a>
+    <button class="menu-toggle">☰</button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="internships.html">Internships</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="link-btn" data-route="signin"><a href="signin.html">Sign in</a></button>
+      <button class="btn btn-red" data-route="signup"><a href="signup.html">Join SkillBridge</a></button>
+    </div>
+  </header>
+
+<main id="app">
+    <div class="page-hero">
+      <div class="eyebrow">Career Placement</div>
+      <h1>Submit Your Application</h1>
+      <p>Take the next step in your professional journey. Fill out the application details below to be matched with our corporate partners.</p>
+    </div>
+
+    <section class="section" style="max-width:800px; padding-top:40px;">
+      <div class="form-card">
+        <div style="margin-bottom:25px;">
+          <h3>Application Details</h3>
+          <p style="font-size:.9rem; margin-top:5px;">Please ensure your profile and portfolio link are up to date before submitting.</p>
+        </div>
+
+        <form id="applyForm" onsubmit="handleApplicationSubmit(event)">
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" placeholder="e.g. Sipho Dlamini" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="name@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="+27 71 234 5678" required>
+            </div>
+            <div class="form-group">
+              <label for="roleSelect">Target Position</label>
+              <select id="roleSelect" required>
+                <option value="">Select an opportunity...</option>
+                <option value="dev">Junior Frontend Developer (TechCorp SA)</option>
+                <option value="data">Data Analyst Intern (DataWorks Africa)</option>
+                <option value="design">UI/UX Design Associate (CreativePulse)</option>
+                <option value="general">General Pool / Talent Match</option>
+              </select>
+            </div>
+            <div class="form-group wide">
+              <label for="portfolioUrl">Portfolio or GitHub Link</label>
+              <input type="url" id="portfolioUrl" placeholder="https://github.com/username or personal site">
+            </div>
+            <div class="form-group wide">
+              <label for="coverLetter">Why are you a great fit for this role?</label>
+              <textarea id="coverLetter" placeholder="Briefly highlight your technical stack, projects, or passion for learning..."></textarea>
+            </div>
+          </div>
+          <div style="margin-top:20px;">
+            <button type="submit" class="btn" style="width:100%;">Submit Application</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <section class="chatbot">
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-head">
+      <strong>Bridge Assistant</strong>
+      <button id="closeChat" type="button">×</button>
+    </div>
+    <div class="chat-log" id="chatLog">
+      <div class="bot-msg">
+        Hi! I’m Bridge. Ask me about services, bookings, internships,
+        profiles, plans, payments, or escrow.
+      </div>
+    </div>
+    <div class="quick-prompts">
+      <button type="button">How do I book?</button>
+      <button type="button">Find internships</button>
+      <button type="button">What are plans?</button>
+    </div>
+    <form id="chatForm">
+      <input id="chatInput" placeholder="Ask a question..." autocomplete="off">
+      <button type="submit">➜</button>
+    </form>
+  </div>
+  <button class="chat-fab" id="chatFab" type="button">
+    ✦ Need help?
+  </button>
+</section>
+
+  <div class="modal-backdrop" id="modal"></div>
+
+
+
+
+  <script>
+  const chatWindow = document.querySelector("#chatWindow");
+  const chatFab = document.querySelector("#chatFab");
+  const closeChat = document.querySelector("#closeChat");
+  const chatForm = document.querySelector("#chatForm");
+  const chatInput = document.querySelector("#chatInput");
+  const chatLog = document.querySelector("#chatLog");
+
+  const answers = {
+    book: "Go to Services, choose a provider and press Book. Complete the booking form, then continue to secure escrow payment.",
+    service: "Open the Services page to browse trusted providers, compare options and book a service.",
+    internship: "Open Internships, choose an opportunity and press Apply now. Create a student account to apply.",
+    profile: "Open Profile to manage your information. Use Edit profile to change your details or Upgrade to view plans.",
+    plan: "Basic is free. Premium is R99 per month, and Premium Pro is R249 per month.",
+    payment: "Your payment is held by an independent third-party escrow partner until you approve the completed work.",
+    escrow: "Escrow protects customers by holding funds safely. The provider receives payment only after the customer confirms the work is complete.",
+    contact: "Open Contact us to send a message to the SkillBridge support team."
+  };
+
+  function respond(question) {
+    const text = question.toLowerCase();
+
+    const match = Object.entries(answers).find(([keyword]) =>
+      text.includes(keyword)
+    );
+
+    const answer = match
+      ? match[1]
+      : "I can help you find a service, book a provider, apply for internships, update your profile, understand plans, payments or escrow.";
+
+    chatLog.insertAdjacentHTML(
+      "beforeend",
+      `<div class="user-msg">${question}</div>
+       <div class="bot-msg">${answer}</div>`
+    );
+
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }
+
+  chatFab.addEventListener("click", function () {
+    chatWindow.classList.toggle("open");
+  });
+
+  closeChat.addEventListener("click", function () {
+    chatWindow.classList.remove("open");
+  });
+
+  chatForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    if (chatInput.value.trim()) {
+      respond(chatInput.value);
+      chatInput.value = "";
+    }
+  });
+
+  document.querySelectorAll(".quick-prompts button").forEach(function (button) {
+    button.addEventListener("click", function () {
+      respond(button.textContent);
+    });
+  });
+</script>
+
+  <script src="app.js"></script>
+</body>
+</html>
