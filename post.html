@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <title>Post a Service | SkillBridge SA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body data-page="post-service">
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <div class="brand-mark">SB</div>
+      <span>Skill<span>Bridge</span><small>SA</small></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle">☰</button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="internships.html">Internships</a>
+      <a href="about.html">About</a>
+      <a href="profile.html">Profile</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="link-btn" data-route="signin"><a href="signin.html">Sign in</a></button>
+      <button class="btn btn-red" data-route="signup"><a href="signup.html">Join SkillBridge</a></button>
+    </div>
+  </header>
+  
+  <main id="app">
+    <div class="page-hero">
+      <div class="eyebrow">Service Provider Hub</div>
+      <h1>List a New Service</h1>
+      <p>Share your professional expertise, set your pricing, and showcase your work with high-quality images to attract clients across South Africa.</p>
+    </div>
+
+    <section class="section" style="max-width:800px; padding-top:40px;">
+      <div class="form-card">
+        <div style="margin-bottom:25px;">
+          <h3>Service Listing Details</h3>
+          <p style="font-size:.9rem; margin-top:5px;">Provide clear descriptions and visuals so clients know exactly what to expect.</p>
+        </div>
+
+        <form id="postServiceForm" onsubmit="handleServicePost(event)">
+          <div class="form-grid">
+            <div class="form-group wide">
+              <label for="serviceTitle">Service Title</label>
+              <input type="text" id="serviceTitle" placeholder="e.g. Custom Web Development & UI Design" required>
+            </div>
+
+            <div class="form-group">
+              <label for="serviceCategory">Category</label>
+              <select id="serviceCategory" required>
+                <option value="">Select a category...</option>
+                <option value="development">Software & Web Development</option>
+                <option value="design">Graphic & UI/UX Design</option>
+                <option value="data">Data Analytics & Python</option>
+                <option value="consulting">Career & Business Consulting</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="servicePrice">Price (ZAR)</label>
+              <input type="text" id="servicePrice" placeholder="e.g. R1,500 or Starting at R500" required>
+            </div>
+
+            <div class="form-group wide">
+              <label for="serviceDescription">Service Description</label>
+              <textarea id="serviceDescription" placeholder="Detail what is included in your service, deliverables, and turnaround time..." required></textarea>
+            </div>
+
+            <div class="form-group wide">
+              <label for="serviceImages">Upload Service Images / Portfolio Proof</label>
+              <input type="file" id="serviceImages" accept="image/*" multiple style="padding: 10px; background: var(--soft); border: 1px dashed var(--blue); cursor: pointer;">
+              <small style="color: var(--muted); font-size: 0.8rem; margin-top: 4px; display: block;">You can select multiple images to showcase your previous work or package design.</small>
+            </div>
+
+            <div id="imagePreviewContainer" style="grid-column: 1/-1; display: flex; gap: 10px; flex-wrap: wrap; margin-top: 5px;"></div>
+          </div>
+
+          <div class="notice" style="margin: 25px 0;">
+            🔒 All bookings created through your service listing will be protected by SkillBridge secure escrow safeguards.
+          </div>
+
+          <button type="submit" class="btn" style="width:100%;">Publish Service Listing</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <section class="chatbot">
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-head">
+        <strong>Bridge Assistant</strong>
+        <button id="closeChat">×</button>
+      </div>
+
+      <div class="chat-log" id="chatLog">
+        <div class="bot-msg">Need help listing your service or uploading images? Ask away!</div>
+      </div>
+
+      <div class="quick-prompts">
+        <button>How do I book?</button>
+        <button>Find internships</button>
+        <button>What are plans?</button>
+      </div>
+
+      <form id="chatForm">
+        <input id="chatInput" placeholder="Ask a question...">
+        <button>➜</button>
+      </form>
+    </div>
+
+    <button class="chat-fab" id="chatFab">✦ Need help?</button>
+  </section>
+
+  <div class="modal-backdrop" id="modal"></div>
+
+  <script src="app.js"></script>
+  <script>
+    // Image preview handler
+    const imageInput = document.getElementById('serviceImages');
+    const previewContainer = document.getElementById('imagePreviewContainer');
+
+    if (imageInput) {
+      imageInput.addEventListener('change', function(e) {
+        previewContainer.innerHTML = '';
+        const files = e.target.files;
+        if (files) {
+          Array.from(files).forEach(file => {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+              const img = document.createElement('img');
+              img.src = event.target.result;
+              img.style.width = '80px';
+              img.style.height = '80px';
+              img.style.objectFit = 'cover';
+              img.style.borderRadius = '8px';
+              img.style.border = '1px solid #cfdbe8';
+              previewContainer.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+          });
+        }
+      });
+    }
+
+    function handleServicePost(e) {
+      e.preventDefault();
+      const title = document.getElementById('serviceTitle').value;
+      const category = document.getElementById('serviceCategory').value;
+      const price = document.getElementById('servicePrice').value;
+      const description = document.getElementById('serviceDescription').value;
+
+      const newListing = { title, category, price, description };
+      let listings = JSON.parse(localStorage.getItem('skillbridge-listings') || '[]');
+      listings.push(newListing);
+      localStorage.setItem('skillbridge-listings', JSON.stringify(listings));
+
+      alert('Service listing successfully published to the SkillBridge ecosystem!');
+      location.href = 'services.html';
+    }
+  </script>
+</body>
+</html>
