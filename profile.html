@@ -3,22 +3,26 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>SkillBridge SA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+  <title>Professional Profile | SkillBridge SA</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body data-page="profile">
-    <header class="topbar">
+  <header class="topbar">
     <a class="brand" href="index.html">
-      <span class="brand-mark">S</span>
+      <div class="brand-mark">SB</div>
       <span>Skill<span>Bridge</span><small>SA</small></span>
     </a>
-    <button class="menu-toggle">☰</button>
+    <button class="menu-toggle" id="menuToggle">☰</button>
     <nav id="nav">
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="internships.html">Internships</a>
       <a href="about.html">About</a>
+      <a href="profile.html" class="active">Profile</a>
       <a href="contact.html">Contact us</a>
     </nav>
     <div class="nav-actions">
@@ -27,191 +31,204 @@
     </div>
   </header>
 
-  <main>
-  <section class="page-hero">
-    <div class="eyebrow" style="justify-content:center">My SkillBridge account</div>
-    <h1>Your profile</h1>
-    <p>Manage how customers, businesses and employers see you.</p>
-  </section>
+  <main id="app">
+    <section class="page-hero">
+      <div class="eyebrow" style="justify-content:center">Professional Dashboard</div>
+      <h1 id="displayName">Thandi Nkosi</h1>
+      <p id="displayRole">Graphic Designer & Frontend Developer · Johannesburg, South Africa</p>
+    </section>
 
-  <section class="section profile-layout">
-    <aside class="profile-side">
-      <div class="avatar" id="profileInitials">TN</div>
+    <section class="section">
+      <div class="profile-layout">
+        <!-- Sidebar Profile Card with Picture Upload & Stats -->
+        <aside class="profile-side">
+          <div class="avatar" id="profileInitials" style="background-size: cover; background-position: center; position: relative; overflow: hidden;">
+            TN
+          </div>
+          <div style="margin-top: 15px;">
+            <label for="avatarUpload" class="btn btn-outline" style="font-size: 0.8rem; padding: 8px 12px; display: inline-block; cursor: pointer; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); color: #fff;">
+              Change Photo
+            </label>
+            <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+          </div>
 
-      <h3 id="displayName">Thandi Nkosi</h3>
-      <p id="displayRole">Graphic designer · Johannesburg</p>
+          <h3 id="sidebarName" style="margin-top: 15px; color: #fff;">Thandi Nkosi</h3>
+          <p id="sidebarRole" style="color: #c5d8ef; font-size: 0.9rem;">Graphic Designer</p>
 
-      <span class="tag">Verified profile</span>
-      <p>★ 5.0 · 42 reviews</p>
+          <div style="margin: 20px 0; padding-top: 15px; border-top: 1px solid #2b578e; text-align: left;">
+            <p style="color: #c5d8ef; font-size: 0.85rem; margin-bottom: 5px;"><strong>Location:</strong> Johannesburg</p>
+            <p style="color: #c5d8ef; font-size: 0.85rem; margin-bottom: 5px;"><strong>Member Since:</strong> July 2026</p>
+            <p style="color: #c5d8ef; font-size: 0.85rem; margin-bottom: 0;"><strong>Rating:</strong> ★ 5.0 (42 reviews)</p>
+          </div>
 
-      <button class="btn btn-outline" id="editProfileButton">
-        Edit profile
-      </button>
-    </aside>
+          <span class="tag" style="background: var(--yellow); color: var(--deep); width: 100%; display: block; text-align: center; margin-bottom: 15px;">Verified Pro Provider</span>
 
-    <div class="profile-main">
-      <div class="section-heading">
-        <div>
-          <div class="eyebrow">Account overview</div>
-          <h2>Grow your opportunity.</h2>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <button class="btn" id="editProfileButton" style="width: 100%;">Edit Profile</button>
+            <a class="btn btn-outline" href="upgrade.html" style="width: 100%; border-color: rgba(255,255,255,0.3); color: #ff3e3e;">Manage Plan</a>
+          </div>
+        </aside>
+
+        <!-- Main Profile Content: Bio, Portfolio, Services, Reviews -->
+        <div class="profile-main">
+          
+          <!-- About / Bio Section -->
+          <div class="form-card" style="margin-bottom: 25px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+              <h3>About Me</h3>
+              <span class="tag">Pro Innovator</span>
+            </div>
+            <p id="bioText" style="font-size: 0.95rem; line-height: 1.6;">
+              Passionate digital creator and developer specializing in clean web layouts, brand identity design, and user-centric interfaces. Dedicated to building engaging digital ecosystems and helping local businesses scale through modern web technologies.
+            </p>
+          </div>
+
+          <!-- Services Rendered -->
+          <div class="form-card" style="margin-bottom: 25px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+              <h3>Services Rendered</h3>
+              <button class="link-btn" onclick="alert('Add service modal triggered')"><a href="post.html">+ Add Service</a></button>
+            </div>
+            <div class="service-grid" style="grid-template-columns: 1fr 1fr; gap: 15px;">
+              <div style="background: var(--soft); padding: 15px; border-radius: 12px; border: 1px solid #e0e8f1;">
+                <strong>Brand Identity & Logos</strong>
+                <p style="font-size: 0.85rem; margin: 5px 0 0;">Custom vector branding, color guidelines, and social media kits.</p>
+              </div>
+              <div style="background: var(--soft); padding: 15px; border-radius: 12px; border: 1px solid #e0e8f1;">
+                <strong>Frontend Web Development</strong>
+                <p style="font-size: 0.85rem; margin: 5px 0 0;">HTML5, CSS3, and JavaScript responsive landing pages & apps.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Portfolio Showcase -->
+          <div class="form-card" style="margin-bottom: 25px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+              <h3>Portfolio Showcase</h3>
+              <button class="link-btn" onclick="alert('Upload portfolio project modal triggered')">+ Add Project</button>
+            </div>
+            <div class="cards" style="grid-template-columns: 1fr 1fr; gap: 15px;">
+              <div class="card" style="padding: 18px;">
+                <div class="icon" style="background: #e4f1ff;">💻</div>
+                <h3 style="font-size: 1.1rem;">SkillBridge SA Ecosystem</h3>
+                <p style="font-size: 0.85rem; margin: 5px 0 10px;">Full-stack layout and responsive frontend architecture.</p>
+                <a href="#" style="color: var(--blue); font-weight: 700; font-size: 0.85rem;">View Project →</a>
+              </div>
+              <div class="card" style="padding: 18px;">
+                <div class="icon" style="background: #fff3c9;">🎨</div>
+                <h3 style="font-size: 1.1rem;">BrandPulse Redesign</h3>
+                <p style="font-size: 0.85rem; margin: 5px 0 10px;">Modern corporate visual overhaul and UI component library.</p>
+                <a href="#" style="color: var(--blue); font-weight: 700; font-size: 0.85rem;">View Project →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Client Reviews -->
+          <div class="form-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+              <h3>Client Reviews (42)</h3>
+              <span style="color: var(--yellow); font-weight: 700;">★ 5.0 / 5.0</span>
+            </div>
+            <div style="display: grid; gap: 15px;">
+              <div style="padding-bottom: 15px; border-bottom: 1px solid #eef2f7;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 700;">
+                  <span>Sibusiso M.</span>
+                  <span style="color: var(--yellow);">★★★★★</span>
+                </div>
+                <p style="font-size: 0.85rem; margin: 5px 0 0;">"Thandi delivered exceptional frontend code ahead of schedule. Incredible attention to detail and communication!"</p>
+              </div>
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 700;">
+                  <span>Naledi P.</span>
+                  <span style="color: var(--yellow);">★★★★★</span>
+                </div>
+                <p style="font-size: 0.85rem; margin: 5px 0 0;">"Absolute pleasure to work with. The brand identity design elevated our entire startup pitch."</p>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
-
-      <div class="cards">
-        <article class="card">
-          <div class="icon">★</div>
-          <h3>Profile status</h3>
-          <p>Your profile is visible to customers and employers.</p>
-          <span class="tag">Verified</span>
-        </article>
-
-        <article class="card">
-          <div class="icon">↗</div>
-          <h3>My activity</h3>
-          <p>Bookings, applications and messages will appear here.</p>
-          <a href="internships.html">Explore opportunities →</a>
-        </article>
-
-        <article class="card">
-          <div class="icon">✦</div>
-          <h3>My plan</h3>
-          <p>You are currently on the Basic plan, free forever.</p>
-          <a href="upgrade.html">View premium plans →</a>
-        </article>
-      </div>
-
-      <div class="notice" style="margin-top:28px">
-        <strong>Upgrade when you are ready.</strong><br>
-        Basic is R0. Premium and Premium Pro give businesses and providers
-        more visibility, leads, recruitment tools and support.
-      </div>
-
-      <div class="profile-actions" style="margin-top:20px">
-        <a class="btn" href="edit-profile.html">Edit profile</a>
-        <a class="btn btn-red" href="upgrade.html">Upgrade</a>
-      </div>
-    </div>
-  </section>
-</main>
+    </section>
+  </main>
 
   <section class="chatbot">
-  <div class="chat-window" id="chatWindow">
-    <div class="chat-head">
-      <strong>Bridge Assistant</strong>
-      <button id="closeChat" type="button">×</button>
-    </div>
-    <div class="chat-log" id="chatLog">
-      <div class="bot-msg">
-        Hi! I’m Bridge. Ask me about services, bookings, internships,
-        profiles, plans, payments, or escrow.
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-head">
+        <strong>Bridge Assistant</strong>
+        <button id="closeChat" type="button">×</button>
       </div>
+      <div class="chat-log" id="chatLog">
+        <div class="bot-msg">
+          Hi! I’m Bridge. Ask me about services, bookings, internships, profiles, plans, payments, or escrow.
+        </div>
+      </div>
+      <div class="quick-prompts">
+        <button type="button">How do I book?</button>
+        <button type="button">Find internships</button>
+        <button type="button">What are plans?</button>
+      </div>
+      <form id="chatForm">
+        <input id="chatInput" placeholder="Ask a question..." autocomplete="off">
+        <button type="submit">➜</button>
+      </form>
     </div>
-    <div class="quick-prompts">
-      <button type="button">How do I book?</button>
-      <button type="button">Find internships</button>
-      <button type="button">What are plans?</button>
-    </div>
-    <form id="chatForm">
-      <input id="chatInput" placeholder="Ask a question..." autocomplete="off">
-      <button type="submit">➜</button>
-    </form>
-  </div>
-  <button class="chat-fab" id="chatFab" type="button">
-    ✦ Need help?
-  </button>
-</section>
+    <button class="chat-fab" id="chatFab" type="button">
+      ✦ Need help?
+    </button>
+  </section>
 
   <div class="modal-backdrop" id="modal"></div>
 
-
-
-
+  <script src="app.js"></script>
   <script>
-  const chatWindow = document.querySelector("#chatWindow");
-  const chatFab = document.querySelector("#chatFab");
-  const closeChat = document.querySelector("#closeChat");
-  const chatForm = document.querySelector("#chatForm");
-  const chatInput = document.querySelector("#chatInput");
-  const chatLog = document.querySelector("#chatLog");
+    // Profile Picture Upload Handler
+    const avatarUpload = document.getElementById('avatarUpload');
+    const profileInitials = document.getElementById('profileInitials');
 
-  const answers = {
-    book: "Go to Services, choose a provider and press Book. Complete the booking form, then continue to secure escrow payment.",
-    service: "Open the Services page to browse trusted providers, compare options and book a service.",
-    internship: "Open Internships, choose an opportunity and press Apply now. Create a student account to apply.",
-    profile: "Open Profile to manage your information. Use Edit profile to change your details or Upgrade to view plans.",
-    plan: "Basic is free. Premium is R99 per month, and Premium Pro is R249 per month.",
-    payment: "Your payment is held by an independent third-party escrow partner until you approve the completed work.",
-    escrow: "Escrow protects customers by holding funds safely. The provider receives payment only after the customer confirms the work is complete.",
-    contact: "Open Contact us to send a message to the SkillBridge support team."
-  };
-
-  function respond(question) {
-    const text = question.toLowerCase();
-
-    const match = Object.entries(answers).find(([keyword]) =>
-      text.includes(keyword)
-    );
-
-    const answer = match
-      ? match[1]
-      : "I can help you find a service, book a provider, apply for internships, update your profile, understand plans, payments or escrow.";
-
-    chatLog.insertAdjacentHTML(
-      "beforeend",
-      `<div class="user-msg">${question}</div>
-       <div class="bot-msg">${answer}</div>`
-    );
-
-    chatLog.scrollTop = chatLog.scrollHeight;
-  }
-
-  chatFab.addEventListener("click", function () {
-    chatWindow.classList.toggle("open");
-  });
-
-  closeChat.addEventListener("click", function () {
-    chatWindow.classList.remove("open");
-  });
-
-  chatForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-
-    if (chatInput.value.trim()) {
-      respond(chatInput.value);
-      chatInput.value = "";
+    if (avatarUpload) {
+      avatarUpload.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            profileInitials.style.backgroundImage = `url('${event.target.result}')`;
+            profileInitials.textContent = '';
+            localStorage.setItem('skillbridge-avatar', event.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      });
     }
-  });
 
-  document.querySelectorAll(".quick-prompts button").forEach(function (button) {
-    button.addEventListener("click", function () {
-      respond(button.textContent);
-    });
-  });
+    // Load saved avatar if present
+    const savedAvatar = localStorage.getItem('skillbridge-avatar');
+    if (savedAvatar && profileInitials) {
+      profileInitials.style.backgroundImage = `url('${savedAvatar}')`;
+      profileInitials.textContent = '';
+    }
 
-  const savedName = localStorage.getItem("skillbridge-name");
-  const accountType = localStorage.getItem("skillbridge-account-type");
+    // Load saved name/role if available
+    const savedName = localStorage.getItem("skillbridge-name");
+    const accountType = localStorage.getItem("skillbridge-account-type");
+    if (savedName) {
+      document.getElementById("displayName").textContent = savedName;
+      document.getElementById("sidebarName").textContent = savedName;
+      const initials = savedName.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
+      if (!savedAvatar) {
+        profileInitials.textContent = initials;
+      }
+    }
+    if (accountType) {
+      document.getElementById("sidebarRole").textContent = accountType;
+    }
 
-  if (savedName) {
-    document.querySelector("#displayName").textContent = savedName;
-
-    const initials = savedName
-      .split(" ")
-      .map(word => word[0])
-      .join("")
-      .slice(0, 2)
-      .toUpperCase();
-
-    document.querySelector("#profileInitials").textContent = initials;
-  }
-
-  if (accountType) {
-    document.querySelector("#displayRole").textContent =
-      accountType + " · South Africa";
-  }
-
-  document.querySelector("#editProfileButton").addEventListener("click", function () {
-    window.location.href = "edit-profile.html";
-  });
-</script>
+    const editBtn = document.getElementById("editProfileButton");
+    if (editBtn) {
+      editBtn.addEventListener("click", () => {
+        location.href = "edit-profile.html";
+      });
+    }
+  </script>
 </body>
 </html>
