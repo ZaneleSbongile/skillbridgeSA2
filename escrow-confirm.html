@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SkillBridge SA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body data-page="escrow-confirm">
+    <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">S</span>
+      <span>Skill<span>Bridge</span><small>SA</small></span>
+    </a>
+    <button class="menu-toggle">☰</button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="internships.html">Internships</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="link-btn" data-route="signin"><a href="signin.html">Sign in</a></button>
+      <button class="btn btn-red" data-route="signup"><a href="signup.html">Join SkillBridge</a></button>
+    </div>
+  </header>
+
+  <main id="app">
+    <div class="page-hero">
+      <div class="eyebrow">Secure Transaction Protection</div>
+      <h1>Escrow Confirmation</h1>
+      <p>Funds are securely held in escrow until project milestones or placement agreements are successfully fulfilled and verified.</p>
+    </div>
+
+    <section class="section" style="max-width:800px; padding-top:40px;">
+      <div class="form-card">
+        <div style="text-align:center; margin-bottom:30px;">
+          <div class="icon" style="margin:0 auto 15px; width:64px; height:64px; font-size:2rem; background:#e2f5f0; color:#0d7a5f;">🛡️</div>
+          <h3>Escrow Protection Active</h3>
+          <p style="font-size:.95rem; margin-top:8px; max-width:500px; margin-left:auto; margin-right:auto;">
+            Your payment is locked safely in our verified escrow account. The service provider or partner will only receive funds upon your explicit milestone sign-off.
+          </p>
+        </div>
+
+        <div style="background:var(--soft); border-radius:12px; padding:20px; margin-bottom:25px;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:.92rem;">
+            <span style="color:var(--muted);">Transaction ID:</span>
+            <strong style="color:var(--ink);">#SB-ESC-8942026</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:.92rem;">
+            <span style="color:var(--muted);">Protected Amount:</span>
+            <strong style="color:var(--deep);">R1,950.00</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:12px; font-size:.92rem;">
+            <span style="color:var(--muted);">Status:</span>
+            <strong style="color:var(--blue);">Held in Secure Vault</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:.92rem;">
+            <span style="color:var(--muted);">Release Condition:</span>
+            <strong style="color:var(--ink);">Client Milestone Approval</strong>
+          </div>
+        </div>
+
+        <div class="notice" style="margin-bottom:25px;">
+          ⚡ Need to raise a dispute or request a milestone extension? You can manage escrow terms directly from your dashboard or contact our support team.
+        </div>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <button class="btn" style="flex:1;" onclick="alert('Milestone approved! Funds released from escrow.')">Approve & Release Funds</button>
+          <button class="btn btn-outline" style="flex:1;" onclick="location.href='contact.html'">Raise Dispute / Support</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="chatbot">
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-head">
+        <strong>Bridge Assistant</strong>
+        <button id="closeChat">×</button>
+      </div>
+
+      <div class="chat-log" id="chatLog">
+        <div class="bot-msg">Hi! Ask me how to use SkillBridge.</div>
+      </div>
+
+      <div class="quick-prompts">
+        <button>How do I book?</button>
+        <button>Find internships</button>
+        <button>What are plans?</button>
+      </div>
+
+      <form id="chatForm">
+        <input id="chatInput" placeholder="Ask a question...">
+        <button>➜</button>
+      </form>
+    </div>
+
+    <button class="chat-fab" id="chatFab">✦ Need help?</button>
+  </section>
+
+  <div class="modal-backdrop" id="modal"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
