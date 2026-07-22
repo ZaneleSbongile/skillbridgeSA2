@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Internships | SkillBridge SA</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="internships">
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">S</span>
+      <span>Skill<span>Bridge</span><small>SA</small></span>
+    </a>
+    <button class="menu-toggle">☰</button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="internships.html">Internships</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="link-btn" data-route="signin"><a href="signin.html">Sign in</a></button>
+      <button class="btn btn-red" data-route="signup"><a href="signup.html">Join SkillBridge</a></button>
+    </div>
+  </header>
+
+  <main>
+  <section class="page-hero">
+    <div class="eyebrow" style="justify-content:center">Your next chapter</div>
+    <h1>Start your career with confidence.</h1>
+    <p>
+      Discover internships and entry-level roles from employers investing in
+      South Africa’s future talent.
+    </p>
+  </section>
+
+  <section class="section">
+    <div class="filters">
+      <button class="filter active">All opportunities</button>
+      <button class="filter">Marketing</button>
+      <button class="filter">Technology</button>
+      <button class="filter">Business</button>
+      <button class="filter">Engineering</button>
+    </div>
+
+    <article class="intern-card">
+      <div class="company-logo">BC</div>
+      <div>
+        <h3>Junior Marketing Intern</h3>
+        <p>Brightside Communications</p>
+        <span class="intern-meta">Johannesburg · 6 months · Posted this week</span>
+      </div>
+      <a class="btn" href="apply.html">Apply now</a>
+    </article>
+
+    <article class="intern-card">
+      <div class="company-logo">TD</div>
+      <div>
+        <h3>Software Development Intern</h3>
+        <p>TechDrive SA</p>
+        <span class="intern-meta">Hybrid · 12 months · Posted this week</span>
+      </div>
+      <a class="btn" href="apply.html">Apply now</a>
+    </article>
+
+    <article class="intern-card">
+      <div class="company-logo">NL</div>
+      <div>
+        <h3>Business Administration Intern</h3>
+        <p>NewLeaf Group</p>
+        <span class="intern-meta">Pretoria · 12 months · Posted this week</span>
+      </div>
+      <a class="btn" href="apply.html">Apply now</a>
+    </article>
+
+    <article class="intern-card">
+      <div class="company-logo">EC</div>
+      <div>
+        <h3>Graphic Design Intern</h3>
+        <p>EcoConnect</p>
+        <span class="intern-meta">Cape Town · 6 months · Posted this week</span>
+      </div>
+      <a class="btn" href="apply.html">Apply now</a>
+    </article>
+
+    <div class="notice" style="margin-top:32px">
+      Create a student profile to showcase your skills, qualifications and
+      portfolio before applying for internships.
+    </div>
+  </section>
+</main>
+
+  <section class="chatbot">
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-head"><strong>Bridge Assistant</strong><button id="closeChat">×</button></div>
+      <div class="chat-log" id="chatLog"><div class="bot-msg">Hi! Ask me how to use SkillBridge.</div></div>
+      <div class="quick-prompts">
+        <button>How do I book?</button>
+        <button>Find internships</button>
+        <button>What are plans?</button>
+      </div>
+      <form id="chatForm"><input id="chatInput" placeholder="Ask a question..."><button>➜</button></form>
+    </div>
+    <button class="chat-fab" id="chatFab">✦ Need help?</button>
+  </section>
+
+  <div class="modal-backdrop" id="modal"></div>
+</body>
+</html>
