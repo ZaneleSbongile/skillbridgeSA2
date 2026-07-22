@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SkillBridge SA | Opportunities start here</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="home">
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">S</span>
+      <span>Skill<span>Bridge</span><small>SA</small></span>
+    </a>
+    <button class="menu-toggle">☰</button>
+    <nav id="nav">
+      <a href="index.html">Home</a>
+      <a href="services.html">Services</a>
+      <a href="internships.html">Internships</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact us</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="link-btn" data-route="signin"><a href="signin.html">Sign in</a></button>
+      <button class="btn btn-red" data-route="signup"><a href="signup.html">Join SkillBridge</a></button>
+    </div>
+  </header>
+
+<main>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">Made for South African opportunity</div>
+
+      <h1>
+        Where <em>talent</em>, business and community move forward.
+      </h1>
+
+      <p>
+        SkillBridge is the trusted place to find local services, grow a
+        business and turn skills into meaningful employment.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn" href="services.html">Find a service →</a>
+        <a class="btn btn-outline" href="signup.html">I offer a service</a>
+      </div>
+    </div>
+
+    <aside class="hero-card">
+      <div class="person">
+        <div class="avatar">TN</div>
+        <div>
+          <strong>Thandi Nkosi</strong><br>
+          <small>Verified graphic designer</small>
+        </div>
+      </div>
+
+      <div class="stars">★★★★★ <small>5.0 · 42 reviews</small></div>
+    </aside>
+  </section>
+
+  <section class="stats">
+    <div class="stat">
+      <strong>1,200+</strong>
+      <span>Skilled local providers</span>
+    </div>
+
+    <div class="stat">
+      <strong>450+</strong>
+      <span>Businesses growing with us</span>
+    </div>
+
+    <div class="stat">
+      <strong>300+</strong>
+      <span>Student opportunities</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <div>
+        <div class="eyebrow">One platform, real possibility</div>
+        <h2>Built for everyone who wants to move forward.</h2>
+      </div>
+
+      <p>
+        Whether you need a trusted professional, want to reach more
+        customers, or are ready for your first career opportunity, you belong here.
+      </p>
+    </div>
+
+    <div class="cards">
+      <article class="card">
+        <div class="icon">⌕</div>
+        <h3>For customers</h3>
+        <p>
+          Search trusted providers, compare reviews, book with confidence
+          and pay securely.
+        </p>
+        <a href="services.html">Find a service →</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">↗</div>
+        <h3>For businesses</h3>
+        <p>
+          Create a professional presence, advertise your work and recruit
+          emerging talent.
+        </p>
+        <a href="signup.html">Grow your business →</a>
+      </article>
+
+      <article class="card">
+        <div class="icon">✦</div>
+        <h3>For students</h3>
+        <p>
+          Show your skills and portfolio, then apply directly for internships and jobs.
+        </p>
+        <a href="internships.html">Find opportunities →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="blue-band">
+    <div class="wrap">
+      <div>
+        <h2>Every payment helps build a stronger marketplace.</h2>
+        <p>
+          To keep SkillBridge safe, supported and growing, a transparent
+          20% platform fee is deducted from completed payments to service providers.
+        </p>
+      </div>
+
+      <a class="btn" href="about.html"
+         style="background:#ffc928;color:#062e66">
+        Why SkillBridge?
+      </a>
+    </div>
+  </section>
+</main>
+
+  <footer>
+    <div class="brand">
+      <span class="brand-mark">S</span>
+      <span>Skill<span>Bridge</span><small>SA</small></span>
+    </div>
+    <p>Connecting skills, businesses and opportunity across South Africa.</p>
+    <div>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+      <a href="internships.html">Internships</a>
+    </div>
+    <small>© 2026 SkillBridge SA. Built for a stronger South Africa.</small>
+  </footer>
+
+  <section class="chatbot">
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-head">
+        <strong>Bridge Assistant</strong>
+        <button id="closeChat">×</button>
+      </div>
+      <div class="chat-log" id="chatLog">
+        <div class="bot-msg">
+          Hi! I’m Bridge, your SkillBridge guide. Ask me about finding a
+          service, internships, profiles, or our plans.
+        </div>
+      </div>
+      <div class="quick-prompts">
+        <button>How do I book?</button>
+        <button>Find internships</button>
+        <button>What are plans?</button>
+      </div>
+      <form id="chatForm">
+        <input id="chatInput" placeholder="Ask a question..." autocomplete="off">
+        <button>➜</button>
+      </form>
+    </div>
+    <button class="chat-fab" id="chatFab">✦ Need help?</button>
+  </section>
+
+  <div class="modal-backdrop" id="modal"></div>
+</body>
+</html>
