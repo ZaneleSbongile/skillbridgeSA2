@@ -21,29 +21,29 @@
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="internships.html">Internships</a>
+      <a href="student-directory.html">Student Talent</a>
       <a href="about.html">About</a>
       <a href="profile.html" class="active">Profile</a>
       <a href="contact.html">Contact us</a>
     </nav>
-    <div class="nav-actions">
-      <button class="link-btn" data-route="signin"><a href="signin.html">Sign in</a></button>
-      <button class="btn btn-red" data-route="signup"><a href="signup.html">Join SkillBridge</a></button>
+    <div class="nav-actions" id="navActions">
+      <!-- Dynamically populated based on login state -->
     </div>
   </header>
 
   <main id="app">
     <section class="page-hero">
       <div class="eyebrow" style="justify-content:center">Professional Dashboard</div>
-      <h1 id="displayName">Thandi Nkosi</h1>
-      <p id="displayRole">Graphic Designer & Frontend Developer · Johannesburg, South Africa</p>
+      <h1 id="displayName">Loading...</h1>
+      <p id="displayRole">Member · South Africa</p>
     </section>
 
     <section class="section">
       <div class="profile-layout">
         <!-- Sidebar Profile Card with Picture Upload & Stats -->
         <aside class="profile-side">
-          <div class="avatar" id="profileInitials" style="background-size: cover; background-position: center; position: relative; overflow: hidden;">
-            TN
+          <div class="avatar" id="profileInitials" style="background-size: cover; background-position: center; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #fff; background-color: #0752aa;">
+            SB
           </div>
           <div style="margin-top: 15px;">
             <label for="avatarUpload" class="btn btn-outline" style="font-size: 0.8rem; padding: 8px 12px; display: inline-block; cursor: pointer; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); color: #fff;">
@@ -52,99 +52,47 @@
             <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
           </div>
 
-          <h3 id="sidebarName" style="margin-top: 15px; color: #fff;">Thandi Nkosi</h3>
-          <p id="sidebarRole" style="color: #c5d8ef; font-size: 0.9rem;">Graphic Designer</p>
+          <h3 id="sidebarName" style="margin-top: 15px; color: #fff;">User Name</h3>
+          <p id="sidebarRole" style="color: #c5d8ef; font-size: 0.9rem;">Member</p>
 
           <div style="margin: 20px 0; padding-top: 15px; border-top: 1px solid #2b578e; text-align: left;">
-            <p style="color: #c5d8ef; font-size: 0.85rem; margin-bottom: 5px;"><strong>Location:</strong> Johannesburg</p>
-            <p style="color: #c5d8ef; font-size: 0.85rem; margin-bottom: 5px;"><strong>Member Since:</strong> July 2026</p>
-            <p style="color: #c5d8ef; font-size: 0.85rem; margin-bottom: 0;"><strong>Rating:</strong> ★ 5.0 (42 reviews)</p>
+            <p style="color: #c5d8ef; font-size: 0.85rem; margin-bottom: 5px;" id="sidebarEmail"><strong>Email:</strong> --</p>
+            <p style="color: #c5d8ef; font-size: 0.85rem; margin-bottom: 5px;" id="sidebarPhone"><strong>Phone:</strong> --</p>
+            <p style="color: #c5d8ef; font-size: 0.85rem; margin-bottom: 0;"><strong>Member Since:</strong> 2026</p>
           </div>
 
-          <span class="tag" style="background: var(--yellow); color: var(--deep); width: 100%; display: block; text-align: center; margin-bottom: 15px;">Verified Pro Provider</span>
+          <span class="tag" id="sidebarStatusTag" style="background: var(--yellow); color: var(--deep); width: 100%; display: block; text-align: center; margin-bottom: 15px;">Verified Member</span>
 
           <div style="display: flex; flex-direction: column; gap: 10px;">
-            <button class="btn" id="editProfileButton" style="width: 100%;">Edit Profile</button>
-            <a class="btn btn-outline" href="upgrade.html" style="width: 100%; border-color: rgba(255,255,255,0.3); color: #ff3e3e;">Manage Plan</a>
+            <button class="btn" id="logoutButton" style="width: 100%; background: #d90429;">Sign Out</button>
           </div>
         </aside>
 
-        <!-- Main Profile Content: Bio, Portfolio, Services, Reviews -->
+        <!-- Main Profile Content -->
         <div class="profile-main">
           
           <!-- About / Bio Section -->
           <div class="form-card" style="margin-bottom: 25px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
               <h3>About Me</h3>
-              <span class="tag">Pro Innovator</span>
+              <span class="tag" id="roleTag">Member</span>
             </div>
             <p id="bioText" style="font-size: 0.95rem; line-height: 1.6;">
-              Passionate digital creator and developer specializing in clean web layouts, brand identity design, and user-centric interfaces. Dedicated to building engaging digital ecosystems and helping local businesses scale through modern web technologies.
+              No bio provided yet. Update your profile during registration or edit your details.
             </p>
           </div>
 
-          <!-- Services Rendered -->
-          <div class="form-card" style="margin-bottom: 25px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-              <h3>Services Rendered</h3>
-              <button class="link-btn" onclick="alert('Add service modal triggered')"><a href="post.html">+ Add Service</a></button>
-            </div>
-            <div class="service-grid" style="grid-template-columns: 1fr 1fr; gap: 15px;">
-              <div style="background: var(--soft); padding: 15px; border-radius: 12px; border: 1px solid #e0e8f1;">
-                <strong>Brand Identity & Logos</strong>
-                <p style="font-size: 0.85rem; margin: 5px 0 0;">Custom vector branding, color guidelines, and social media kits.</p>
-              </div>
-              <div style="background: var(--soft); padding: 15px; border-radius: 12px; border: 1px solid #e0e8f1;">
-                <strong>Frontend Web Development</strong>
-                <p style="font-size: 0.85rem; margin: 5px 0 0;">HTML5, CSS3, and JavaScript responsive landing pages & apps.</p>
-              </div>
-            </div>
+          <!-- Role-Specific Dynamic Card Container -->
+          <div class="form-card" id="roleSpecificCardContainer" style="margin-bottom: 25px; display: none;">
+            <!-- Injected via JS based on whether student, provider, or business -->
           </div>
 
-          <!-- Portfolio Showcase -->
+          <!-- Portfolio / Qualifications Proof Showcase -->
           <div class="form-card" style="margin-bottom: 25px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-              <h3>Portfolio Showcase</h3>
-              <button class="link-btn" onclick="alert('Upload portfolio project modal triggered')">+ Add Project</button>
+              <h3>Qualifications & Documents</h3>
             </div>
-            <div class="cards" style="grid-template-columns: 1fr 1fr; gap: 15px;">
-              <div class="card" style="padding: 18px;">
-                <div class="icon" style="background: #e4f1ff;">💻</div>
-                <h3 style="font-size: 1.1rem;">SkillBridge SA Ecosystem</h3>
-                <p style="font-size: 0.85rem; margin: 5px 0 10px;">Full-stack layout and responsive frontend architecture.</p>
-                <a href="#" style="color: var(--blue); font-weight: 700; font-size: 0.85rem;">View Project →</a>
-              </div>
-              <div class="card" style="padding: 18px;">
-                <div class="icon" style="background: #fff3c9;">🎨</div>
-                <h3 style="font-size: 1.1rem;">BrandPulse Redesign</h3>
-                <p style="font-size: 0.85rem; margin: 5px 0 10px;">Modern corporate visual overhaul and UI component library.</p>
-                <a href="#" style="color: var(--blue); font-weight: 700; font-size: 0.85rem;">View Project →</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Client Reviews -->
-          <div class="form-card">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-              <h3>Client Reviews (42)</h3>
-              <span style="color: var(--yellow); font-weight: 700;">★ 5.0 / 5.0</span>
-            </div>
-            <div style="display: grid; gap: 15px;">
-              <div style="padding-bottom: 15px; border-bottom: 1px solid #eef2f7;">
-                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 700;">
-                  <span>Sibusiso M.</span>
-                  <span style="color: var(--yellow);">★★★★★</span>
-                </div>
-                <p style="font-size: 0.85rem; margin: 5px 0 0;">"Thandi delivered exceptional frontend code ahead of schedule. Incredible attention to detail and communication!"</p>
-              </div>
-              <div>
-                <div style="display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 700;">
-                  <span>Naledi P.</span>
-                  <span style="color: var(--yellow);">★★★★★</span>
-                </div>
-                <p style="font-size: 0.85rem; margin: 5px 0 0;">"Absolute pleasure to work with. The brand identity design elevated our entire startup pitch."</p>
-              </div>
-            </div>
+            <p id="qualStatusText" style="font-size: 0.9rem; color: #555;">No qualification certificates uploaded.</p>
           </div>
 
         </div>
@@ -152,81 +100,116 @@
     </section>
   </main>
 
-  <section class="chatbot">
-    <div class="chat-window" id="chatWindow">
-      <div class="chat-head">
-        <strong>Bridge Assistant</strong>
-        <button id="closeChat" type="button">×</button>
-      </div>
-      <div class="chat-log" id="chatLog">
-        <div class="bot-msg">
-          Hi! I’m Bridge. Ask me about services, bookings, internships, profiles, plans, payments, or escrow.
-        </div>
-      </div>
-      <div class="quick-prompts">
-        <button type="button">How do I book?</button>
-        <button type="button">Find internships</button>
-        <button type="button">What are plans?</button>
-      </div>
-      <form id="chatForm">
-        <input id="chatInput" placeholder="Ask a question..." autocomplete="off">
-        <button type="submit">➜</button>
-      </form>
-    </div>
-    <button class="chat-fab" id="chatFab" type="button">
-      ✦ Need help?
-    </button>
-  </section>
-
-  <div class="modal-backdrop" id="modal"></div>
-
-  <script src="app.js"></script>
+  <!-- Chatbot and Scripts -->
   <script>
-    // Profile Picture Upload Handler
-    const avatarUpload = document.getElementById('avatarUpload');
-    const profileInitials = document.getElementById('profileInitials');
+    // 1. CHECK AUTHENTICATION ON LOAD
+    const savedName = localStorage.getItem("skillbridge-name");
+    const accountType = localStorage.getItem("skillbridge-account-type");
+    const navActions = document.querySelector("#navActions");
 
+    if (!savedName || !accountType) {
+      // Not logged in: Show sign-in / join actions in header and redirect
+      navActions.innerHTML = `
+        <button class="link-btn"><a href="signin.html">Sign in</a></button>
+        <button class="btn btn-red"><a href="signup.html">Join SkillBridge</a></button>
+      `;
+      alert("Please sign in or create an account to view your profile.");
+      window.location.href = "signup.html";
+    } else {
+      // Logged in: Show Sign out in navigation header
+      navActions.innerHTML = `
+        <span style="font-size:0.9rem; font-weight:600; color:#333; margin-right:10px;">Hi, ${savedName.split(" ")[0]}</span>
+        <button class="btn btn-red" id="headerLogout">Sign out</button>
+      `;
+
+      document.querySelector("#headerLogout").addEventListener("click", function() {
+        localStorage.clear();
+        alert("You have been signed out.");
+        window.location.href = "signin.html";
+      });
+
+      // 2. POPULATE PROFILE DATA
+      document.getElementById("displayName").textContent = savedName;
+      document.getElementById("sidebarName").textContent = savedName;
+      document.getElementById("displayRole").textContent = accountType + " · South Africa";
+      document.getElementById("sidebarRole").textContent = accountType;
+      document.getElementById("roleTag").textContent = accountType;
+
+      const email = localStorage.getItem("skillbridge-email");
+      const phone = localStorage.getItem("skillbridge-phone");
+      const about = localStorage.getItem("skillbridge-about");
+
+      if (email) document.getElementById("sidebarEmail").innerHTML = `<strong>Email:</strong> ${email}`;
+      if (phone) document.getElementById("sidebarPhone").innerHTML = `<strong>Phone:</strong> ${phone}`;
+      if (about) document.getElementById("bioText").textContent = about;
+
+      // Initials avatar fallback
+      const profileInitials = document.getElementById('profileInitials');
+      const initials = savedName.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
+      profileInitials.textContent = initials;
+
+      // Load saved avatar image if present
+      const savedAvatar = localStorage.getItem('skillbridge-avatar');
+      if (savedAvatar) {
+        profileInitials.style.backgroundImage = `url('${savedAvatar}')`;
+        profileInitials.textContent = '';
+      }
+
+      // 3. ROLE-SPECIFIC CARD CONTENT
+      const container = document.getElementById("roleSpecificCardContainer");
+      if (accountType === "Student") {
+        const institution = localStorage.getItem("skillbridge-institution") || "Tshwane University of Technology";
+        const field = localStorage.getItem("skillbridge-field") || "Information Technology";
+        
+        container.style.display = "block";
+        container.innerHTML = `
+          <h3>Student Academic Profile</h3>
+          <p style="margin-top:10px;"><strong>Institution:</strong> ${institution}</p>
+          <p><strong>Field of Study:</strong> ${field}</p>
+          <p style="margin-top:10px; font-size:0.88rem; color:#555;">Your profile is active in the Student Talent Directory so businesses can scout you for internships.</p>
+        `;
+      } else if (accountType === "Service provider") {
+        container.style.display = "block";
+        container.innerHTML = `
+          <h3>Service Provider Details</h3>
+          <p style="margin-top:10px;">You are registered as a professional service provider ready to receive bookings and client reviews.</p>
+        `;
+      } else if (accountType === "Business owner") {
+        container.style.display = "block";
+        container.innerHTML = `
+          <h3>Business Owner Dashboard</h3>
+          <p style="margin-top:10px;">Thank you for committing to scout and offer internships to students on SkillBridge SA!</p>
+          <br>
+          <a href="student-directory.html" class="btn" style="display:inline-block;">View Student Talent Directory →</a>
+        `;
+      }
+    }
+
+    // Logout button handler
+    const logoutBtn = document.getElementById("logoutButton");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", function() {
+        localStorage.clear();
+        alert("Logged out successfully.");
+        window.location.href = "signin.html";
+      });
+    }
+
+    // Avatar upload handler
+    const avatarUpload = document.getElementById('avatarUpload');
     if (avatarUpload) {
       avatarUpload.addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
           const reader = new FileReader();
           reader.onload = function(event) {
+            const profileInitials = document.getElementById('profileInitials');
             profileInitials.style.backgroundImage = `url('${event.target.result}')`;
             profileInitials.textContent = '';
             localStorage.setItem('skillbridge-avatar', event.target.result);
           };
           reader.readAsDataURL(file);
         }
-      });
-    }
-
-    // Load saved avatar if present
-    const savedAvatar = localStorage.getItem('skillbridge-avatar');
-    if (savedAvatar && profileInitials) {
-      profileInitials.style.backgroundImage = `url('${savedAvatar}')`;
-      profileInitials.textContent = '';
-    }
-
-    // Load saved name/role if available
-    const savedName = localStorage.getItem("skillbridge-name");
-    const accountType = localStorage.getItem("skillbridge-account-type");
-    if (savedName) {
-      document.getElementById("displayName").textContent = savedName;
-      document.getElementById("sidebarName").textContent = savedName;
-      const initials = savedName.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
-      if (!savedAvatar) {
-        profileInitials.textContent = initials;
-      }
-    }
-    if (accountType) {
-      document.getElementById("sidebarRole").textContent = accountType;
-    }
-
-    const editBtn = document.getElementById("editProfileButton");
-    if (editBtn) {
-      editBtn.addEventListener("click", () => {
-        location.href = "edit-profile.html";
       });
     }
   </script>
