@@ -3,9 +3,6 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
   <title>Professional Profile | SkillBridge SA</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -26,9 +23,7 @@
       <a href="profile.html" class="active">Profile</a>
       <a href="contact.html">Contact us</a>
     </nav>
-    <div class="nav-actions" id="navActions">
-      <!-- Dynamically populated based on login state -->
-    </div>
+    <div class="nav-actions" id="navActions"></div>
   </header>
 
   <main id="app">
@@ -40,7 +35,7 @@
 
     <section class="section">
       <div class="profile-layout">
-        <!-- Sidebar Profile Card with Picture Upload & Stats -->
+        <!-- SIDEBAR -->
         <aside class="profile-side">
           <div class="avatar" id="profileInitials" style="background-size: cover; background-position: center; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #fff; background-color: #0752aa;">
             SB
@@ -61,38 +56,36 @@
             <p style="color: #c5d8ef; font-size: 0.85rem; margin-bottom: 0;"><strong>Member Since:</strong> 2026</p>
           </div>
 
-          <span class="tag" id="sidebarStatusTag" style="background: var(--yellow); color: var(--deep); width: 100%; display: block; text-align: center; margin-bottom: 15px;">Verified Member</span>
+          <span class="tag" style="background: var(--yellow); color: var(--deep); width: 100%; display: block; text-align: center; margin-bottom: 15px;">Verified Member</span>
 
           <div style="display: flex; flex-direction: column; gap: 10px;">
-            <button class="btn" id="logoutButton" style="width: 100%; background: #d90429;">Sign Out</button>
+            <a class="btn" href="deactivate.html" style="background: #d90429; text-align:center; text-decoration:none;">Deactivate Account</a>
           </div>
         </aside>
 
-        <!-- Main Profile Content -->
+        <!-- MAIN CONTENT -->
         <div class="profile-main">
           
-          <!-- About / Bio Section -->
+          <!-- ABOUT ME -->
           <div class="form-card" style="margin-bottom: 25px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
               <h3>About Me</h3>
               <span class="tag" id="roleTag">Member</span>
             </div>
-            <p id="bioText" style="font-size: 0.95rem; line-height: 1.6;">
-              No bio provided yet. Update your profile during registration or edit your details.
-            </p>
+            <p id="bioText" style="font-size: 0.95rem; line-height: 1.6;">No bio provided yet.</p>
           </div>
 
-          <!-- Role-Specific Dynamic Card Container -->
-          <div class="form-card" id="roleSpecificCardContainer" style="margin-bottom: 25px; display: none;">
-            <!-- Injected via JS based on whether student, provider, or business -->
-          </div>
+          <!-- ROLE SPECIFIC SECTION -->
+          <div class="form-card" id="roleSpecificCardContainer" style="margin-bottom: 25px; display: none;"></div>
 
-          <!-- Portfolio / Qualifications Proof Showcase -->
+          <!-- QUALIFICATIONS & DOCUMENTS SECTION -->
           <div class="form-card" style="margin-bottom: 25px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-              <h3>Qualifications & Documents</h3>
+              <h3>Qualifications & Certificates</h3>
             </div>
-            <p id="qualStatusText" style="font-size: 0.9rem; color: #555;">No qualification certificates uploaded.</p>
+            <div id="qualDisplayArea">
+              <p style="font-size: 0.9rem; color: #555;">No qualifications uploaded.</p>
+            </div>
           </div>
 
         </div>
@@ -100,15 +93,12 @@
     </section>
   </main>
 
-  <!-- Chatbot and Scripts -->
   <script>
-    // 1. CHECK AUTHENTICATION ON LOAD
     const savedName = localStorage.getItem("skillbridge-name");
     const accountType = localStorage.getItem("skillbridge-account-type");
     const navActions = document.querySelector("#navActions");
 
     if (!savedName || !accountType) {
-      // Not logged in: Show sign-in / join actions in header and redirect
       navActions.innerHTML = `
         <button class="link-btn"><a href="signin.html">Sign in</a></button>
         <button class="btn btn-red"><a href="signup.html">Join SkillBridge</a></button>
@@ -116,7 +106,6 @@
       alert("Please sign in or create an account to view your profile.");
       window.location.href = "signup.html";
     } else {
-      // Logged in: Show Sign out in navigation header
       navActions.innerHTML = `
         <span style="font-size:0.9rem; font-weight:600; color:#333; margin-right:10px;">Hi, ${savedName.split(" ")[0]}</span>
         <button class="btn btn-red" id="headerLogout">Sign out</button>
@@ -128,7 +117,6 @@
         window.location.href = "signin.html";
       });
 
-      // 2. POPULATE PROFILE DATA
       document.getElementById("displayName").textContent = savedName;
       document.getElementById("sidebarName").textContent = savedName;
       document.getElementById("displayRole").textContent = accountType + " · South Africa";
@@ -143,59 +131,76 @@
       if (phone) document.getElementById("sidebarPhone").innerHTML = `<strong>Phone:</strong> ${phone}`;
       if (about) document.getElementById("bioText").textContent = about;
 
-      // Initials avatar fallback
+      // Initials / Avatar
       const profileInitials = document.getElementById('profileInitials');
       const initials = savedName.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
       profileInitials.textContent = initials;
 
-      // Load saved avatar image if present
       const savedAvatar = localStorage.getItem('skillbridge-avatar');
       if (savedAvatar) {
         profileInitials.style.backgroundImage = `url('${savedAvatar}')`;
         profileInitials.textContent = '';
       }
 
-      // 3. ROLE-SPECIFIC CARD CONTENT
+      // Qualification Display
+      const qualTitle = localStorage.getItem("skillbridge-qual-title");
+      const qualFile = localStorage.getItem("skillbridge-qual-file");
+      const qualFilename = localStorage.getItem("skillbridge-qual-filename");
+      const qualArea = document.getElementById("qualDisplayArea");
+
+      if (qualTitle || qualFile) {
+        qualArea.innerHTML = `
+          <div style="background:#f8f9fa; padding:12px; border-radius:6px; border:1px solid #ddd;">
+            <p style="margin:0 0 5px 0;"><strong>Qualification:</strong> ${qualTitle || "Not specified"}</p>
+            ${qualFile ? `<a href="${qualFile}" download="${qualFilename || 'certificate'}" class="btn-sm" style="font-size:0.8rem; display:inline-block; background:#0752aa; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none;">Download Certificate (${qualFilename || 'View'})</a>` : ''}
+          </div>
+        `;
+      }
+
+      // Role Specific Card Content
       const container = document.getElementById("roleSpecificCardContainer");
       if (accountType === "Student") {
         const institution = localStorage.getItem("skillbridge-institution") || "Tshwane University of Technology";
         const field = localStorage.getItem("skillbridge-field") || "Information Technology";
+        const studyYear = localStorage.getItem("skillbridge-study-year") || "3rd Year";
+        const portfolio = localStorage.getItem("skillbridge-portfolio") || "https://github.com/demo-student-portfolio";
         
         container.style.display = "block";
         container.innerHTML = `
-          <h3>Student Academic Profile</h3>
+          <h3>Student Academic & Portfolio Profile</h3>
           <p style="margin-top:10px;"><strong>Institution:</strong> ${institution}</p>
+          <p><strong>Year of Study:</strong> ${studyYear}</p>
           <p><strong>Field of Study:</strong> ${field}</p>
-          <p style="margin-top:10px; font-size:0.88rem; color:#555;">Your profile is active in the Student Talent Directory so businesses can scout you for internships.</p>
+          <p><strong>Portfolio / Demo Link:</strong> <a href="${portfolio}" target="_blank" style="color:#0752aa; font-weight:600;">${portfolio}</a></p>
+          <p style="margin-top:10px; font-size:0.85rem; color:#555;">Your profile is active in the Student Talent Directory for internship scouting.</p>
         `;
       } else if (accountType === "Service provider") {
+        const bizName = localStorage.getItem("skillbridge-bizname") || savedName + " Services";
+        const servicesDesc = localStorage.getItem("skillbridge-services-desc") || "Professional independent services rendered with customized pricing.";
+
+        document.getElementById("displayName").textContent = savedName + " (" + bizName + ")";
+        document.getElementById("sidebarName").textContent = bizName;
+
         container.style.display = "block";
         container.innerHTML = `
-          <h3>Service Provider Details</h3>
-          <p style="margin-top:10px;">You are registered as a professional service provider ready to receive bookings and client reviews.</p>
+          <h3>Service Provider & Business Details</h3>
+          <p style="margin-top:10px;"><strong>Business / Trading Name:</strong> ${bizName}</p>
+          <p style="margin-top:8px;"><strong>Services Rendered & Pricing Conditions:</strong></p>
+          <div style="background:#f8f9fa; padding:12px; border-radius:6px; border:1px solid #ddd; margin-top:5px;">
+            <p style="margin:0; font-size:0.9rem; line-height:1.5;">${servicesDesc}</p>
+          </div>
         `;
       } else if (accountType === "Business owner") {
         container.style.display = "block";
         container.innerHTML = `
           <h3>Business Owner Dashboard</h3>
-          <p style="margin-top:10px;">Thank you for committing to scout and offer internships to students on SkillBridge SA!</p>
+          <p style="margin-top:10px;">Committed to scouting students on SkillBridge SA for internships.</p>
           <br>
           <a href="student-directory.html" class="btn" style="display:inline-block;">View Student Talent Directory →</a>
         `;
       }
     }
 
-    // Logout button handler
-    const logoutBtn = document.getElementById("logoutButton");
-    if (logoutBtn) {
-      logoutBtn.addEventListener("click", function() {
-        localStorage.clear();
-        alert("Logged out successfully.");
-        window.location.href = "signin.html";
-      });
-    }
-
-    // Avatar upload handler
     const avatarUpload = document.getElementById('avatarUpload');
     if (avatarUpload) {
       avatarUpload.addEventListener('change', function(e) {
