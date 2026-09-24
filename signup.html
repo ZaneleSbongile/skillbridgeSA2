@@ -6,58 +6,15 @@
   <title>Join SkillBridge SA</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    .role-selection-screen {
-      display: block;
-    }
-    .form-screen {
-      display: none;
-    }
-    .role-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      margin: 25px 0;
-    }
-    .role-card {
-      border: 2px solid #ddd;
-      border-radius: 8px;
-      padding: 20px;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      background: #fff;
-    }
-    .role-card:hover, .role-card.selected {
-      border-color: #0752aa;
-      background: #f0f7ff;
-    }
-    .role-card h3 {
-      margin-bottom: 8px;
-      color: #0752aa;
-    }
-    .role-card p {
-      font-size: 0.85rem;
-      color: #555;
-      margin: 0;
-    }
-    .back-link {
-      display: inline-block;
-      margin-bottom: 15px;
-      color: #0752aa;
-      font-weight: 600;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    .back-link:hover {
-      text-decoration: underline;
-    }
-    .service-pricing-row {
-      background: #f9f9f9;
-      padding: 12px;
-      border-radius: 6px;
-      margin-bottom: 10px;
-      border: 1px solid #e5e5e5;
-    }
+    .role-selection-screen { display: block; }
+    .form-screen { display: none; }
+    .role-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 25px 0; }
+    .role-card { border: 2px solid #ddd; border-radius: 8px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s ease; background: #fff; }
+    .role-card:hover, .role-card.selected { border-color: #0752aa; background: #f0f7ff; }
+    .role-card h3 { margin-bottom: 8px; color: #0752aa; }
+    .role-card p { font-size: 0.85rem; color: #555; margin: 0; }
+    .back-link { display: inline-block; margin-bottom: 15px; color: #0752aa; font-weight: 600; text-decoration: none; cursor: pointer; }
+    .back-link:hover { text-decoration: underline; }
   </style>
 </head>
 
@@ -72,6 +29,7 @@
       <a href="index.html">Home</a>
       <a href="services.html">Services</a>
       <a href="internships.html">Internships</a>
+      <a href="student-directory.html">Student Talent</a>
       <a href="about.html">About</a>
       <a href="profile.html">Profile</a>
       <a href="contact.html">Contact us</a>
@@ -86,13 +44,10 @@
     <section class="page-hero">
       <div class="eyebrow" style="justify-content:center">Create your future</div>
       <h1 id="heroTitle">Join SkillBridge</h1>
-      <p id="heroSubtitle">
-        Choose your account type below to get started connecting with South Africa's top talent and service ecosystem.
-      </p>
+      <p id="heroSubtitle">Choose your account type below to get started connecting with South Africa's top talent and service ecosystem.</p>
     </section>
 
     <section class="section" style="max-width:750px">
-      
       <!-- SCREEN 1: ROLE SELECTION -->
       <div id="roleSelectionScreen" class="role-selection-screen">
         <h2>How would you like to join SkillBridge?</h2>
@@ -118,7 +73,7 @@
         </div>
       </div>
 
-      <!-- SCREEN 2: DYNAMIC REGISTRATION FORM -->
+      <!-- SCREEN 2: REGISTRATION FORM -->
       <div id="formScreen" class="form-screen">
         <a class="back-link" id="backToRoles">← Back to role selection</a>
         <h2 id="formHeading" style="margin-bottom: 20px;">Complete Your Profile</h2>
@@ -127,7 +82,6 @@
           <input type="hidden" id="selectedRoleInput">
           
           <div class="form-grid">
-            <!-- BASIC INFORMATION (All Roles) -->
             <div class="form-group">
               <label for="firstName">First name</label>
               <input id="firstName" required placeholder="Your name">
@@ -153,7 +107,7 @@
               <input id="phone" type="tel" required placeholder="012 345 6789">
             </div>
 
-            <!-- QUALIFICATIONS SECTION -->
+            <!-- QUALIFICATIONS WITH SPECIFICATION -->
             <div class="form-group">
               <label for="hasQualifications">Do you have any qualifications?</label>
               <select id="hasQualifications">
@@ -162,15 +116,17 @@
               </select>
             </div>
 
-            <div class="form-group" id="qualificationProofGroup" style="display:none;">
-              <label for="qualificationProof">Specify & upload proof (Certificate)</label>
+            <div class="form-group" id="qualDetailsGroup" style="display:none; grid-column: 1 / -1;">
+              <label for="qualificationTitle">Specify Qualification (e.g. Bachelor in Swimming Coaching / National Diploma in IT)</label>
+              <input id="qualificationTitle" placeholder="Qualification title">
+              <label for="qualificationProof" style="margin-top:10px; display:block;">Upload qualification certificate</label>
               <input id="qualificationProof" type="file" accept=".pdf,.jpg,.png">
             </div>
 
-            <!-- ROLE-SPECIFIC INJECTED CONTAINER -->
+            <!-- ROLE-SPECIFIC CONTAINER -->
             <div id="roleSpecificFields" class="form-group wide" style="border-top: 1px solid #e0e0e0; padding-top: 15px; margin-top: 10px;"></div>
 
-            <!-- OPTIONAL LAYERS: PROFILE PICTURE & ABOUT ME -->
+            <!-- PROFILE PICTURE & ABOUT ME -->
             <div class="form-group wide" style="border-top: 1px solid #e0e0e0; padding-top: 15px; margin-top: 10px;">
               <label for="profilePicture">Profile Picture (Optional)</label>
               <input id="profilePicture" type="file" accept="image/*">
@@ -178,10 +134,9 @@
 
             <div class="form-group wide">
               <label for="aboutMe">About me (Optional)</label>
-              <textarea id="aboutMe" rows="3" placeholder="Write a short summary about yourself or your background..."></textarea>
+              <textarea id="aboutMe" rows="3" placeholder="Write a short summary about yourself..."></textarea>
             </div>
 
-            <!-- SECURITY -->
             <div class="form-group">
               <label for="password">Create password</label>
               <input id="password" type="password" required placeholder="At least 8 characters">
@@ -196,14 +151,8 @@
           <button class="btn" type="submit" style="width:100%; margin-top: 20px;">
             Create account & continue
           </button>
-
-          <p style="text-align:center;margin:22px 0 0">
-            Already have an account?
-            <a href="signin.html" style="color:#0752aa;font-weight:700">Sign in</a>
-          </p>
         </form>
       </div>
-
     </section>
   </main>
 
@@ -216,18 +165,16 @@
     const formHeading = document.querySelector("#formHeading");
     const roleSpecificFields = document.querySelector("#roleSpecificFields");
     const hasQualifications = document.querySelector("#hasQualifications");
-    const qualificationProofGroup = document.querySelector("#qualificationProofGroup");
+    const qualDetailsGroup = document.querySelector("#qualDetailsGroup");
 
-    // Toggle qualification upload visibility
     hasQualifications.addEventListener("change", function() {
       if (this.value === "yes") {
-        qualificationProofGroup.style.display = "block";
+        qualDetailsGroup.style.display = "block";
       } else {
-        qualificationProofGroup.style.display = "none";
+        qualDetailsGroup.style.display = "none";
       }
     });
 
-    // Handle clicking a role card
     roleCards.forEach(card => {
       card.addEventListener("click", function() {
         const role = this.getAttribute("data-role");
@@ -238,7 +185,7 @@
 
         if (role === "customer") {
           formHeading.textContent = "Customer Registration";
-          roleSpecificFields.innerHTML = ""; // No extra fields for customer
+          roleSpecificFields.innerHTML = "";
         } 
         else if (role === "student") {
           formHeading.textContent = "Student Registration & Talent Profile";
@@ -256,7 +203,7 @@
                   <option>1st Year</option>
                   <option>2nd Year</option>
                   <option>3rd Year</option>
-                  <option>4th Year / Postgraduate</option>
+                  <option>Postgraduate</option>
                 </select>
               </div>
               <div class="form-group wide">
@@ -268,8 +215,8 @@
                 <input id="registrationProof" type="file" required accept=".pdf,.jpg,.png">
               </div>
               <div class="form-group wide">
-                <label for="studentPortfolio">Portfolio Website / GitHub / LinkedIn URL</label>
-                <input id="studentPortfolio" placeholder="https://linkedin.com/in/... or github.com/...">
+                <label for="studentPortfolio">Portfolio / GitHub / LinkedIn URL (Leave blank for demo link)</label>
+                <input id="studentPortfolio" placeholder="https://linkedin.com/in/...">
               </div>
             </div>
           `;
@@ -277,27 +224,19 @@
         else if (role === "provider") {
           formHeading.textContent = "Service Provider Registration";
           roleSpecificFields.innerHTML = `
-            <h4 style="color:#0752aa; margin-bottom:10px;">Service Provider Details</h4>
+            <h4 style="color:#0752aa; margin-bottom:10px;">Service Provider & Business Details</h4>
             <div class="form-grid" style="margin:0;">
               <div class="form-group">
                 <label for="serviceCategory">Category of service</label>
-                <select id="serviceCategory" required>
-                  <option value="">Select category</option>
-                  <option>Web Development & IT</option>
-                  <option>Tutoring & Academic Support</option>
-                  <option>Plumbing & Maintenance</option>
-                  <option>Catering & Baking</option>
-                  <option>Graphic Design & Branding</option>
-                  <option>Cleaning & Domestic Services</option>
-                </select>
+                <input id="serviceCategory" required placeholder="e.g. Plumbing, Web Dev, Tutoring">
               </div>
               <div class="form-group">
-                <label for="providerBusinessName">Business / Trading Name (if any)</label>
-                <input id="providerBusinessName" placeholder="e.g. Zanele's Web Solutions">
+                <label for="providerBusinessName">Business / Trading Name</label>
+                <input id="providerBusinessName" required placeholder="e.g. Zanele's Pro Solutions">
               </div>
               <div class="form-group wide">
-                <label for="servicesRendered">Services Rendered & Pricing Description</label>
-                <textarea id="servicesRendered" required rows="3" placeholder="Describe the services you render and your pricing structure (e.g. Hourly rate: R150/hr, Daily rate: R800/day, or fixed task pricing)."></textarea>
+                <label for="servicesRendered">Services Rendered & Pricing Conditions</label>
+                <textarea id="servicesRendered" required rows="3" placeholder="Describe services and pricing (e.g. Web Setup: R150/hr or Task-based: R800 per page)"></textarea>
               </div>
               <div class="form-group wide">
                 <label for="providerPortfolio">Portfolio / Previous Work Proof</label>
@@ -331,13 +270,12 @@
       });
     });
 
-    // Back button behavior
     backToRoles.addEventListener("click", function() {
       formScreen.style.display = "none";
       roleSelectionScreen.style.display = "block";
     });
 
-    // Form Submission Handling & LocalStorage Persistence
+    // Form Submission with File Readers for LocalStorage Persistence
     document.querySelector("#signUpForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
@@ -345,7 +283,7 @@
       const confirmPassword = document.querySelector("#confirmPassword").value;
 
       if (password !== confirmPassword) {
-        alert("Your passwords do not match. Please check and try again.");
+        alert("Your passwords do not match.");
         return;
       }
 
@@ -358,7 +296,6 @@
       const age = document.querySelector("#age").value;
       const aboutMe = document.querySelector("#aboutMe").value;
 
-      // Store base user data
       localStorage.setItem("skillbridge-name", fullName);
       localStorage.setItem("skillbridge-email", email);
       localStorage.setItem("skillbridge-phone", phone);
@@ -366,28 +303,66 @@
       localStorage.setItem("skillbridge-account-type", role);
       localStorage.setItem("skillbridge-about", aboutMe);
 
-      // If user is a student, store in a shared student pool so businesses can view/scout them
+      // Handle profile picture file
+      const profilePicInput = document.querySelector("#profilePicture");
+      if (profilePicInput.files && profilePicInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          localStorage.setItem("skillbridge-avatar", evt.target.result);
+        };
+        reader.readAsDataURL(profilePicInput.files[0]);
+      }
+
+      // Handle qualification upload & title
+      if (hasQualifications.value === "yes") {
+        const qualTitle = document.querySelector("#qualificationTitle").value;
+        localStorage.setItem("skillbridge-qual-title", qualTitle);
+        const qualFile = document.querySelector("#qualificationProof").files[0];
+        if (qualFile) {
+          const reader = new FileReader();
+          reader.onload = function(evt) {
+            localStorage.setItem("skillbridge-qual-file", evt.target.result);
+            localStorage.setItem("skillbridge-qual-filename", qualFile.name);
+          };
+          reader.readAsDataURL(qualFile);
+        }
+      }
+
+      // Role specific saving
       if (role === "student") {
-        const studentData = {
+        const inst = document.querySelector("#institution").value;
+        const yr = document.querySelector("#studyYear").value;
+        const fld = document.querySelector("#fieldOfStudy").value;
+        let port = document.querySelector("#studentPortfolio").value;
+        if (!port) port = "https://github.com/demo-student-portfolio";
+
+        localStorage.setItem("skillbridge-institution", inst);
+        localStorage.setItem("skillbridge-study-year", yr);
+        localStorage.setItem("skillbridge-field", fld);
+        localStorage.setItem("skillbridge-portfolio", port);
+
+        // Push to directory
+        let directory = JSON.parse(localStorage.getItem("skillbridge-student-directory") || "[]");
+        directory.push({
           name: fullName,
           email: email,
           phone: phone,
-          institution: document.querySelector("#institution").value,
-          year: document.querySelector("#studyYear").value,
-          field: document.querySelector("#fieldOfStudy").value,
-          portfolio: document.querySelector("#studentPortfolio").value || "Not provided",
-          about: aboutMe || "Eager student ready for internship opportunities."
-        };
-
-        // Retrieve existing students array from storage or initialize
-        let studentsList = JSON.parse(localStorage.getItem("skillbridge-student-directory") || "[]");
-        studentsList.push(studentData);
-        localStorage.setItem("skillbridge-student-directory", JSON.stringify(studentsList));
+          institution: inst,
+          year: yr,
+          field: fld,
+          portfolio: port,
+          about: aboutMe || "Passionate student ready for opportunities."
+        });
+        localStorage.setItem("skillbridge-student-directory", JSON.stringify(directory));
+      } 
+      else if (role === "provider") {
+        const bizName = document.querySelector("#providerBusinessName").value;
+        const services = document.querySelector("#servicesRendered").value;
+        localStorage.setItem("skillbridge-bizname", bizName);
+        localStorage.setItem("skillbridge-services-desc", services);
       }
 
-      alert("Welcome to SkillBridge, " + firstName + "! Your account has been created successfully.");
-      
-      // If business owner, redirect to the student directory so they can immediately scout internships
+      alert("Account created successfully!");
       if (role === "business") {
         window.location.href = "student-directory.html";
       } else {
