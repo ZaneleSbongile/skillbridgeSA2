@@ -1,443 +1,2586 @@
+```html
 <!doctype html>
 <html lang="en">
+
 <head>
+
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Professional Profile | SkillBridge SA</title>
-  <link rel="stylesheet" href="styles.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1"
+  >
+
+  <title>
+    Professional Profile | SkillBridge SA
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="styles.css"
+  >
+
   <style>
+
     .modal-overlay {
+
       display: none;
+
       position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
       background: rgba(0,0,0,0.5);
+
       justify-content: center;
       align-items: center;
+
       z-index: 1000;
+
+      padding: 20px;
+
+      box-sizing: border-box;
+
     }
+
+
     .modal-content {
+
       background: #fff;
+
       padding: 25px;
+
       border-radius: 8px;
+
       width: 100%;
+
       max-width: 500px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+
+      max-height: 90vh;
+
+      overflow-y: auto;
+
+      box-shadow:
+        0 4px 20px rgba(0,0,0,0.15);
+
     }
+
+
     .item-card {
+
       background: #f8f9fa;
+
       padding: 12px 15px;
+
       border-radius: 6px;
+
       border: 1px solid #ddd;
+
       margin-bottom: 10px;
+
       display: flex;
+
       justify-content: space-between;
+
       align-items: center;
+
+      gap: 15px;
+
+      flex-wrap: wrap;
+
     }
+
+
+    .document-card {
+
+      background: #f8f9fa;
+
+      border: 1px solid #ddd;
+
+      border-radius: 8px;
+
+      padding: 14px;
+
+      margin-bottom: 12px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 15px;
+
+      flex-wrap: wrap;
+
+    }
+
+
+    .document-name {
+
+      font-weight: 600;
+
+      color: #0752aa;
+
+      word-break: break-word;
+
+    }
+
+
+    .service-description {
+
+      background: #f8f9fa;
+
+      padding: 15px;
+
+      border-radius: 8px;
+
+      border: 1px solid #ddd;
+
+      margin-top: 8px;
+
+      line-height: 1.6;
+
+      white-space: pre-wrap;
+
+    }
+
+
+    .empty-message {
+
+      font-size: 0.9rem;
+
+      color: #555;
+
+    }
+
+
+    .role-info-box {
+
+      background: #f8f9fa;
+
+      padding: 15px;
+
+      border-radius: 8px;
+
+      border: 1px solid #ddd;
+
+      margin-top: 12px;
+
+    }
+
+
+    @media (max-width: 600px) {
+
+      .item-card,
+      .document-card {
+
+        align-items: flex-start;
+
+      }
+
+    }
+
   </style>
+
 </head>
 
+
 <body data-page="profile">
-  <header class="topbar">
-    <a class="brand" href="index.html">
-      <div class="brand-mark">SB</div>
-      <span>Skill<span>Bridge</span><small>SA</small></span>
+
+
+<header class="topbar">
+
+  <a class="brand" href="index.html">
+
+    <div class="brand-mark">
+      SB
+    </div>
+
+    <span>
+      Skill<span>Bridge</span><small>SA</small>
+    </span>
+
+  </a>
+
+
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+  >
+    ☰
+  </button>
+
+
+  <nav id="nav">
+
+    <a href="index.html">
+      Home
     </a>
-    <button class="menu-toggle" id="menuToggle">☰</button>
-    <nav id="nav">
-      <a href="index.html">Home</a>
-      <a href="services.html">Services</a>
-      <a href="internships.html">Internships</a>
-      <a href="student-directory.html">Student Talent</a>
-      <a href="about.html">About</a>
-      <a href="profile.html" class="active">Profile</a>
-      <a href="contact.html">Contact us</a>
-    </nav>
-    <div class="nav-actions" id="navActions"></div>
-  </header>
 
-  <main id="app">
-    <section class="page-hero">
-      <div class="eyebrow" style="justify-content:center">Professional Dashboard</div>
-      <h1 id="displayName">Loading...</h1>
-      <p id="displayRole">Member · South Africa</p>
-    </section>
+    <a href="services.html">
+      Services
+    </a>
 
-    <section class="section">
-      <div class="profile-layout">
-        <!-- SIDEBAR -->
-        <aside class="profile-side">
-          <div class="avatar" id="profileInitials" style="background-size: cover; background-position: center; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #fff; background-color: #0752aa;">
-            SB
+    <a href="internships.html">
+      Internships
+    </a>
+
+    <a href="student-directory.html">
+      Student Talent
+    </a>
+
+    <a href="about.html">
+      About
+    </a>
+
+    <a
+      href="profile.html"
+      class="active"
+    >
+      Profile
+    </a>
+
+    <a href="contact.html">
+      Contact us
+    </a>
+
+  </nav>
+
+
+  <div
+    class="nav-actions"
+    id="navActions"
+  ></div>
+
+</header>
+
+
+<main id="app">
+
+  <section class="page-hero">
+
+    <div
+      class="eyebrow"
+      style="justify-content:center"
+    >
+      Professional Dashboard
+    </div>
+
+
+    <h1 id="displayName">
+      Loading...
+    </h1>
+
+
+    <p id="displayRole">
+      Member · South Africa
+    </p>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="profile-layout">
+
+
+      <!-- SIDEBAR -->
+
+      <aside class="profile-side">
+
+
+        <div
+          class="avatar"
+          id="profileInitials"
+          style="
+            background-size:cover;
+            background-position:center;
+            position:relative;
+            overflow:hidden;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:2rem;
+            color:#fff;
+            background-color:#0752aa;
+          "
+        >
+          SB
+        </div>
+
+
+        <div style="margin-top:15px;">
+
+          <label
+            for="avatarUpload"
+            class="btn btn-outline"
+            style="
+              font-size:0.8rem;
+              padding:8px 12px;
+              display:inline-block;
+              cursor:pointer;
+              background:rgba(255,255,255,0.1);
+              border-color:rgba(255,255,255,0.3);
+              color:#fff;
+            "
+          >
+            Change Photo
+          </label>
+
+
+          <input
+            type="file"
+            id="avatarUpload"
+            accept="image/*"
+            style="display:none;"
+          >
+
+        </div>
+
+
+        <h3
+          id="sidebarName"
+          style="
+            margin-top:15px;
+            color:#fff;
+          "
+        >
+          User Name
+        </h3>
+
+
+        <p
+          id="sidebarRole"
+          style="
+            color:#c5d8ef;
+            font-size:0.9rem;
+          "
+        >
+          Member
+        </p>
+
+
+        <div
+          style="
+            margin:20px 0;
+            padding-top:15px;
+            border-top:1px solid #2b578e;
+            text-align:left;
+          "
+        >
+
+          <p
+            style="
+              color:#c5d8ef;
+              font-size:0.85rem;
+              margin-bottom:5px;
+            "
+            id="sidebarEmail"
+          >
+            <strong>Email:</strong> --
+          </p>
+
+
+          <p
+            style="
+              color:#c5d8ef;
+              font-size:0.85rem;
+              margin-bottom:5px;
+            "
+            id="sidebarPhone"
+          >
+            <strong>Phone:</strong> --
+          </p>
+
+
+          <p
+            style="
+              color:#c5d8ef;
+              font-size:0.85rem;
+              margin-bottom:0;
+            "
+          >
+            <strong>Member Since:</strong> 2026
+          </p>
+
+        </div>
+
+
+        <span
+          class="tag"
+          style="
+            background:var(--yellow);
+            color:var(--deep);
+            width:100%;
+            display:block;
+            text-align:center;
+            margin-bottom:15px;
+          "
+        >
+          Verified Member
+        </span>
+
+
+        <div
+          style="
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+          "
+        >
+
+          <a
+            class="btn"
+            href="deactivate.html"
+            style="
+              background:#d90429;
+              text-align:center;
+              text-decoration:none;
+            "
+          >
+            Deactivate Account
+          </a>
+
+        </div>
+
+      </aside>
+
+
+      <!-- MAIN CONTENT -->
+
+      <div class="profile-main">
+
+
+        <!-- ABOUT ME -->
+
+        <div
+          class="form-card"
+          style="margin-bottom:25px;"
+        >
+
+          <div
+            style="
+              display:flex;
+              justify-content:space-between;
+              align-items:center;
+              margin-bottom:15px;
+              gap:10px;
+            "
+          >
+
+            <h3>
+              About Me
+            </h3>
+
+
+            <span
+              class="tag"
+              id="roleTag"
+            >
+              Member
+            </span>
+
           </div>
-          <div style="margin-top: 15px;">
-            <label for="avatarUpload" class="btn btn-outline" style="font-size: 0.8rem; padding: 8px 12px; display: inline-block; cursor: pointer; background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.3); color: #fff;">
-              Change Photo
-            </label>
-            <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+
+
+          <p
+            id="bioText"
+            style="
+              font-size:0.95rem;
+              line-height:1.6;
+            "
+          >
+            No bio provided yet.
+          </p>
+
+        </div>
+
+
+        <!-- ROLE-SPECIFIC SECTION -->
+
+        <div
+          class="form-card"
+          id="roleSpecificCardContainer"
+          style="
+            margin-bottom:25px;
+            display:none;
+          "
+        ></div>
+
+
+        <!-- QUALIFICATIONS -->
+
+        <div
+          class="form-card"
+          style="margin-bottom:25px;"
+        >
+
+          <div
+            style="
+              display:flex;
+              justify-content:space-between;
+              align-items:center;
+              margin-bottom:15px;
+              gap:10px;
+            "
+          >
+
+            <h3>
+              Qualifications & Certificates
+            </h3>
+
+
+            <button
+              class="btn"
+              id="openQualModal"
+              style="
+                font-size:0.8rem;
+                padding:6px 12px;
+              "
+            >
+              + Add Qualification
+            </button>
+
           </div>
 
-          <h3 id="sidebarName" style="margin-top: 15px; color: #fff;">User Name</h3>
-          <p id="sidebarRole" style="color: #c5d8ef; font-size: 0.9rem;">Member</p>
 
-          <div style="margin: 20px 0; padding-top: 15px; border-top: 1px solid #2b578e; text-align: left;">
-            <p style="color: #c5d8ef; font-size: 0.85rem; margin-bottom: 5px;" id="sidebarEmail"><strong>Email:</strong> --</p>
-            <p style="color: #c5d8ef; font-size: 0.85rem; margin-bottom: 5px;" id="sidebarPhone"><strong>Phone:</strong> --</p>
-            <p style="color: #c5d8ef; font-size: 0.85rem; margin-bottom: 0;"><strong>Member Since:</strong> 2026</p>
-          </div>
+          <div id="qualDisplayArea">
 
-          <span class="tag" style="background: var(--yellow); color: var(--deep); width: 100%; display: block; text-align: center; margin-bottom: 15px;">Verified Member</span>
+            <p class="empty-message">
+              No qualifications uploaded yet.
+            </p>
 
-          <div style="display: flex; flex-direction: column; gap: 10px;">
-            <a class="btn" href="deactivate.html" style="background: #d90429; text-align:center; text-decoration:none;">Deactivate Account</a>
-          </div>
-        </aside>
-
-        <!-- MAIN CONTENT -->
-        <div class="profile-main">
-          
-          <!-- ABOUT ME -->
-          <div class="form-card" style="margin-bottom: 25px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-              <h3>About Me</h3>
-              <span class="tag" id="roleTag">Member</span>
-            </div>
-            <p id="bioText" style="font-size: 0.95rem; line-height: 1.6;">No bio provided yet.</p>
-          </div>
-
-          <!-- ROLE SPECIFIC SECTION -->
-          <div class="form-card" id="roleSpecificCardContainer" style="margin-bottom: 25px; display: none;"></div>
-
-          <!-- QUALIFICATIONS SECTION -->
-          <div class="form-card" style="margin-bottom: 25px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-              <h3>Qualifications & Certificates</h3>
-              <button class="btn" id="openQualModal" style="font-size:0.8rem; padding:6px 12px;">+ Add Qualification</button>
-            </div>
-            <div id="qualDisplayArea">
-              <p style="font-size: 0.9rem; color: #555;">No qualifications uploaded yet.</p>
-            </div>
-          </div>
-
-          <!-- PORTFOLIOS SECTION -->
-          <div class="form-card" style="margin-bottom: 25px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-              <h3>Portfolios & Project Proofs</h3>
-              <button class="btn" id="openPortModal" style="font-size:0.8rem; padding:6px 12px;">+ Add Portfolio Item</button>
-            </div>
-            <div id="portDisplayArea">
-              <p style="font-size: 0.9rem; color: #555;">No portfolios added yet.</p>
-            </div>
           </div>
 
         </div>
+
+
+        <!-- PORTFOLIO -->
+
+        <div
+          class="form-card"
+          style="margin-bottom:25px;"
+        >
+
+          <div
+            style="
+              display:flex;
+              justify-content:space-between;
+              align-items:center;
+              margin-bottom:15px;
+              gap:10px;
+            "
+          >
+
+            <h3>
+              Portfolios & Project Proofs
+            </h3>
+
+
+            <button
+              class="btn"
+              id="openPortModal"
+              style="
+                font-size:0.8rem;
+                padding:6px 12px;
+              "
+            >
+              + Add Portfolio Item
+            </button>
+
+          </div>
+
+
+          <div id="portDisplayArea">
+
+            <p class="empty-message">
+              No portfolios added yet.
+            </p>
+
+          </div>
+
+        </div>
+
+
       </div>
-    </section>
-  </main>
 
-  <!-- MODAL: ADD QUALIFICATION -->
-  <div class="modal-overlay" id="qualModal">
-    <div class="modal-content">
-      <h3 style="margin-bottom: 15px; color: #0752aa;">Add Qualification</h3>
-      <form id="addQualForm">
-        <div class="form-group" style="margin-bottom:15px;">
-          <label for="newQualTitle">Qualification Title (e.g. Bachelor in Swimming Coaching)</label>
-          <input id="newQualTitle" required placeholder="Title">
-        </div>
-        <div class="form-group" style="margin-bottom:20px;">
-          <label for="newQualFile">Upload Certificate / Document (Optional)</label>
-          <input id="newQualFile" type="file" accept=".pdf,.jpg,.png">
-        </div>
-        <div style="display: flex; gap: 10px;">
-          <button type="submit" class="btn" style="flex:1;">Save Qualification</button>
-          <button type="button" class="btn btn-outline" id="closeQualModal" style="flex:1; background:#ccc; border:none; color:#333;">Cancel</button>
-        </div>
-      </form>
     </div>
+
+  </section>
+
+</main>
+
+
+<!-- QUALIFICATION MODAL -->
+
+<div
+  class="modal-overlay"
+  id="qualModal"
+>
+
+  <div class="modal-content">
+
+    <h3
+      style="
+        margin-bottom:15px;
+        color:#0752aa;
+      "
+    >
+      Add Qualification
+    </h3>
+
+
+    <form id="addQualForm">
+
+      <div
+        class="form-group"
+        style="margin-bottom:15px;"
+      >
+
+        <label for="newQualTitle">
+          Qualification Title
+        </label>
+
+        <input
+          id="newQualTitle"
+          required
+          placeholder="e.g. Diploma in Information Technology"
+        >
+
+      </div>
+
+
+      <div
+        class="form-group"
+        style="margin-bottom:20px;"
+      >
+
+        <label for="newQualFile">
+          Upload Certificate / Document
+        </label>
+
+        <input
+          id="newQualFile"
+          type="file"
+          accept=".pdf,.jpg,.jpeg,.png"
+        >
+
+        <p class="upload-help">
+          Maximum file size: 4 MB.
+        </p>
+
+      </div>
+
+
+      <div
+        style="
+          display:flex;
+          gap:10px;
+        "
+      >
+
+        <button
+          type="submit"
+          class="btn"
+          style="flex:1;"
+        >
+          Save Qualification
+        </button>
+
+
+        <button
+          type="button"
+          class="btn btn-outline"
+          id="closeQualModal"
+          style="
+            flex:1;
+            background:#ccc;
+            border:none;
+            color:#333;
+          "
+        >
+          Cancel
+        </button>
+
+      </div>
+
+    </form>
+
   </div>
 
-  <!-- MODAL: ADD PORTFOLIO -->
-  <div class="modal-overlay" id="portModal">
-    <div class="modal-content">
-      <h3 style="margin-bottom: 15px; color: #0752aa;">Add Portfolio / Project</h3>
-      <form id="addPortForm">
-        <div class="form-group" style="margin-bottom:15px;">
-          <label for="newPortTitle">Project Title / Name</label>
-          <input id="newPortTitle" required placeholder="e.g. E-Commerce Web App">
-        </div>
-        <div class="form-group" style="margin-bottom:15px;">
-          <label for="newPortLink">Project Link / GitHub / Demo URL (Optional)</label>
-          <input id="newPortLink" placeholder="https://...">
-        </div>
-        <div class="form-group" style="margin-bottom:20px;">
-          <label for="newPortFile">Or Upload Project File / Screenshot (Optional)</label>
-          <input id="newPortFile" type="file" accept=".pdf,.jpg,.png,.zip">
-        </div>
-        <div style="display: flex; gap: 10px;">
-          <button type="submit" class="btn" style="flex:1;">Save Portfolio</button>
-          <button type="button" class="btn btn-outline" id="closePortModal" style="flex:1; background:#ccc; border:none; color:#333;">Cancel</button>
-        </div>
-      </form>
-    </div>
+</div>
+
+
+<!-- PORTFOLIO MODAL -->
+
+<div
+  class="modal-overlay"
+  id="portModal"
+>
+
+  <div class="modal-content">
+
+    <h3
+      style="
+        margin-bottom:15px;
+        color:#0752aa;
+      "
+    >
+      Add Portfolio / Project
+    </h3>
+
+
+    <form id="addPortForm">
+
+
+      <div
+        class="form-group"
+        style="margin-bottom:15px;"
+      >
+
+        <label for="newPortTitle">
+          Project Title / Name
+        </label>
+
+        <input
+          id="newPortTitle"
+          required
+          placeholder="e.g. E-Commerce Web App"
+        >
+
+      </div>
+
+
+      <div
+        class="form-group"
+        style="margin-bottom:15px;"
+      >
+
+        <label for="newPortLink">
+          Project Link / GitHub / Demo URL
+        </label>
+
+        <input
+          id="newPortLink"
+          placeholder="https://..."
+        >
+
+      </div>
+
+
+      <div
+        class="form-group"
+        style="margin-bottom:20px;"
+      >
+
+        <label for="newPortFile">
+          Or Upload Project File / Screenshot
+        </label>
+
+        <input
+          id="newPortFile"
+          type="file"
+          accept=".pdf,.jpg,.jpeg,.png,.zip"
+        >
+
+        <p class="upload-help">
+          Maximum file size: 4 MB.
+        </p>
+
+      </div>
+
+
+      <div
+        style="
+          display:flex;
+          gap:10px;
+        "
+      >
+
+        <button
+          type="submit"
+          class="btn"
+          style="flex:1;"
+        >
+          Save Portfolio
+        </button>
+
+
+        <button
+          type="button"
+          class="btn btn-outline"
+          id="closePortModal"
+          style="
+            flex:1;
+            background:#ccc;
+            border:none;
+            color:#333;
+          "
+        >
+          Cancel
+        </button>
+
+      </div>
+
+    </form>
+
   </div>
 
-  <script>
-    const savedName = localStorage.getItem("skillbridge-name");
-    const accountType = localStorage.getItem("skillbridge-account-type");
-    const navActions = document.querySelector("#navActions");
+</div>
 
-    if (!savedName || !accountType) {
-      navActions.innerHTML = `
-        <button class="link-btn"><a href="signin.html">Sign in</a></button>
-        <button class="btn btn-red"><a href="signup.html">Join SkillBridge</a></button>
-      `;
-      alert("Please sign in or create an account to view your profile.");
-      window.location.href = "signup.html";
-    } else {
-      navActions.innerHTML = `
-        <span style="font-size:0.9rem; font-weight:600; color:#333; margin-right:10px;">Hi, ${savedName.split(" ")[0]}</span>
-        <button class="btn btn-red" id="headerLogout">Sign out</button>
-      `;
 
-      document.querySelector("#headerLogout").addEventListener("click", function() {
-        localStorage.clear();
-        alert("You have been signed out.");
-        window.location.href = "signin.html";
-      });
+<script>
 
-      document.getElementById("displayName").textContent = savedName;
-      document.getElementById("sidebarName").textContent = savedName;
-      document.getElementById("displayRole").textContent = accountType + " · South Africa";
-      document.getElementById("sidebarRole").textContent = accountType;
-      document.getElementById("roleTag").textContent = accountType;
 
-      const email = localStorage.getItem("skillbridge-email");
-      const phone = localStorage.getItem("skillbridge-phone");
-      const about = localStorage.getItem("skillbridge-about");
+/* =========================================================
+   HELPER FUNCTIONS
+   ========================================================= */
 
-      if (email) document.getElementById("sidebarEmail").innerHTML = `<strong>Email:</strong> ${email}`;
-      if (phone) document.getElementById("sidebarPhone").innerHTML = `<strong>Phone:</strong> ${phone}`;
-      if (about) document.getElementById("bioText").textContent = about;
 
-      // Initials / Avatar
-      const profileInitials = document.getElementById('profileInitials');
-      const initials = savedName.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase();
-      profileInitials.textContent = initials;
+const MAX_FILE_SIZE =
+  4 * 1024 * 1024;
 
-      const savedAvatar = localStorage.getItem('skillbridge-avatar');
-      if (savedAvatar) {
-        profileInitials.style.backgroundImage = `url('${savedAvatar}')`;
-        profileInitials.textContent = '';
-      }
 
-      // Render Qualifications & Portfolios
-      renderQualifications();
-      renderPortfolios();
+/*
+ * Read a file as Base64.
+ */
+function readFile(file) {
 
-      // Role Specific Card Content
-      const container = document.getElementById("roleSpecificCardContainer");
-      if (accountType === "Student") {
-        const institution = localStorage.getItem("skillbridge-institution") || "Tshwane University of Technology";
-        const field = localStorage.getItem("skillbridge-field") || "Information Technology";
-        const studyYear = localStorage.getItem("skillbridge-study-year") || "3rd Year";
-        
-        container.style.display = "block";
-        container.innerHTML = `
-          <h3>Student Academic Profile</h3>
-          <p style="margin-top:10px;"><strong>Institution:</strong> ${institution}</p>
-          <p><strong>Year of Study:</strong> ${studyYear}</p>
-          <p><strong>Field of Study:</strong> ${field}</p>
-          <p style="margin-top:10px; font-size:0.85rem; color:#555;">Your profile is active in the Student Talent Directory for internship scouting.</p>
-        `;
-      } else if (accountType === "Service provider") {
-        const bizName = localStorage.getItem("skillbridge-bizname") || savedName + " Services";
-        const servicesDesc = localStorage.getItem("skillbridge-services-desc") || "Professional independent services rendered with customized pricing.";
+  return new Promise((resolve, reject) => {
 
-        document.getElementById("displayName").textContent = savedName + " (" + bizName + ")";
-        document.getElementById("sidebarName").textContent = bizName;
+    if (!file) {
 
-        container.style.display = "block";
-        container.innerHTML = `
-          <h3>Service Provider & Business Details</h3>
-          <p style="margin-top:10px;"><strong>Business / Trading Name:</strong> ${bizName}</p>
-          <p style="margin-top:8px;"><strong>Services Rendered & Charging Rates:</strong></p>
-          <div style="background:#f8f9fa; padding:12px; border-radius:6px; border:1px solid #ddd; margin-top:5px;">
-            <p style="margin:0; font-size:0.9rem; line-height:1.5; white-space: pre-wrap;">${servicesDesc}</p>
-          </div>
-        `;
-      } else if (accountType === "Business owner") {
-        container.style.display = "block";
-        container.innerHTML = `
-          <h3>Business Owner Dashboard</h3>
-          <p style="margin-top:10px;">Committed to scouting students on SkillBridge SA for internships.</p>
-          <br>
-          <a href="student-directory.html" class="btn" style="display:inline-block;">View Student Talent Directory →</a>
-        `;
-      }
+      resolve(null);
+
+      return;
+
     }
 
-    // QUALIFICATIONS FUNCTIONS
-    function renderQualifications() {
-      let quals = JSON.parse(localStorage.getItem("skillbridge-quals-list") || "[]");
-      const singleTitle = localStorage.getItem("skillbridge-qual-title");
-      const singleFile = localStorage.getItem("skillbridge-qual-file");
-      if (quals.length === 0 && (singleTitle || singleFile)) {
-        quals.push({ title: singleTitle || "Qualification", file: singleFile, filename: "certificate" });
-        localStorage.setItem("skillbridge-quals-list", JSON.stringify(quals));
-      }
 
-      const area = document.getElementById("qualDisplayArea");
-      if (quals.length === 0) {
-        area.innerHTML = `<p style="font-size: 0.9rem; color: #555;">No qualifications uploaded yet.</p>`;
-        return;
-      }
+    if (file.size > MAX_FILE_SIZE) {
 
-      let html = "";
-      quals.forEach((q, idx) => {
-        html += `
-          <div class="item-card">
-            <div>
-              <p style="margin:0; font-weight:600; color:#0752aa;">${q.title}</p>
-            </div>
-            <div>
-              ${q.file ? `<a href="${q.file}" download="${q.filename || 'certificate'}" class="btn" style="font-size:0.75rem; padding:4px 8px; text-decoration:none;">Download File</a>` : '<span style="font-size:0.8rem; color:#888;">No file attached</span>'}
-              <button onclick="removeQual(${idx})" style="background:none; border:none; color:#d90429; font-size:0.8rem; cursor:pointer; margin-left:10px;">Remove</button>
-            </div>
-          </div>
-        `;
-      });
-      area.innerHTML = html;
+      reject(
+        new Error(
+          `"${file.name}" is larger than 4 MB.`
+        )
+      );
+
+      return;
+
     }
 
-    window.removeQual = function(idx) {
-      let quals = JSON.parse(localStorage.getItem("skillbridge-quals-list") || "[]");
-      quals.splice(idx, 1);
-      localStorage.setItem("skillbridge-quals-list", JSON.stringify(quals));
-      renderQualifications();
+
+    const reader =
+      new FileReader();
+
+
+    reader.onload = () => {
+
+      resolve({
+
+        data:
+          reader.result,
+
+        name:
+          file.name,
+
+        type:
+          file.type
+
+      });
+
     };
 
-    // PORTFOLIOS FUNCTIONS
-    function renderPortfolios() {
-      let ports = JSON.parse(localStorage.getItem("skillbridge-ports-list") || "[]");
-      const singlePort = localStorage.getItem("skillbridge-portfolio");
-      if (ports.length === 0 && singlePort) {
-        ports.push({ title: "Primary Portfolio", link: singlePort, file: null });
-        localStorage.setItem("skillbridge-ports-list", JSON.stringify(ports));
-      }
 
-      const area = document.getElementById("portDisplayArea");
-      if (ports.length === 0) {
-        area.innerHTML = `<p style="font-size: 0.9rem; color: #555;">No portfolios added yet.</p>`;
-        return;
-      }
+    reader.onerror = () => {
 
-      let html = "";
-      ports.forEach((p, idx) => {
-        html += `
-          <div class="item-card">
-            <div>
-              <p style="margin:0; font-weight:600; color:#0752aa;">${p.title}</p>
-              ${p.link ? `<a href="${p.link}" target="_blank" style="font-size:0.8rem; color:#555; text-decoration:underline;">${p.link}</a>` : ''}
-            </div>
-            <div>
-              ${p.file ? `<a href="${p.file}" download="portfolio-file" class="btn" style="font-size:0.75rem; padding:4px 8px; text-decoration:none; margin-right:5px;">Download</a>` : ''}
-              <button onclick="removePort(${idx})" style="background:none; border:none; color:#d90429; font-size:0.8rem; cursor:pointer;">Remove</button>
-            </div>
-          </div>
-        `;
-      });
-      area.innerHTML = html;
-    }
+      reject(
+        new Error(
+          `Could not read "${file.name}".`
+        )
+      );
 
-    window.removePort = function(idx) {
-      let ports = JSON.parse(localStorage.getItem("skillbridge-ports-list") || "[]");
-      ports.splice(idx, 1);
-      localStorage.setItem("skillbridge-ports-list", JSON.stringify(ports));
-      renderPortfolios();
     };
 
-    // Modal Controllers
-    const qualModal = document.getElementById("qualModal");
-    document.getElementById("openQualModal").addEventListener("click", () => qualModal.style.display = "flex");
-    document.getElementById("closeQualModal").addEventListener("click", () => qualModal.style.display = "none");
 
-    const portModal = document.getElementById("portModal");
-    document.getElementById("openPortModal").addEventListener("click", () => portModal.style.display = "flex");
-    document.getElementById("closePortModal").addEventListener("click", () => portModal.style.display = "none");
+    reader.readAsDataURL(file);
 
-    // Add Qualification Form Submit
-    document.getElementById("addQualForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const title = document.getElementById("newQualTitle").value;
-      const fileInput = document.getElementById("newQualFile");
+  });
 
-      let quals = JSON.parse(localStorage.getItem("skillbridge-quals-list") || "[]");
+}
 
-      if (fileInput.files && fileInput.files[0]) {
-        const file = fileInput.files[0];
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          quals.push({ title: title, file: evt.target.result, filename: file.name });
-          localStorage.setItem("skillbridge-quals-list", JSON.stringify(quals));
-          renderQualifications();
-          qualModal.style.display = "none";
-          document.getElementById("addQualForm").reset();
-        };
-        reader.readAsDataURL(file);
-      } else {
-        quals.push({ title: title, file: null, filename: null });
-        localStorage.setItem("skillbridge-quals-list", JSON.stringify(quals));
-        renderQualifications();
-        qualModal.style.display = "none";
-        document.getElementById("addQualForm").reset();
+
+/*
+ * Create a document download button.
+ */
+function documentButton(
+  data,
+  filename,
+  label = "View / Download"
+) {
+
+  if (!data) {
+
+    return "";
+
+  }
+
+
+  return `
+
+    <a
+      href="${data}"
+      download="${filename || "document"}"
+      target="_blank"
+      class="btn"
+      style="
+        font-size:0.75rem;
+        padding:6px 10px;
+        text-decoration:none;
+      "
+    >
+      ${label}
+    </a>
+
+  `;
+
+}
+
+
+/* =========================================================
+   LOGIN / PROFILE INITIALISATION
+   ========================================================= */
+
+
+const savedName =
+  localStorage.getItem(
+    "skillbridge-name"
+  );
+
+
+const accountType =
+  localStorage.getItem(
+    "skillbridge-account-type"
+  );
+
+
+const navActions =
+  document.querySelector(
+    "#navActions"
+  );
+
+
+if (
+  !savedName ||
+  !accountType
+) {
+
+  navActions.innerHTML = `
+
+    <button class="link-btn">
+      <a href="signin.html">
+        Sign in
+      </a>
+    </button>
+
+    <button class="btn btn-red">
+      <a href="signup.html">
+        Join SkillBridge
+      </a>
+    </button>
+
+  `;
+
+
+  alert(
+    "Please sign in or create an account to view your profile."
+  );
+
+
+  window.location.href =
+    "signup.html";
+
+
+} else {
+
+
+  navActions.innerHTML = `
+
+    <span
+      style="
+        font-size:0.9rem;
+        font-weight:600;
+        color:#333;
+        margin-right:10px;
+      "
+    >
+      Hi,
+      ${savedName.split(" ")[0]}
+    </span>
+
+    <button
+      class="btn btn-red"
+      id="headerLogout"
+    >
+      Sign out
+    </button>
+
+  `;
+
+
+  document
+    .querySelector("#headerLogout")
+    .addEventListener(
+      "click",
+      function() {
+
+        /*
+         * IMPORTANT:
+         * Do NOT clear all localStorage here.
+         * That would delete the entire profile.
+         *
+         * We only remove the login/session values.
+         */
+
+        localStorage.removeItem(
+          "skillbridge-name"
+        );
+
+        localStorage.removeItem(
+          "skillbridge-email"
+        );
+
+        localStorage.removeItem(
+          "skillbridge-phone"
+        );
+
+        localStorage.removeItem(
+          "skillbridge-age"
+        );
+
+        localStorage.removeItem(
+          "skillbridge-account-type"
+        );
+
+        alert(
+          "You have been signed out."
+        );
+
+        window.location.href =
+          "signin.html";
+
       }
-    });
+    );
 
-    // Add Portfolio Form Submit
-    document.getElementById("addPortForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const title = document.getElementById("newPortTitle").value;
-      const link = document.getElementById("newPortLink").value;
-      const fileInput = document.getElementById("newPortFile");
 
-      let ports = JSON.parse(localStorage.getItem("skillbridge-ports-list") || "[]");
+  /*
+   * BASIC PROFILE INFORMATION
+   */
 
-      if (fileInput.files && fileInput.files[0]) {
-        const file = fileInput.files[0];
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          ports.push({ title: title, link: link, file: evt.target.result });
-          localStorage.setItem("skillbridge-ports-list", JSON.stringify(ports));
-          renderPortfolios();
-          portModal.style.display = "none";
-          document.getElementById("addPortForm").reset();
-        };
-        reader.readAsDataURL(file);
-      } else {
-        ports.push({ title: title, link: link || "https://github.com/demo-project", file: null });
-        localStorage.setItem("skillbridge-ports-list", JSON.stringify(ports));
-        renderPortfolios();
-        portModal.style.display = "none";
-        document.getElementById("addPortForm").reset();
-      }
-    });
+  document
+    .querySelector("#displayName")
+    .textContent =
+      savedName;
 
-    // Avatar upload handler
-    const avatarUpload = document.getElementById('avatarUpload');
-    if (avatarUpload) {
-      avatarUpload.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = function(event) {
-            const profileInitials = document.getElementById('profileInitials');
-            profileInitials.style.backgroundImage = `url('${event.target.result}')`;
-            profileInitials.textContent = '';
-            localStorage.setItem('skillbridge-avatar', event.target.result);
-          };
-          reader.readAsDataURL(file);
+
+  document
+    .querySelector("#sidebarName")
+    .textContent =
+      savedName;
+
+
+  /*
+   * Convert role into readable display text.
+   */
+  const roleLabels = {
+
+    customer:
+      "Customer",
+
+    student:
+      "Student",
+
+    provider:
+      "Service Provider",
+
+    business:
+      "Business Owner"
+
+  };
+
+
+  const readableRole =
+    roleLabels[accountType] ||
+    accountType;
+
+
+  document
+    .querySelector("#displayRole")
+    .textContent =
+      readableRole +
+      " · South Africa";
+
+
+  document
+    .querySelector("#sidebarRole")
+    .textContent =
+      readableRole;
+
+
+  document
+    .querySelector("#roleTag")
+    .textContent =
+      readableRole;
+
+
+  /*
+   * EMAIL / PHONE / ABOUT
+   */
+
+  const email =
+    localStorage.getItem(
+      "skillbridge-email"
+    );
+
+
+  const phone =
+    localStorage.getItem(
+      "skillbridge-phone"
+    );
+
+
+  const about =
+    localStorage.getItem(
+      "skillbridge-about"
+    );
+
+
+  if (email) {
+
+    document
+      .querySelector("#sidebarEmail")
+      .innerHTML =
+        `<strong>Email:</strong> ${email}`;
+
+  }
+
+
+  if (phone) {
+
+    document
+      .querySelector("#sidebarPhone")
+      .innerHTML =
+        `<strong>Phone:</strong> ${phone}`;
+
+  }
+
+
+  if (about) {
+
+    document
+      .querySelector("#bioText")
+      .textContent =
+        about;
+
+  }
+
+
+  /*
+   * PROFILE PHOTO
+   */
+
+  const profileInitials =
+    document.querySelector(
+      "#profileInitials"
+    );
+
+
+  const initials =
+    savedName
+      .split(" ")
+      .map(
+        word => word[0]
+      )
+      .join("")
+      .slice(0,2)
+      .toUpperCase();
+
+
+  profileInitials.textContent =
+    initials;
+
+
+  const savedAvatar =
+    localStorage.getItem(
+      "skillbridge-avatar"
+    );
+
+
+  if (savedAvatar) {
+
+    profileInitials.style.backgroundImage =
+      `url("${savedAvatar}")`;
+
+    profileInitials.textContent =
+      "";
+
+  }
+
+
+  /*
+   * RENDER ALL SECTIONS
+   */
+
+  renderQualifications();
+
+  renderPortfolios();
+
+  renderRoleSpecificProfile();
+
+}
+
+
+/* =========================================================
+   ROLE-SPECIFIC PROFILE
+   ========================================================= */
+
+
+function renderRoleSpecificProfile() {
+
+
+  const container =
+    document.getElementById(
+      "roleSpecificCardContainer"
+    );
+
+
+  const role =
+    localStorage.getItem(
+      "skillbridge-account-type"
+    );
+
+
+  const savedName =
+    localStorage.getItem(
+      "skillbridge-name"
+    ) || "Member";
+
+
+  container.style.display =
+    "none";
+
+
+  /*
+   * STUDENT
+   */
+
+  if (role === "student") {
+
+
+    const institution =
+      localStorage.getItem(
+        "skillbridge-institution"
+      ) || "Not provided";
+
+
+    const field =
+      localStorage.getItem(
+        "skillbridge-field"
+      ) || "Not provided";
+
+
+    const studyYear =
+      localStorage.getItem(
+        "skillbridge-study-year"
+      ) || "Not provided";
+
+
+    const registrationProof =
+      localStorage.getItem(
+        "skillbridge-registration-proof"
+      );
+
+
+    const registrationFilename =
+      localStorage.getItem(
+        "skillbridge-registration-filename"
+      ) || "proof-of-registration";
+
+
+    container.style.display =
+      "block";
+
+
+    container.innerHTML = `
+
+      <h3>
+        Student Academic Profile
+      </h3>
+
+
+      <div class="role-info-box">
+
+        <p>
+          <strong>Institution:</strong>
+          ${institution}
+        </p>
+
+
+        <p style="margin-top:8px;">
+          <strong>Year of Study:</strong>
+          ${studyYear}
+        </p>
+
+
+        <p style="margin-top:8px;">
+          <strong>Field of Study:</strong>
+          ${field}
+        </p>
+
+      </div>
+
+
+      <div style="margin-top:18px;">
+
+        <h4 style="margin-bottom:10px;">
+          Proof of Registration
+        </h4>
+
+
+        ${
+          registrationProof
+
+          ?
+
+          `
+            <div class="document-card">
+
+              <div>
+                <div class="document-name">
+                  ${registrationFilename}
+                </div>
+
+                <small>
+                  Registration document
+                </small>
+              </div>
+
+              <div>
+                ${documentButton(
+                  registrationProof,
+                  registrationFilename
+                )}
+              </div>
+
+            </div>
+          `
+
+          :
+
+          `
+            <p class="empty-message">
+              No proof of registration uploaded.
+            </p>
+          `
         }
-      });
+
+      </div>
+
+
+      <p
+        style="
+          margin-top:15px;
+          font-size:0.85rem;
+          color:#555;
+        "
+      >
+        Your profile is active in the Student Talent
+        Directory for internship scouting.
+      </p>
+
+    `;
+
+  }
+
+
+  /*
+   * SERVICE PROVIDER
+   */
+
+  else if (role === "provider") {
+
+
+    const bizName =
+      localStorage.getItem(
+        "skillbridge-bizname"
+      ) ||
+      savedName +
+      " Services";
+
+
+    const category =
+      localStorage.getItem(
+        "skillbridge-service-category"
+      ) ||
+      "Service Provider";
+
+
+    const servicesDesc =
+      localStorage.getItem(
+        "skillbridge-services-desc"
+      ) ||
+      "No services or pricing information provided yet.";
+
+
+    let providerProofs = [];
+
+
+    try {
+
+      providerProofs =
+        JSON.parse(
+          localStorage.getItem(
+            "skillbridge-provider-proofs"
+          ) || "[]"
+        );
+
+    } catch (error) {
+
+      providerProofs = [];
+
     }
-  </script>
+
+
+    /*
+     * Change the heading/sidebar name.
+     */
+
+    document
+      .querySelector("#displayName")
+      .textContent =
+        savedName +
+        " (" +
+        bizName +
+        ")";
+
+
+    document
+      .querySelector("#sidebarName")
+      .textContent =
+        bizName;
+
+
+    container.style.display =
+      "block";
+
+
+    container.innerHTML = `
+
+      <h3>
+        Service Provider & Business Details
+      </h3>
+
+
+      <div class="role-info-box">
+
+        <p>
+          <strong>
+            Business / Trading Name:
+          </strong>
+
+          ${bizName}
+        </p>
+
+
+        <p style="margin-top:8px;">
+
+          <strong>
+            Service Category:
+          </strong>
+
+          ${category}
+
+        </p>
+
+
+        <p style="margin-top:15px;">
+
+          <strong>
+            Services Rendered & Pricing Conditions:
+          </strong>
+
+        </p>
+
+
+        <div class="service-description">
+
+          ${servicesDesc}
+
+        </div>
+
+      </div>
+
+
+      <div style="margin-top:20px;">
+
+        <h4 style="margin-bottom:10px;">
+          Previous Work / Portfolio Proof
+        </h4>
+
+
+        ${
+          providerProofs.length > 0
+
+          ?
+
+          providerProofs
+            .map(
+              (proof, index) => `
+
+                <div class="document-card">
+
+                  <div>
+
+                    <div class="document-name">
+                      ${proof.name}
+                    </div>
+
+                    <small>
+                      Previous work / portfolio proof
+                    </small>
+
+                  </div>
+
+
+                  <div>
+
+                    ${documentButton(
+                      proof.file,
+                      proof.name
+                    )}
+
+                  </div>
+
+                </div>
+
+              `
+            )
+            .join("")
+
+          :
+
+          `
+            <p class="empty-message">
+              No previous work files uploaded yet.
+            </p>
+          `
+        }
+
+      </div>
+
+    `;
+
+  }
+
+
+  /*
+   * BUSINESS OWNER
+   */
+
+  else if (role === "business") {
+
+
+    const businessName =
+      localStorage.getItem(
+        "skillbridge-business-name"
+      ) ||
+      "Business Owner";
+
+
+    const businessProof =
+      localStorage.getItem(
+        "skillbridge-business-proof"
+      );
+
+
+    const businessProofName =
+      localStorage.getItem(
+        "skillbridge-business-proof-name"
+      ) ||
+      "CIPC Registration Document";
+
+
+    container.style.display =
+      "block";
+
+
+    container.innerHTML = `
+
+      <h3>
+        Business Owner Dashboard
+      </h3>
+
+
+      <div class="role-info-box">
+
+        <p>
+
+          <strong>
+            Business Name:
+          </strong>
+
+          ${businessName}
+
+        </p>
+
+
+        <p
+          style="
+            margin-top:10px;
+            color:#0752aa;
+            font-weight:600;
+          "
+        >
+          Committed to scouting students on
+          SkillBridge SA for internships and
+          employment opportunities.
+        </p>
+
+      </div>
+
+
+      <div style="margin-top:20px;">
+
+        <h4 style="margin-bottom:10px;">
+          Business Registration
+        </h4>
+
+
+        ${
+          businessProof
+
+          ?
+
+          `
+            <div class="document-card">
+
+              <div>
+
+                <div class="document-name">
+                  ${businessProofName}
+                </div>
+
+                <small>
+                  CIPC registration document
+                </small>
+
+              </div>
+
+
+              <div>
+
+                ${documentButton(
+                  businessProof,
+                  businessProofName
+                )}
+
+              </div>
+
+            </div>
+          `
+
+          :
+
+          `
+            <p class="empty-message">
+              No business registration document uploaded.
+            </p>
+          `
+        }
+
+      </div>
+
+
+      <div style="margin-top:20px;">
+
+        <a
+          href="student-directory.html"
+          class="btn"
+          style="
+            display:inline-block;
+            text-decoration:none;
+          "
+        >
+          View Student Talent Directory →
+        </a>
+
+      </div>
+
+    `;
+
+  }
+
+}
+
+
+/* =========================================================
+   QUALIFICATIONS
+   ========================================================= */
+
+
+function renderQualifications() {
+
+
+  let quals = [];
+
+
+  try {
+
+    quals =
+      JSON.parse(
+        localStorage.getItem(
+          "skillbridge-quals-list"
+        ) || "[]"
+      );
+
+  } catch (error) {
+
+    quals = [];
+
+  }
+
+
+  /*
+   * Compatibility with older signup data.
+   */
+
+  const oldTitle =
+    localStorage.getItem(
+      "skillbridge-qual-title"
+    );
+
+
+  const oldFile =
+    localStorage.getItem(
+      "skillbridge-qual-file"
+    );
+
+
+  const oldFilename =
+    localStorage.getItem(
+      "skillbridge-qual-filename"
+    );
+
+
+  if (
+    quals.length === 0 &&
+    (oldTitle || oldFile)
+  ) {
+
+    quals.push({
+
+      title:
+        oldTitle ||
+        "Qualification",
+
+      file:
+        oldFile ||
+        null,
+
+      filename:
+        oldFilename ||
+        "certificate"
+
+    });
+
+
+    localStorage.setItem(
+      "skillbridge-quals-list",
+      JSON.stringify(quals)
+    );
+
+  }
+
+
+  const area =
+    document.getElementById(
+      "qualDisplayArea"
+    );
+
+
+  if (quals.length === 0) {
+
+    area.innerHTML = `
+
+      <p class="empty-message">
+        No qualifications uploaded yet.
+      </p>
+
+    `;
+
+    return;
+
+  }
+
+
+  let html = "";
+
+
+  quals.forEach(
+    (qualification, index) => {
+
+
+      html += `
+
+        <div class="item-card">
+
+          <div>
+
+            <p
+              style="
+                margin:0;
+                font-weight:600;
+                color:#0752aa;
+              "
+            >
+              ${qualification.title}
+            </p>
+
+
+            ${
+              qualification.filename
+
+              ?
+
+              `
+                <small>
+                  ${qualification.filename}
+                </small>
+              `
+
+              :
+
+              `
+                <small>
+                  No document attached
+                </small>
+              `
+            }
+
+          </div>
+
+
+          <div>
+
+            ${
+              qualification.file
+
+              ?
+
+              documentButton(
+                qualification.file,
+                qualification.filename ||
+                "certificate"
+              )
+
+              :
+
+              ""
+            }
+
+
+            <button
+              onclick="removeQual(${index})"
+              style="
+                background:none;
+                border:none;
+                color:#d90429;
+                font-size:0.8rem;
+                cursor:pointer;
+                margin-left:10px;
+              "
+            >
+              Remove
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+  );
+
+
+  area.innerHTML =
+    html;
+
+}
+
+
+/*
+ * Remove qualification
+ */
+
+window.removeQual =
+  function(index) {
+
+
+    let quals =
+      JSON.parse(
+        localStorage.getItem(
+          "skillbridge-quals-list"
+        ) || "[]"
+      );
+
+
+    quals.splice(
+      index,
+      1
+    );
+
+
+    localStorage.setItem(
+      "skillbridge-quals-list",
+      JSON.stringify(quals)
+    );
+
+
+    renderQualifications();
+
+  };
+
+
+/* =========================================================
+   PORTFOLIOS
+   ========================================================= */
+
+
+function renderPortfolios() {
+
+
+  let ports = [];
+
+
+  try {
+
+    ports =
+      JSON.parse(
+        localStorage.getItem(
+          "skillbridge-ports-list"
+        ) || "[]"
+      );
+
+  } catch (error) {
+
+    ports = [];
+
+  }
+
+
+  /*
+   * Compatibility with student signup portfolio.
+   */
+
+  const singlePort =
+    localStorage.getItem(
+      "skillbridge-portfolio"
+    );
+
+
+  if (
+    ports.length === 0 &&
+    singlePort
+  ) {
+
+    ports.push({
+
+      title:
+        "Primary Portfolio",
+
+      link:
+        singlePort,
+
+      file:
+        null
+
+    });
+
+
+    localStorage.setItem(
+      "skillbridge-ports-list",
+      JSON.stringify(ports)
+    );
+
+  }
+
+
+  const area =
+    document.getElementById(
+      "portDisplayArea"
+    );
+
+
+  if (ports.length === 0) {
+
+    area.innerHTML = `
+
+      <p class="empty-message">
+        No portfolios added yet.
+      </p>
+
+    `;
+
+    return;
+
+  }
+
+
+  let html = "";
+
+
+  ports.forEach(
+    (portfolio, index) => {
+
+
+      html += `
+
+        <div class="item-card">
+
+          <div>
+
+            <p
+              style="
+                margin:0;
+                font-weight:600;
+                color:#0752aa;
+              "
+            >
+              ${portfolio.title}
+            </p>
+
+
+            ${
+              portfolio.link
+
+              ?
+
+              `
+                <a
+                  href="${portfolio.link}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style="
+                    font-size:0.8rem;
+                    color:#555;
+                    text-decoration:underline;
+                    word-break:break-all;
+                  "
+                >
+                  ${portfolio.link}
+                </a>
+              `
+
+              :
+
+              ""
+            }
+
+          </div>
+
+
+          <div>
+
+            ${
+              portfolio.file
+
+              ?
+
+              documentButton(
+                portfolio.file,
+                "portfolio-file",
+                "Download"
+              )
+
+              :
+
+              ""
+            }
+
+
+            <button
+              onclick="removePort(${index})"
+              style="
+                background:none;
+                border:none;
+                color:#d90429;
+                font-size:0.8rem;
+                cursor:pointer;
+              "
+            >
+              Remove
+            </button>
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+  );
+
+
+  area.innerHTML =
+    html;
+
+}
+
+
+/*
+ * Remove portfolio
+ */
+
+window.removePort =
+  function(index) {
+
+
+    let ports =
+      JSON.parse(
+        localStorage.getItem(
+          "skillbridge-ports-list"
+        ) || "[]"
+      );
+
+
+    ports.splice(
+      index,
+      1
+    );
+
+
+    localStorage.setItem(
+      "skillbridge-ports-list",
+      JSON.stringify(ports)
+    );
+
+
+    renderPortfolios();
+
+  };
+
+
+/* =========================================================
+   MODALS
+   ========================================================= */
+
+
+const qualModal =
+  document.getElementById(
+    "qualModal"
+  );
+
+
+document
+  .getElementById(
+    "openQualModal"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      qualModal.style.display =
+        "flex";
+
+    }
+  );
+
+
+document
+  .getElementById(
+    "closeQualModal"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      qualModal.style.display =
+        "none";
+
+    }
+  );
+
+
+const portModal =
+  document.getElementById(
+    "portModal"
+  );
+
+
+document
+  .getElementById(
+    "openPortModal"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      portModal.style.display =
+        "flex";
+
+    }
+  );
+
+
+document
+  .getElementById(
+    "closePortModal"
+  )
+  .addEventListener(
+    "click",
+    () => {
+
+      portModal.style.display =
+        "none";
+
+    }
+  );
+
+
+/*
+ * Close modal when clicking outside.
+ */
+
+window.addEventListener(
+  "click",
+  function(event) {
+
+    if (
+      event.target === qualModal
+    ) {
+
+      qualModal.style.display =
+        "none";
+
+    }
+
+
+    if (
+      event.target === portModal
+    ) {
+
+      portModal.style.display =
+        "none";
+
+    }
+
+  }
+);
+
+
+/* =========================================================
+   ADD QUALIFICATION
+   ========================================================= */
+
+
+document
+  .getElementById(
+    "addQualForm"
+  )
+  .addEventListener(
+    "submit",
+    async function(e) {
+
+      e.preventDefault();
+
+
+      const title =
+        document
+          .getElementById(
+            "newQualTitle"
+          )
+          .value
+          .trim();
+
+
+      const fileInput =
+        document.getElementById(
+          "newQualFile"
+        );
+
+
+      try {
+
+
+        let quals =
+          JSON.parse(
+            localStorage.getItem(
+              "skillbridge-quals-list"
+            ) || "[]"
+          );
+
+
+        let savedFile = null;
+
+
+        if (
+          fileInput.files &&
+          fileInput.files[0]
+        ) {
+
+          savedFile =
+            await readFile(
+              fileInput.files[0]
+            );
+
+        }
+
+
+        quals.push({
+
+          title:
+            title,
+
+          file:
+            savedFile
+              ? savedFile.data
+              : null,
+
+          filename:
+            savedFile
+              ? savedFile.name
+              : null,
+
+          type:
+            savedFile
+              ? savedFile.type
+              : null
+
+        });
+
+
+        localStorage.setItem(
+          "skillbridge-quals-list",
+          JSON.stringify(quals)
+        );
+
+
+        renderQualifications();
+
+
+        qualModal.style.display =
+          "none";
+
+
+        this.reset();
+
+
+      } catch (error) {
+
+        alert(
+          error.message
+        );
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   ADD PORTFOLIO
+   ========================================================= */
+
+
+document
+  .getElementById(
+    "addPortForm"
+  )
+  .addEventListener(
+    "submit",
+    async function(e) {
+
+      e.preventDefault();
+
+
+      const title =
+        document
+          .getElementById(
+            "newPortTitle"
+          )
+          .value
+          .trim();
+
+
+      const link =
+        document
+          .getElementById(
+            "newPortLink"
+          )
+          .value
+          .trim();
+
+
+      const fileInput =
+        document.getElementById(
+          "newPortFile"
+        );
+
+
+      try {
+
+
+        let ports =
+          JSON.parse(
+            localStorage.getItem(
+              "skillbridge-ports-list"
+            ) || "[]"
+          );
+
+
+        let savedFile = null;
+
+
+        if (
+          fileInput.files &&
+          fileInput.files[0]
+        ) {
+
+          savedFile =
+            await readFile(
+              fileInput.files[0]
+            );
+
+        }
+
+
+        ports.push({
+
+          title:
+            title,
+
+          link:
+            link || null,
+
+          file:
+            savedFile
+              ? savedFile.data
+              : null,
+
+          filename:
+            savedFile
+              ? savedFile.name
+              : null
+
+        });
+
+
+        localStorage.setItem(
+          "skillbridge-ports-list",
+          JSON.stringify(ports)
+        );
+
+
+        renderPortfolios();
+
+
+        portModal.style.display =
+          "none";
+
+
+        this.reset();
+
+
+      } catch (error) {
+
+        alert(
+          error.message
+        );
+
+      }
+
+    }
+  );
+
+
+/* =========================================================
+   AVATAR UPLOAD
+   ========================================================= */
+
+
+const avatarUpload =
+  document.getElementById(
+    "avatarUpload"
+  );
+
+
+if (avatarUpload) {
+
+
+  avatarUpload.addEventListener(
+    "change",
+    async function(e) {
+
+
+      const file =
+        e.target.files[0];
+
+
+      if (!file) {
+
+        return;
+
+      }
+
+
+      try {
+
+
+        const savedFile =
+          await readFile(file);
+
+
+        const profileInitials =
+          document.getElementById(
+            "profileInitials"
+          );
+
+
+        profileInitials.style.backgroundImage =
+          `url("${savedFile.data}")`;
+
+
+        profileInitials.textContent =
+          "";
+
+
+        localStorage.setItem(
+          "skillbridge-avatar",
+          savedFile.data
+        );
+
+
+      } catch (error) {
+
+        alert(
+          error.message
+        );
+
+      }
+
+    }
+  );
+
+}
+
+</script>
+
 </body>
 </html>
+```
