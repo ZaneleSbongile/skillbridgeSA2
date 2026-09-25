@@ -2,106 +2,166 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Student Talent Directory - SkillBridge SA</title>
   <link rel="stylesheet" href="styles.css">
   <style>
     .directory-container {
-      max-width: 1100px;
+      max-width: 1150px;
       margin: 0 auto;
       padding: 40px 20px;
     }
     .directory-header {
-      margin-bottom: 30px;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    .directory-header h1 {
+      color: #0752aa;
+      margin-bottom: 10px;
+    }
+    .directory-header p {
+      max-width: 700px;
+      margin: 0 auto;
+      color: #555;
+      font-size: 1.05rem;
+      line-height: 1.6;
     }
     .directory-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
     }
     .student-card {
       background: #fff;
-      border: 1px solid #e5e5e5;
-      border-radius: 8px;
+      border: 1px solid #e1e8ed;
+      border-radius: 12px;
       padding: 24px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .student-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 5px;
+      background: linear-gradient(90deg, #0752aa, #3a86ef);
     }
     .student-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(7, 82, 170, 0.08);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(7, 82, 170, 0.1);
       border-color: #bde0fe;
     }
+    .card-top {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 16px;
+    }
+    .student-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #0752aa;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(7,82,170,0.2);
+    }
     .student-card h3 {
-      margin-top: 0;
-      color: #0752aa;
-      margin-bottom: 6px;
+      margin: 0 0 4px 0;
+      color: #111;
+      font-size: 1.2rem;
     }
     .badge {
       display: inline-block;
       background: #e6f0fa;
       color: #0752aa;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 4px;
-      margin-bottom: 12px;
+      padding: 3px 10px;
+      border-radius: 20px;
       text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     .student-meta {
       font-size: 0.9rem;
       color: #444;
-      margin-bottom: 12px;
-      line-height: 1.6;
+      margin-bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      background: #fdfefe;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #edf2f7;
+    }
+    .student-meta span {
+      display: flex;
+      justify-content: space-between;
     }
     .student-meta strong {
-      color: #222;
+      color: #2d3748;
     }
     .student-about {
       font-size: 0.88rem;
-      color: #555;
-      background: #f8f9fa;
-      padding: 10px 12px;
-      border-radius: 6px;
-      margin-bottom: 16px;
-      border-left: 3px solid #0752aa;
+      color: #4a5568;
+      background: #f8fafc;
+      padding: 12px 14px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      line-height: 1.5;
+      font-style: italic;
     }
     .student-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
       margin-top: auto;
     }
-    .btn-sm {
-      padding: 8px 14px;
+    .btn-action {
+      padding: 10px 14px;
       font-size: 0.85rem;
       font-weight: 600;
+      text-decoration: none;
+      border-radius: 6px;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .btn-primary-action {
       background: #0752aa;
       color: white;
-      text-decoration: none;
-      border-radius: 4px;
-      text-align: center;
-      display: inline-block;
-      border: none;
-      cursor: pointer;
+      border: 1px solid #0752aa;
     }
-    .btn-sm.secondary {
-      background: #f1f3f5;
-      color: #333;
-      border: 1px solid #ddd;
+    .btn-primary-action:hover {
+      background: #053e80;
     }
-    .btn-sm:hover {
-      opacity: 0.9;
+    .btn-secondary-action {
+      background: #fff;
+      color: #0752aa;
+      border: 1px solid #cbd5e1;
+    }
+    .btn-secondary-action:hover {
+      background: #f1f5f9;
+      border-color: #0752aa;
     }
     .empty-state {
       text-align: center;
-      padding: 50px 20px;
+      padding: 60px 20px;
       background: #fdfdfd;
-      border: 2px dashed #ddd;
-      border-radius: 8px;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
       grid-column: 1 / -1;
     }
   </style>
@@ -111,7 +171,7 @@
   <!-- Top Navigation Bar -->
   <header class="topbar">
     <a class="brand" href="index.html">
-      <span class="brand-mark">S</span>
+      <div class="brand-mark">SB</div>
       <span>Skill<span>Bridge</span><small>SA</small></span>
     </a>
     <button class="menu-toggle">☰</button>
@@ -132,9 +192,9 @@
 
   <main class="directory-container">
     <div class="directory-header">
-      <div class="eyebrow">Scout & Connect</div>
+      <div class="eyebrow" style="justify-content:center;">Scout & Connect</div>
       <h1>Student Talent Directory</h1>
-      <p>Browse registered students across South African institutions, review their field of study and portfolios, and reach out regarding internships or employment opportunities.</p>
+      <p>Discover verified rising talent across South African universities and colleges. Review their academic focus, connect via direct email, and explore their project portfolios.</p>
     </div>
 
     <!-- Student Cards Grid -->
@@ -144,7 +204,7 @@
   </main>
 
   <script>
-    // Sample demo students to show when local storage is empty initially
+    // Default fallback sample students if directory is completely empty
     const defaultStudents = [
       {
         name: "Zanele Radebe",
@@ -154,7 +214,7 @@
         year: "3rd Year",
         field: "Information Technology",
         portfolio: "https://github.com/",
-        about: "Passionate front-end developer and youth advocate building community solutions using web tech."
+        about: "Passionate front-end developer and youth advocate building community web solutions."
       },
       {
         name: "Boitumelo Tsekelo",
@@ -168,12 +228,32 @@
       }
     ];
 
-    // Load students from localStorage or fallback to default sample data
+    // Check if current logged-in user is a student and not already in the directory
+    const currentUserType = localStorage.getItem("skillbridge-account-type");
+    const currentUserName = localStorage.getItem("skillbridge-name");
+    
     let storedStudents = JSON.parse(localStorage.getItem("skillbridge-student-directory"));
     
-    if (!storedStudents || storedStudents.length === 0) {
+    if (!storedStudents) {
       storedStudents = defaultStudents;
-      localStorage.setItem("skillbridge-student-directory", JSON.stringify(defaultStudents));
+    }
+
+    // Auto-sync current student profile if logged in and missing from directory
+    if (currentUserType === "Student" && currentUserName) {
+      const alreadyExists = storedStudents.some(s => s.name === currentUserName);
+      if (!alreadyExists) {
+        storedStudents.unshift({
+          name: currentUserName,
+          email: localStorage.getItem("skillbridge-email") || "student@example.com",
+          phone: localStorage.getItem("skillbridge-phone") || "070 000 0000",
+          institution: localStorage.getItem("skillbridge-institution") || "Tshwane University of Technology",
+          year: localStorage.getItem("skillbridge-study-year") || "3rd Year",
+          field: localStorage.getItem("skillbridge-field") || "Information Technology",
+          portfolio: localStorage.getItem("skillbridge-portfolio") || "https://github.com/",
+          about: localStorage.getItem("skillbridge-about") || "Motivated IT student at TUT building practical web applications."
+        });
+        localStorage.setItem("skillbridge-student-directory", JSON.stringify(storedStudents));
+      }
     }
 
     const studentGrid = document.querySelector("#studentGrid");
@@ -188,26 +268,52 @@
         </div>
       `;
     } else {
-      studentGrid.innerHTML = storedStudents.map(student => `
-        <div class="student-card">
-          <div>
-            <span class="badge">${student.year || "Student"}</span>
-            <h3>${student.name}</h3>
-            <div class="student-meta">
-              <span><strong>Institution:</strong> ${student.institution}</span>
-              <span><strong>Field of Study:</strong> ${student.field}</span>
-              <span><strong>Phone:</strong> ${student.phone}</span>
+      studentGrid.innerHTML = storedStudents.map(student => {
+        const initials = student.name ? student.name.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase() : "SB";
+        const portfolioLink = student.portfolio && student.portfolio !== "Not provided" 
+          ? (student.portfolio.startsWith('http') ? student.portfolio : 'https://' + student.portfolio) 
+          : '#';
+        const hasPortfolio = student.portfolio && student.portfolio !== "Not provided";
+
+        return `
+          <div class="student-card">
+            <div>
+              <div class="card-top">
+                <div class="student-avatar">${initials}</div>
+                <div>
+                  <h3>${student.name}</h3>
+                  <span class="badge">${student.year || "Student"}</span>
+                </div>
+              </div>
+
+              <div class="student-meta">
+                <span><strong>Institution:</strong> <span style="color:#333; text-align:right;">${student.institution || 'TUT'}</span></span>
+                <span><strong>Field:</strong> <span style="color:#333; text-align:right;">${student.field || 'IT'}</span></span>
+                <span><strong>Phone:</strong> <span style="color:#333; text-align:right;">${student.phone || 'Available via email'}</span></span>
+              </div>
+
+              <div class="student-about">
+                "${student.about || 'Motivated student eager to apply academic knowledge in a professional environment.'}"
+              </div>
             </div>
-            <div class="student-about">
-              "${student.about}"
+
+            <div class="student-actions">
+              <a href="mailto:${student.email}" class="btn-action btn-primary-action">
+                ✉ Email Student
+              </a>
+              ${hasPortfolio ? `
+                <a href="${portfolioLink}" target="_blank" class="btn-action btn-secondary-action">
+                  🔗 Portfolio
+                </a>
+              ` : `
+                <button class="btn-action btn-secondary-action" disabled style="opacity:0.5; cursor:not-allowed;">
+                  No Portfolio
+                </button>
+              `}
             </div>
           </div>
-          <div class="student-actions">
-            <a href="mailto:${student.email}" class="btn-sm">Email Student</a>
-            ${student.portfolio && student.portfolio !== "Not provided" ? `<a href="${student.portfolio.startsWith('http') ? student.portfolio : 'https://' + student.portfolio}" target="_blank" class="btn-sm secondary">View Portfolio</a>` : ''}
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
   </script>
 </body>
