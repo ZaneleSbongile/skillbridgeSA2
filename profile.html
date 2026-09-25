@@ -259,9 +259,9 @@
         container.innerHTML = `
           <h3>Service Provider & Business Details</h3>
           <p style="margin-top:10px;"><strong>Business / Trading Name:</strong> ${bizName}</p>
-          <p style="margin-top:8px;"><strong>Services Rendered & Pricing Conditions:</strong></p>
+          <p style="margin-top:8px;"><strong>Services Rendered & Charging Rates:</strong></p>
           <div style="background:#f8f9fa; padding:12px; border-radius:6px; border:1px solid #ddd; margin-top:5px;">
-            <p style="margin:0; font-size:0.9rem; line-height:1.5;">${servicesDesc}</p>
+            <p style="margin:0; font-size:0.9rem; line-height:1.5; white-space: pre-wrap;">${servicesDesc}</p>
           </div>
         `;
       } else if (accountType === "Business owner") {
