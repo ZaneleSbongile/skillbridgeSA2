@@ -369,6 +369,64 @@
         window.location.href = "profile.html";
       }
     });
+
+    // Get your form element (assuming your form has an id="signupForm")
+const signupForm = document.getElementById("signupForm");
+
+signupForm.addEventListener("submit", function(e) {
+  e.preventDefault(); // Stop the page from reloading
+
+  // 1. Get the values the user typed into the form
+  const fullName = document.getElementById("nameInput").value;
+  const email = document.getElementById("emailInput").value;
+  const phone = document.getElementById("phoneInput").value;
+  const accountType = document.getElementById("accountTypeSelect").value; 
+  
+  // (Optional) Get student-specific fields if they exist on your signup form
+  const institution = document.getElementById("institutionInput") ? document.getElementById("institutionInput").value : "Tshwane University of Technology";
+  const field = document.getElementById("fieldInput") ? document.getElementById("fieldInput").value : "Information Technology";
+  const year = document.getElementById("yearInput") ? document.getElementById("yearInput").value : "1st Year";
+
+  // 2. Save the logged-in user's basic session details
+  localStorage.setItem("skillbridge-name", fullName);
+  localStorage.setItem("skillbridge-email", email);
+  localStorage.setItem("skillbridge-phone", phone);
+  localStorage.setItem("skillbridge-account-type", accountType);
+
+  // 3. THE ARRAY LOGIC: If they are a student, add them to the directory array
+  if (accountType === "Student") {
+    
+    // STEP A: Get the existing array from localStorage. 
+    // If it doesn't exist yet, we use || "[]" to start with an empty array.
+    let directoryString = localStorage.getItem("skillbridge-student-directory") || "[]";
+    
+    // STEP B: Convert the text string back into a real JavaScript array
+    let directoryArray = JSON.parse(directoryString);
+
+    // STEP C: Create the new student object
+    const newStudent = {
+      name: fullName,
+      email: email,
+      phone: phone,
+      institution: institution,
+      field: field,
+      year: year,
+      portfolio: "", // They can add this later in their profile
+      about: "A motivated student eager to connect with industry professionals."
+    };
+
+    // STEP D: Add the new student to the top of our array using .unshift()
+    // (You can use .push() if you want them at the bottom)
+    directoryArray.unshift(newStudent);
+
+    // STEP E: Convert the array back to a string and save it to localStorage
+    localStorage.setItem("skillbridge-student-directory", JSON.stringify(directoryArray));
+  }
+
+  // 4. Alert the user and send them to their new profile!
+  alert("Account created successfully!");
+  window.location.href = "profile.html";
+});
   </script>
 </body>
 </html>
