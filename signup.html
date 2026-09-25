@@ -156,277 +156,228 @@
     </section>
   </main>
 
-  <script>
-    const roleCards = document.querySelectorAll(".role-card");
-    const roleSelectionScreen = document.querySelector("#roleSelectionScreen");
-    const formScreen = document.querySelector("#formScreen");
-    const backToRoles = document.querySelector("#backToRoles");
-    const selectedRoleInput = document.querySelector("#selectedRoleInput");
-    const formHeading = document.querySelector("#formHeading");
-    const roleSpecificFields = document.querySelector("#roleSpecificFields");
-    const hasQualifications = document.querySelector("#hasQualifications");
-    const qualDetailsGroup = document.querySelector("#qualDetailsGroup");
+ 
+<script>
+  const roleCards = document.querySelectorAll(".role-card");
+  const roleSelectionScreen = document.querySelector("#roleSelectionScreen");
+  const formScreen = document.querySelector("#formScreen");
+  const backToRoles = document.querySelector("#backToRoles");
+  const selectedRoleInput = document.querySelector("#selectedRoleInput");
+  const formHeading = document.querySelector("#formHeading");
+  const roleSpecificFields = document.querySelector("#roleSpecificFields");
+  const hasQualifications = document.querySelector("#hasQualifications");
+  const qualDetailsGroup = document.querySelector("#qualDetailsGroup");
 
-    hasQualifications.addEventListener("change", function() {
-      if (this.value === "yes") {
-        qualDetailsGroup.style.display = "block";
-      } else {
-        qualDetailsGroup.style.display = "none";
-      }
-    });
+  hasQualifications.addEventListener("change", function() {
+    if (this.value === "yes") {
+      qualDetailsGroup.style.display = "block";
+    } else {
+      qualDetailsGroup.style.display = "none";
+    }
+  });
 
-    roleCards.forEach(card => {
-      card.addEventListener("click", function() {
-        const role = this.getAttribute("data-role");
-        selectedRoleInput.value = role;
-        
-        roleSelectionScreen.style.display = "none";
-        formScreen.style.display = "block";
+  roleCards.forEach(card => {
+    card.addEventListener("click", function() {
+      const role = this.getAttribute("data-role");
+      selectedRoleInput.value = role;
+      
+      roleSelectionScreen.style.display = "none";
+      formScreen.style.display = "block";
 
-        if (role === "customer") {
-          formHeading.textContent = "Customer Registration";
-          roleSpecificFields.innerHTML = "";
-        } 
-        else if (role === "student") {
-          formHeading.textContent = "Student Registration & Talent Profile";
-          roleSpecificFields.innerHTML = `
-            <h4 style="color:#0752aa; margin-bottom:10px;">Student Information</h4>
-            <div class="form-grid" style="margin:0;">
-              <div class="form-group">
-                <label for="institution">Institution name</label>
-                <input id="institution" required placeholder="e.g. Tshwane University of Technology">
-              </div>
-              <div class="form-group">
-                <label for="studyYear">Year of study</label>
-                <select id="studyYear" required>
-                  <option value="">Select year</option>
-                  <option>1st Year</option>
-                  <option>2nd Year</option>
-                  <option>3rd Year</option>
-                  <option>Postgraduate</option>
-                </select>
-              </div>
-              <div class="form-group wide">
-                <label for="fieldOfStudy">What are you studying?</label>
-                <input id="fieldOfStudy" required placeholder="e.g. Information Technology">
-              </div>
-              <div class="form-group wide">
-                <label for="registrationProof">Proof of Registration (Document/PDF/Image)</label>
-                <input id="registrationProof" type="file" required accept=".pdf,.jpg,.png">
-              </div>
-              <div class="form-group wide">
-                <label for="studentPortfolio">Portfolio / GitHub / LinkedIn URL (Leave blank for demo link)</label>
-                <input id="studentPortfolio" placeholder="https://linkedin.com/in/...">
-              </div>
+      if (role === "customer") {
+        formHeading.textContent = "Customer Registration";
+        roleSpecificFields.innerHTML = "";
+      } 
+      else if (role === "student") {
+        formHeading.textContent = "Student Registration & Talent Profile";
+        roleSpecificFields.innerHTML = `
+          <h4 style="color:#0752aa; margin-bottom:10px;">Student Information</h4>
+          <div class="form-grid" style="margin:0;">
+            <div class="form-group">
+              <label for="institution">Institution name</label>
+              <input id="institution" required placeholder="e.g. Tshwane University of Technology">
             </div>
-          `;
-        } 
-        else if (role === "provider") {
-          formHeading.textContent = "Service Provider Registration";
-          roleSpecificFields.innerHTML = `
-            <h4 style="color:#0752aa; margin-bottom:10px;">Service Provider & Business Details</h4>
-            <div class="form-grid" style="margin:0;">
-              <div class="form-group">
-                <label for="serviceCategory">Category of service</label>
-                <input id="serviceCategory" required placeholder="e.g. Plumbing, Web Dev, Tutoring">
-              </div>
-              <div class="form-group">
-                <label for="providerBusinessName">Business / Trading Name</label>
-                <input id="providerBusinessName" required placeholder="e.g. Zanele's Pro Solutions">
-              </div>
-              <div class="form-group wide">
-                <label for="servicesRendered">Services Rendered & Pricing Conditions</label>
-                <textarea id="servicesRendered" required rows="3" placeholder="Describe services and pricing (e.g. Web Setup: R150/hr or Task-based: R800 per page)"></textarea>
-              </div>
-              <div class="form-group wide">
-                <label for="providerPortfolio">Portfolio / Previous Work Proof</label>
-                <input id="providerPortfolio" type="file" multiple accept=".pdf,.jpg,.png">
-              </div>
+            <div class="form-group">
+              <label for="studyYear">Year of study</label>
+              <select id="studyYear" required>
+                <option value="">Select year</option>
+                <option>1st Year</option>
+                <option>2nd Year</option>
+                <option>3rd Year</option>
+                <option>Postgraduate</option>
+              </select>
             </div>
-          `;
-        } 
-        else if (role === "business") {
-          formHeading.textContent = "Business Owner Registration";
-          roleSpecificFields.innerHTML = `
-            <h4 style="color:#0752aa; margin-bottom:10px;">Business Owner Details</h4>
-            <div class="form-grid" style="margin:0;">
-              <div class="form-group wide">
-                <label for="businessName">Business Name</label>
-                <input id="businessName" required placeholder="Registered business legal name">
-              </div>
-              <div class="form-group wide">
-                <label for="businessRegProof">Proof of Registration (CIPC Document / Certificate)</label>
-                <input id="businessRegProof" type="file" required accept=".pdf,.jpg,.png">
-              </div>
-              <div class="form-group wide" style="background:#f0f7ff; padding:12px; border-radius:6px; border:1px solid #bde0fe;">
-                <label style="font-size:.9rem; color:#0752aa; font-weight:700; display:flex; align-items:flex-start; gap:8px; cursor:pointer;">
-                  <input id="internshipAgreement" type="checkbox" required style="margin-top:4px;">
-                  <span>I agree and commit to scouting students on SkillBridge SA for internships and employment opportunities.</span>
-                </label>
-              </div>
+            <div class="form-group wide">
+              <label for="fieldOfStudy">What are you studying?</label>
+              <input id="fieldOfStudy" required placeholder="e.g. Information Technology">
             </div>
-          `;
-        }
-      });
-    });
-
-    backToRoles.addEventListener("click", function() {
-      formScreen.style.display = "none";
-      roleSelectionScreen.style.display = "block";
-    });
-
-    // Form Submission with File Readers for LocalStorage Persistence
-    document.querySelector("#signUpForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      const password = document.querySelector("#password").value;
-      const confirmPassword = document.querySelector("#confirmPassword").value;
-
-      if (password !== confirmPassword) {
-        alert("Your passwords do not match.");
-        return;
-      }
-
-      const role = selectedRoleInput.value;
-      const firstName = document.querySelector("#firstName").value;
-      const surname = document.querySelector("#surname").value;
-      const fullName = firstName + " " + surname;
-      const email = document.querySelector("#email").value;
-      const phone = document.querySelector("#phone").value;
-      const age = document.querySelector("#age").value;
-      const aboutMe = document.querySelector("#aboutMe").value;
-
-      localStorage.setItem("skillbridge-name", fullName);
-      localStorage.setItem("skillbridge-email", email);
-      localStorage.setItem("skillbridge-phone", phone);
-      localStorage.setItem("skillbridge-age", age);
-      localStorage.setItem("skillbridge-account-type", role);
-      localStorage.setItem("skillbridge-about", aboutMe);
-
-      // Handle profile picture file
-      const profilePicInput = document.querySelector("#profilePicture");
-      if (profilePicInput.files && profilePicInput.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          localStorage.setItem("skillbridge-avatar", evt.target.result);
-        };
-        reader.readAsDataURL(profilePicInput.files[0]);
-      }
-
-      // Handle qualification upload & title
-      if (hasQualifications.value === "yes") {
-        const qualTitle = document.querySelector("#qualificationTitle").value;
-        localStorage.setItem("skillbridge-qual-title", qualTitle);
-        const qualFile = document.querySelector("#qualificationProof").files[0];
-        if (qualFile) {
-          const reader = new FileReader();
-          reader.onload = function(evt) {
-            localStorage.setItem("skillbridge-qual-file", evt.target.result);
-            localStorage.setItem("skillbridge-qual-filename", qualFile.name);
-          };
-          reader.readAsDataURL(qualFile);
-        }
-      }
-
-      // Role specific saving
-      if (role === "student") {
-        const inst = document.querySelector("#institution").value;
-        const yr = document.querySelector("#studyYear").value;
-        const fld = document.querySelector("#fieldOfStudy").value;
-        let port = document.querySelector("#studentPortfolio").value;
-        if (!port) port = "https://github.com/demo-student-portfolio";
-
-        localStorage.setItem("skillbridge-institution", inst);
-        localStorage.setItem("skillbridge-study-year", yr);
-        localStorage.setItem("skillbridge-field", fld);
-        localStorage.setItem("skillbridge-portfolio", port);
-
-        // Push to directory
-        let directory = JSON.parse(localStorage.getItem("skillbridge-student-directory") || "[]");
-        directory.push({
-          name: fullName,
-          email: email,
-          phone: phone,
-          institution: inst,
-          year: yr,
-          field: fld,
-          portfolio: port,
-          about: aboutMe || "Passionate student ready for opportunities."
-        });
-        localStorage.setItem("skillbridge-student-directory", JSON.stringify(directory));
+            <div class="form-group wide">
+              <label for="registrationProof">Proof of Registration (Document/PDF/Image)</label>
+              <input id="registrationProof" type="file" required accept=".pdf,.jpg,.png">
+            </div>
+            <div class="form-group wide">
+              <label for="studentPortfolio">Portfolio / GitHub / LinkedIn URL (Leave blank for demo link)</label>
+              <input id="studentPortfolio" placeholder="https://linkedin.com/in/...">
+            </div>
+          </div>
+        `;
       } 
       else if (role === "provider") {
-        const bizName = document.querySelector("#providerBusinessName").value;
-        const services = document.querySelector("#servicesRendered").value;
-        localStorage.setItem("skillbridge-bizname", bizName);
-        localStorage.setItem("skillbridge-services-desc", services);
-      }
-
-      alert("Account created successfully!");
-      if (role === "business") {
-        window.location.href = "student-directory.html";
-      } else {
-        window.location.href = "profile.html";
+        formHeading.textContent = "Service Provider Registration";
+        roleSpecificFields.innerHTML = `
+          <h4 style="color:#0752aa; margin-bottom:10px;">Service Provider & Business Details</h4>
+          <div class="form-grid" style="margin:0;">
+            <div class="form-group">
+              <label for="serviceCategory">Category of service</label>
+              <input id="serviceCategory" required placeholder="e.g. Plumbing, Web Dev, Tutoring">
+            </div>
+            <div class="form-group">
+              <label for="providerBusinessName">Business / Trading Name</label>
+              <input id="providerBusinessName" required placeholder="e.g. Zanele's Pro Solutions">
+            </div>
+            <div class="form-group wide">
+              <label for="servicesRendered">Services Rendered & Pricing Conditions</label>
+              <textarea id="servicesRendered" required rows="3" placeholder="Describe services and pricing (e.g. Web Setup: R150/hr or Task-based: R800 per page)"></textarea>
+            </div>
+            <div class="form-group wide">
+              <label for="providerPortfolio">Portfolio / Previous Work Proof</label>
+              <input id="providerPortfolio" type="file" multiple accept=".pdf,.jpg,.png">
+            </div>
+          </div>
+        `;
+      } 
+      else if (role === "business") {
+        formHeading.textContent = "Business Owner Registration";
+        roleSpecificFields.innerHTML = `
+          <h4 style="color:#0752aa; margin-bottom:10px;">Business Owner Details</h4>
+          <div class="form-grid" style="margin:0;">
+            <div class="form-group wide">
+              <label for="businessName">Business Name</label>
+              <input id="businessName" required placeholder="Registered business legal name">
+            </div>
+            <div class="form-group wide">
+              <label for="businessRegProof">Proof of Registration (CIPC Document / Certificate)</label>
+              <input id="businessRegProof" type="file" required accept=".pdf,.jpg,.png">
+            </div>
+            <div class="form-group wide" style="background:#f0f7ff; padding:12px; border-radius:6px; border:1px solid #bde0fe;">
+              <label style="font-size:.9rem; color:#0752aa; font-weight:700; display:flex; align-items:flex-start; gap:8px; cursor:pointer;">
+                <input id="internshipAgreement" type="checkbox" required style="margin-top:4px;">
+                <span>I agree and commit to scouting students on SkillBridge SA for internships and employment opportunities.</span>
+              </label>
+            </div>
+          </div>
+        `;
       }
     });
+  });
 
-    // Get your form element (assuming your form has an id="signupForm")
-const signupForm = document.getElementById("signupForm");
+  backToRoles.addEventListener("click", function() {
+    formScreen.style.display = "none";
+    roleSelectionScreen.style.display = "block";
+  });
 
-signupForm.addEventListener("submit", function(e) {
-  e.preventDefault(); // Stop the page from reloading
+  // Single, Unified Form Submission Logic
+  document.querySelector("#signUpForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-  // 1. Get the values the user typed into the form
-  const fullName = document.getElementById("nameInput").value;
-  const email = document.getElementById("emailInput").value;
-  const phone = document.getElementById("phoneInput").value;
-  const accountType = document.getElementById("accountTypeSelect").value; 
-  
-  // (Optional) Get student-specific fields if they exist on your signup form
-  const institution = document.getElementById("institutionInput") ? document.getElementById("institutionInput").value : "Tshwane University of Technology";
-  const field = document.getElementById("fieldInput") ? document.getElementById("fieldInput").value : "Information Technology";
-  const year = document.getElementById("yearInput") ? document.getElementById("yearInput").value : "1st Year";
+    const password = document.querySelector("#password").value;
+    const confirmPassword = document.querySelector("#confirmPassword").value;
 
-  // 2. Save the logged-in user's basic session details
-  localStorage.setItem("skillbridge-name", fullName);
-  localStorage.setItem("skillbridge-email", email);
-  localStorage.setItem("skillbridge-phone", phone);
-  localStorage.setItem("skillbridge-account-type", accountType);
+    if (password !== confirmPassword) {
+      alert("Your passwords do not match.");
+      return;
+    }
 
-  // 3. THE ARRAY LOGIC: If they are a student, add them to the directory array
-  if (accountType === "Student") {
-    
-    // STEP A: Get the existing array from localStorage. 
-    // If it doesn't exist yet, we use || "[]" to start with an empty array.
-    let directoryString = localStorage.getItem("skillbridge-student-directory") || "[]";
-    
-    // STEP B: Convert the text string back into a real JavaScript array
-    let directoryArray = JSON.parse(directoryString);
+    const role = selectedRoleInput.value;
+    const firstName = document.querySelector("#firstName").value;
+    const surname = document.querySelector("#surname").value;
+    const fullName = firstName + " " + surname;
+    const email = document.querySelector("#email").value;
+    const phone = document.querySelector("#phone").value;
+    const age = document.querySelector("#age").value;
+    const aboutMe = document.querySelector("#aboutMe").value;
 
-    // STEP C: Create the new student object
-    const newStudent = {
-      name: fullName,
-      email: email,
-      phone: phone,
-      institution: institution,
-      field: field,
-      year: year,
-      portfolio: "", // They can add this later in their profile
-      about: "A motivated student eager to connect with industry professionals."
-    };
+    // Save session info
+    localStorage.setItem("skillbridge-name", fullName);
+    localStorage.setItem("skillbridge-email", email);
+    localStorage.setItem("skillbridge-phone", phone);
+    localStorage.setItem("skillbridge-age", age);
+    localStorage.setItem("skillbridge-account-type", role);
+    localStorage.setItem("skillbridge-about", aboutMe);
 
-    // STEP D: Add the new student to the top of our array using .unshift()
-    // (You can use .push() if you want them at the bottom)
-    directoryArray.unshift(newStudent);
+    // Handle profile picture
+    const profilePicInput = document.querySelector("#profilePicture");
+    if (profilePicInput.files && profilePicInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        localStorage.setItem("skillbridge-avatar", evt.target.result);
+      };
+      reader.readAsDataURL(profilePicInput.files[0]);
+    }
 
-    // STEP E: Convert the array back to a string and save it to localStorage
-    localStorage.setItem("skillbridge-student-directory", JSON.stringify(directoryArray));
-  }
+    // Handle qualification upload & title
+    if (hasQualifications.value === "yes") {
+      const qualTitle = document.querySelector("#qualificationTitle").value;
+      localStorage.setItem("skillbridge-qual-title", qualTitle);
+      const qualFile = document.querySelector("#qualificationProof").files[0];
+      if (qualFile) {
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          localStorage.setItem("skillbridge-qual-file", evt.target.result);
+          localStorage.setItem("skillbridge-qual-filename", qualFile.name);
+        };
+        reader.readAsDataURL(qualFile);
+      }
+    }
 
-  // 4. Alert the user and send them to their new profile!
-  alert("Account created successfully!");
-  window.location.href = "profile.html";
-});
-  </script>
+    // Role-specific processing & LocalStorage Array handling
+    if (role === "student") {
+      const inst = document.querySelector("#institution").value;
+      const yr = document.querySelector("#studyYear").value;
+      const fld = document.querySelector("#fieldOfStudy").value;
+      let port = document.querySelector("#studentPortfolio").value;
+      if (!port) port = "https://github.com/demo-student-portfolio";
+
+      localStorage.setItem("skillbridge-institution", inst);
+      localStorage.setItem("skillbridge-study-year", yr);
+      localStorage.setItem("skillbridge-field", fld);
+      localStorage.setItem("skillbridge-portfolio", port);
+
+      // ARRAY PUSH LOGIC: Retrieve current directory, add new student to the top, and save back
+      let directoryString = localStorage.getItem("skillbridge-student-directory") || "[]";
+      let directoryArray = JSON.parse(directoryString);
+
+      const newStudent = {
+        name: fullName,
+        email: email,
+        phone: phone,
+        institution: inst,
+        year: yr,
+        field: fld,
+        portfolio: port,
+        about: aboutMe || "Passionate student ready for opportunities."
+      };
+
+      // Add to front of the array
+      directoryArray.unshift(newStudent);
+
+      // Save back to localStorage
+      localStorage.setItem("skillbridge-student-directory", JSON.stringify(directoryArray));
+    } 
+    else if (role === "provider") {
+      const bizName = document.querySelector("#providerBusinessName").value;
+      const services = document.querySelector("#servicesRendered").value;
+      localStorage.setItem("skillbridge-bizname", bizName);
+      localStorage.setItem("skillbridge-services-desc", services);
+    }
+
+    alert("Account created successfully!");
+    if (role === "business") {
+      window.location.href = "student-directory.html";
+    } else {
+      window.location.href = "profile.html";
+    }
+  });
+</script>
 </body>
 </html>
