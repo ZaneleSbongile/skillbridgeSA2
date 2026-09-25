@@ -7,155 +7,215 @@
   <link rel="stylesheet" href="styles.css">
   <style>
     .directory-container {
-      max-width: 1150px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 45px 20px 70px;
     }
+
     .directory-header {
-      margin-bottom: 40px;
+      margin-bottom: 35px;
       text-align: center;
     }
+
     .directory-header h1 {
       color: #0752aa;
       margin-bottom: 10px;
+      font-size: clamp(2rem, 4vw, 3rem);
     }
+
     .directory-header p {
-      max-width: 700px;
+      max-width: 760px;
       margin: 0 auto;
       color: #555;
       font-size: 1.05rem;
       line-height: 1.6;
     }
+
+    .directory-summary {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .summary-pill {
+      background: #f0f7ff;
+      border: 1px solid #cfe4fb;
+      color: #0752aa;
+      padding: 8px 15px;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 700;
+    }
+
     .directory-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 24px;
     }
+
     .student-card {
       background: #fff;
       border: 1px solid #e1e8ed;
-      border-radius: 12px;
+      border-radius: 16px;
       padding: 24px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+      box-shadow: 0 5px 18px rgba(0,0,0,.05);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       position: relative;
       overflow: hidden;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
     }
+
     .student-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; width: 100%; height: 5px;
       background: linear-gradient(90deg, #0752aa, #3a86ef);
     }
+
     .student-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(7, 82, 170, 0.1);
+      transform: translateY(-5px);
+      box-shadow: 0 14px 30px rgba(7,82,170,.12);
       border-color: #bde0fe;
     }
+
     .card-top {
       display: flex;
       align-items: center;
       gap: 15px;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
     }
+
     .student-avatar {
-      width: 50px;
-      height: 50px;
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
-      background: #0752aa;
+      background: linear-gradient(135deg,#0752aa,#3a86ef);
       color: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 1.1rem;
       flex-shrink: 0;
-      box-shadow: 0 2px 6px rgba(7,82,170,0.2);
+      box-shadow: 0 4px 10px rgba(7,82,170,.2);
     }
+
     .student-card h3 {
-      margin: 0 0 4px 0;
+      margin: 0 0 6px;
       color: #111;
-      font-size: 1.2rem;
+      font-size: 1.18rem;
     }
+
     .badge {
       display: inline-block;
       background: #e6f0fa;
       color: #0752aa;
-      font-size: 0.72rem;
+      font-size: .7rem;
       font-weight: 700;
-      padding: 3px 10px;
+      padding: 4px 10px;
       border-radius: 20px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
+      letter-spacing: .4px;
     }
+
     .student-meta {
-      font-size: 0.9rem;
+      font-size: .88rem;
       color: #444;
-      margin-bottom: 16px;
+      margin-bottom: 15px;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      background: #fdfefe;
-      padding: 12px;
-      border-radius: 8px;
+      gap: 9px;
+      background: #f8fafc;
+      padding: 13px;
+      border-radius: 10px;
       border: 1px solid #edf2f7;
     }
+
     .student-meta span {
       display: flex;
       justify-content: space-between;
+      gap: 12px;
     }
+
     .student-meta strong {
       color: #2d3748;
+      flex-shrink: 0;
     }
+
     .student-about {
-      font-size: 0.88rem;
+      font-size: .88rem;
       color: #4a5568;
       background: #f8fafc;
-      padding: 12px 14px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      line-height: 1.5;
-      font-style: italic;
+      padding: 13px 14px;
+      border-radius: 10px;
+      margin-bottom: 14px;
+      line-height: 1.55;
     }
+
+    .student-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+
+    .skill-chip {
+      background: #fff;
+      color: #0752aa;
+      border: 1px solid #cfe4fb;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: .72rem;
+      font-weight: 600;
+    }
+
     .student-actions {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
       margin-top: auto;
     }
+
     .btn-action {
-      padding: 10px 14px;
-      font-size: 0.85rem;
-      font-weight: 600;
+      padding: 10px 12px;
+      font-size: .82rem;
+      font-weight: 700;
       text-decoration: none;
-      border-radius: 6px;
+      border-radius: 7px;
       text-align: center;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
-      transition: all 0.2s ease;
+      cursor: pointer;
+      transition: all .2s ease;
     }
+
     .btn-primary-action {
       background: #0752aa;
       color: white;
       border: 1px solid #0752aa;
     }
+
     .btn-primary-action:hover {
       background: #053e80;
     }
+
     .btn-secondary-action {
       background: #fff;
       color: #0752aa;
       border: 1px solid #cbd5e1;
     }
+
     .btn-secondary-action:hover {
       background: #f1f5f9;
       border-color: #0752aa;
     }
+
     .empty-state {
       text-align: center;
       padding: 60px 20px;
@@ -163,6 +223,82 @@
       border: 2px dashed #cbd5e1;
       border-radius: 12px;
       grid-column: 1 / -1;
+    }
+
+    .contact-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10,25,45,.58);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .contact-modal {
+      background: #fff;
+      width: 100%;
+      max-width: 440px;
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.2);
+      position: relative;
+    }
+
+    .contact-modal h2 {
+      margin: 0 0 5px;
+      color: #0752aa;
+    }
+
+    .contact-modal .contact-subtitle {
+      color: #667085;
+      font-size: .9rem;
+      margin-bottom: 22px;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px;
+      background: #f8fafc;
+      border: 1px solid #edf2f7;
+      border-radius: 9px;
+      margin-bottom: 9px;
+    }
+
+    .contact-detail strong {
+      display: block;
+      font-size: .75rem;
+      color: #667085;
+      margin-bottom: 2px;
+      text-transform: uppercase;
+      letter-spacing: .4px;
+    }
+
+    .contact-detail span {
+      font-size: .9rem;
+      color: #1f2937;
+      word-break: break-word;
+    }
+
+    .contact-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .contact-actions a,
+    .contact-actions button {
+      flex: 1;
+    }
+
+    @media (max-width: 600px) {
+      .directory-container { padding: 30px 15px 50px; }
+      .directory-grid { grid-template-columns: 1fr; }
+      .student-card { padding: 20px; }
+      .student-meta span { flex-direction: column; gap: 2px; }
     }
   </style>
 </head>
@@ -194,7 +330,12 @@
     <div class="directory-header">
       <div class="eyebrow" style="justify-content:center;">Scout & Connect</div>
       <h1>Student Talent Directory</h1>
-      <p>Discover verified rising talent across South African universities and colleges. Review their academic focus, connect via direct email, and explore their project portfolios.</p>
+      <p>Discover rising talent across South African universities and colleges. Explore academic backgrounds, skills and portfolios, then connect directly with students for opportunities.</p>
+      <div class="directory-summary">
+        <span class="summary-pill">🎓 Student Talent</span>
+        <span class="summary-pill">💼 Internship Ready</span>
+        <span class="summary-pill">🌍 South Africa</span>
+      </div>
     </div>
 
     <!-- Student Cards Grid -->
@@ -203,118 +344,328 @@
     </div>
   </main>
 
+
+  <!-- CONTACT STUDENT MODAL -->
+  <div class="contact-overlay" id="contactOverlay">
+    <div class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contactStudentName">
+      <h2 id="contactStudentName">Student</h2>
+      <p class="contact-subtitle">Student contact details</p>
+
+      <div class="contact-detail">
+        <div>✉️</div>
+        <div>
+          <strong>Email address</strong>
+          <span id="contactEmail">--</span>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div>📞</div>
+        <div>
+          <strong>Phone number</strong>
+          <span id="contactPhone">--</span>
+        </div>
+      </div>
+
+      <div class="contact-detail">
+        <div>🎓</div>
+        <div>
+          <strong>Institution</strong>
+          <span id="contactInstitution">--</span>
+        </div>
+      </div>
+
+      <div class="contact-actions">
+        <a id="sendEmailButton" href="#" class="btn-action btn-primary-action">✉ Send Email</a>
+        <button type="button" onclick="closeContact()" class="btn-action btn-secondary-action">Close</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Default fallback sample students if directory is completely empty
+    // Demo students shown when there are not enough registered students.
+    // These are fictional demo profiles for presentation/testing purposes.
     const defaultStudents = [
       {
         name: "Zanele Radebe",
-        email: "zanele@example.com",
+        email: "zanele.demo@skillbridge.co.za",
         phone: "071 234 5678",
         institution: "Tshwane University of Technology",
-        year: "3rd Year",
+        year: "1st Year",
         field: "Information Technology",
         portfolio: "https://github.com/",
-        about: "Passionate front-end developer and youth advocate building community web solutions."
+        about: "Passionate about front-end development, technology and building practical digital solutions.",
+        skills: ["HTML & CSS", "Java", "Networking"]
       },
       {
         name: "Boitumelo Tsekelo",
-        email: "boitumelo@example.com",
+        email: "boitumelo.demo@skillbridge.co.za",
         phone: "082 345 6789",
         institution: "University of Johannesburg",
         year: "2nd Year",
         field: "Business Informatics",
         portfolio: "https://linkedin.com/",
-        about: "Focused on business intelligence, data systems, and digital collaboration platforms."
+        about: "Interested in business intelligence, data systems and digital collaboration platforms.",
+        skills: ["Data Analysis", "Excel", "Business IT"]
+      },
+      {
+        name: "Lerato Mokoena",
+        email: "lerato.demo@skillbridge.co.za",
+        phone: "073 456 7812",
+        institution: "University of Pretoria",
+        year: "3rd Year",
+        field: "Computer Science",
+        portfolio: "https://github.com/",
+        about: "Aspiring software developer who enjoys solving problems through clean and practical code.",
+        skills: ["Python", "Java", "Git"]
+      },
+      {
+        name: "Thabo Nkosi",
+        email: "thabo.demo@skillbridge.co.za",
+        phone: "076 567 8923",
+        institution: "University of the Witwatersrand",
+        year: "2nd Year",
+        field: "Software Engineering",
+        portfolio: "https://github.com/",
+        about: "Building a strong foundation in software development and collaborative engineering.",
+        skills: ["JavaScript", "React", "GitHub"]
+      },
+      {
+        name: "Naledi Molefe",
+        email: "naledi.demo@skillbridge.co.za",
+        phone: "079 678 9034",
+        institution: "University of South Africa",
+        year: "3rd Year",
+        field: "Information Systems",
+        portfolio: "https://linkedin.com/",
+        about: "Interested in using technology to improve how organisations work and serve their customers.",
+        skills: ["SQL", "Systems Analysis", "UX"]
+      },
+      {
+        name: "Karabo Dlamini",
+        email: "karabo.demo@skillbridge.co.za",
+        phone: "081 789 0145",
+        institution: "Durban University of Technology",
+        year: "1st Year",
+        field: "Information Technology",
+        portfolio: "https://github.com/",
+        about: "Curious IT student exploring web development, databases and cybersecurity.",
+        skills: ["HTML", "SQL", "Cybersecurity"]
+      },
+      {
+        name: "Mpho Maseko",
+        email: "mpho.demo@skillbridge.co.za",
+        phone: "078 890 1256",
+        institution: "Cape Peninsula University of Technology",
+        year: "4th Year",
+        field: "Applications Development",
+        portfolio: "https://github.com/",
+        about: "Final-year developer focused on creating useful applications and gaining industry experience.",
+        skills: ["C#", ".NET", "Databases"]
+      },
+      {
+        name: "Anele Khumalo",
+        email: "anele.demo@skillbridge.co.za",
+        phone: "072 901 2367",
+        institution: "Nelson Mandela University",
+        year: "2nd Year",
+        field: "Multimedia Computing",
+        portfolio: "https://linkedin.com/",
+        about: "Creative technology student combining digital design, multimedia and web development.",
+        skills: ["UI Design", "Figma", "Web Design"]
+      },
+      {
+        name: "Siyabonga Ndlovu",
+        email: "siyabonga.demo@skillbridge.co.za",
+        phone: "074 012 3478",
+        institution: "University of KwaZulu-Natal",
+        year: "3rd Year",
+        field: "Computer Engineering",
+        portfolio: "https://github.com/",
+        about: "Enjoys working with hardware, programming and technology projects that solve real problems.",
+        skills: ["C++", "Arduino", "Networking"]
+      },
+      {
+        name: "Refilwe Seema",
+        email: "refilwe.demo@skillbridge.co.za",
+        phone: "083 123 4589",
+        institution: "University of the Free State",
+        year: "2nd Year",
+        field: "Information Technology",
+        portfolio: "https://github.com/",
+        about: "Motivated student developing practical programming skills and looking for opportunities to grow.",
+        skills: ["Java", "Web Development", "Problem Solving"]
       }
     ];
 
-    // Check if current logged-in user is a student and not already in the directory
     const currentUserType = localStorage.getItem("skillbridge-account-type");
     const currentUserName = localStorage.getItem("skillbridge-name");
-    
-    let storedStudents = JSON.parse(localStorage.getItem("skillbridge-student-directory"));
-    
-    if (!storedStudents) {
-      storedStudents = defaultStudents;
+
+    let storedStudents;
+    try {
+      storedStudents = JSON.parse(localStorage.getItem("skillbridge-student-directory") || "[]");
+      if (!Array.isArray(storedStudents)) storedStudents = [];
+    } catch {
+      storedStudents = [];
     }
 
-    // Auto-sync current student profile if logged in and missing from directory
+    // Keep demo students visible while also allowing real registered students to appear.
+    const demoStudents = defaultStudents.filter(
+      demo => !storedStudents.some(real => real.name === demo.name)
+    );
+
+    let students = [...storedStudents, ...demoStudents];
+
+    // Add the currently logged-in student if they are not already listed.
     if (currentUserType === "Student" && currentUserName) {
-      const alreadyExists = storedStudents.some(s => s.name === currentUserName);
+      const alreadyExists = students.some(s => s.name === currentUserName);
+
       if (!alreadyExists) {
-        storedStudents.unshift({
+        students.unshift({
           name: currentUserName,
           email: localStorage.getItem("skillbridge-email") || "student@example.com",
           phone: localStorage.getItem("skillbridge-phone") || "070 000 0000",
           institution: localStorage.getItem("skillbridge-institution") || "Tshwane University of Technology",
-          year: localStorage.getItem("skillbridge-study-year") || "3rd Year",
+          year: localStorage.getItem("skillbridge-study-year") || "Student",
           field: localStorage.getItem("skillbridge-field") || "Information Technology",
-          portfolio: localStorage.getItem("skillbridge-portfolio") || "https://github.com/",
-          about: localStorage.getItem("skillbridge-about") || "Motivated IT student at TUT building practical web applications."
+          portfolio: localStorage.getItem("skillbridge-portfolio") || "",
+          about: localStorage.getItem("skillbridge-about") || "Motivated student ready for opportunities.",
+          skills: ["Student Talent"]
         });
-        localStorage.setItem("skillbridge-student-directory", JSON.stringify(storedStudents));
       }
     }
 
     const studentGrid = document.querySelector("#studentGrid");
 
-    if (storedStudents.length === 0) {
-      studentGrid.innerHTML = `
-        <div class="empty-state">
-          <h3>No students registered yet</h3>
-          <p>Be the first student to sign up or check back soon as talent joins the platform!</p>
-          <br>
-          <a href="signup.html" class="btn">Register as a Student</a>
-        </div>
-      `;
-    } else {
-      studentGrid.innerHTML = storedStudents.map(student => {
-        const initials = student.name ? student.name.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase() : "SB";
-        const portfolioLink = student.portfolio && student.portfolio !== "Not provided" 
-          ? (student.portfolio.startsWith('http') ? student.portfolio : 'https://' + student.portfolio) 
-          : '#';
-        const hasPortfolio = student.portfolio && student.portfolio !== "Not provided";
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function normaliseUrl(url) {
+      if (!url || url === "Not provided") return "";
+      return url.startsWith("http") ? url : "https://" + url;
+    }
+
+    function openContact(studentIndex) {
+      const student = students[studentIndex];
+      if (!student) return;
+
+      document.getElementById("contactStudentName").textContent = student.name || "Student";
+      document.getElementById("contactEmail").textContent = student.email || "Not provided";
+      document.getElementById("contactPhone").textContent = student.phone || "Not provided";
+      document.getElementById("contactInstitution").textContent = student.institution || "Not provided";
+
+      const emailButton = document.getElementById("sendEmailButton");
+      if (student.email) {
+        emailButton.href =
+          "mailto:" + encodeURIComponent(student.email) +
+          "?subject=" + encodeURIComponent("SkillBridge SA Opportunity");
+        emailButton.style.display = "inline-flex";
+      } else {
+        emailButton.style.display = "none";
+      }
+
+      document.getElementById("contactOverlay").style.display = "flex";
+    }
+
+    function closeContact() {
+      document.getElementById("contactOverlay").style.display = "none";
+    }
+
+    window.openContact = openContact;
+    window.closeContact = closeContact;
+
+    function renderStudents() {
+      if (students.length === 0) {
+        studentGrid.innerHTML = `
+          <div class="empty-state">
+            <h3>No students registered yet</h3>
+            <p>Be the first student to sign up or check back soon as talent joins the platform!</p>
+            <br>
+            <a href="signup.html" class="btn">Register as a Student</a>
+          </div>
+        `;
+        return;
+      }
+
+      studentGrid.innerHTML = students.map((student, index) => {
+        const initials = student.name
+          ? student.name.split(" ").map(w => w[0]).join("").slice(0, 2).toUpperCase()
+          : "SB";
+
+        const portfolioLink = normaliseUrl(student.portfolio);
+        const hasPortfolio = Boolean(portfolioLink);
+
+        const skills = Array.isArray(student.skills) && student.skills.length
+          ? student.skills
+          : ["Student Talent"];
 
         return `
-          <div class="student-card">
+          <article class="student-card">
             <div>
               <div class="card-top">
-                <div class="student-avatar">${initials}</div>
+                <div class="student-avatar">${escapeHtml(initials)}</div>
                 <div>
-                  <h3>${student.name}</h3>
-                  <span class="badge">${student.year || "Student"}</span>
+                  <h3>${escapeHtml(student.name || "Student")}</h3>
+                  <span class="badge">${escapeHtml(student.year || "Student")}</span>
                 </div>
               </div>
 
               <div class="student-meta">
-                <span><strong>Institution:</strong> <span style="color:#333; text-align:right;">${student.institution || 'TUT'}</span></span>
-                <span><strong>Field:</strong> <span style="color:#333; text-align:right;">${student.field || 'IT'}</span></span>
-                <span><strong>Phone:</strong> <span style="color:#333; text-align:right;">${student.phone || 'Available via email'}</span></span>
+                <span>
+                  <strong>Institution</strong>
+                  <span style="color:#333;text-align:right;">${escapeHtml(student.institution || "Not provided")}</span>
+                </span>
+                <span>
+                  <strong>Field</strong>
+                  <span style="color:#333;text-align:right;">${escapeHtml(student.field || "Not provided")}</span>
+                </span>
               </div>
 
               <div class="student-about">
-                "${student.about || 'Motivated student eager to apply academic knowledge in a professional environment.'}"
+                ${escapeHtml(student.about || "Motivated student eager to apply academic knowledge in a professional environment.")}
+              </div>
+
+              <div class="student-skills">
+                ${skills.slice(0, 5).map(skill => `<span class="skill-chip">${escapeHtml(skill)}</span>`).join("")}
               </div>
             </div>
 
             <div class="student-actions">
-              <a href="mailto:${student.email}" class="btn-action btn-primary-action">
-                ✉ Email Student
-              </a>
+              <button type="button" onclick="openContact(${index})" class="btn-action btn-primary-action">
+                ✉ Contact Student
+              </button>
+
               ${hasPortfolio ? `
-                <a href="${portfolioLink}" target="_blank" class="btn-action btn-secondary-action">
+                <a href="${escapeHtml(portfolioLink)}" target="_blank" rel="noopener" class="btn-action btn-secondary-action">
                   🔗 Portfolio
                 </a>
               ` : `
-                <button class="btn-action btn-secondary-action" disabled style="opacity:0.5; cursor:not-allowed;">
+                <button class="btn-action btn-secondary-action" disabled style="opacity:.5;cursor:not-allowed;">
                   No Portfolio
                 </button>
               `}
             </div>
-          </div>
+          </article>
         `;
-      }).join('');
+      }).join("");
     }
+
+    renderStudents();
+
+    // Close the contact window when clicking outside the modal.
+    document.getElementById("contactOverlay").addEventListener("click", function(e) {
+      if (e.target === this) closeContact();
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape") closeContact();
+    });
   </script>
 </body>
 </html>
