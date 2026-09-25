@@ -5,6 +5,35 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Professional Profile | SkillBridge SA</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 25px;
+      border-radius: 8px;
+      width: 100%;
+      max-width: 500px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+    .item-card {
+      background: #f8f9fa;
+      padding: 12px 15px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
 </head>
 
 <body data-page="profile">
@@ -78,13 +107,25 @@
           <!-- ROLE SPECIFIC SECTION -->
           <div class="form-card" id="roleSpecificCardContainer" style="margin-bottom: 25px; display: none;"></div>
 
-          <!-- QUALIFICATIONS & DOCUMENTS SECTION -->
+          <!-- QUALIFICATIONS SECTION -->
           <div class="form-card" style="margin-bottom: 25px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
               <h3>Qualifications & Certificates</h3>
+              <button class="btn" id="openQualModal" style="font-size:0.8rem; padding:6px 12px;">+ Add Qualification</button>
             </div>
             <div id="qualDisplayArea">
-              <p style="font-size: 0.9rem; color: #555;">No qualifications uploaded.</p>
+              <p style="font-size: 0.9rem; color: #555;">No qualifications uploaded yet.</p>
+            </div>
+          </div>
+
+          <!-- PORTFOLIOS SECTION -->
+          <div class="form-card" style="margin-bottom: 25px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+              <h3>Portfolios & Project Proofs</h3>
+              <button class="btn" id="openPortModal" style="font-size:0.8rem; padding:6px 12px;">+ Add Portfolio Item</button>
+            </div>
+            <div id="portDisplayArea">
+              <p style="font-size: 0.9rem; color: #555;">No portfolios added yet.</p>
             </div>
           </div>
 
@@ -92,6 +133,52 @@
       </div>
     </section>
   </main>
+
+  <!-- MODAL: ADD QUALIFICATION -->
+  <div class="modal-overlay" id="qualModal">
+    <div class="modal-content">
+      <h3 style="margin-bottom: 15px; color: #0752aa;">Add Qualification</h3>
+      <form id="addQualForm">
+        <div class="form-group" style="margin-bottom:15px;">
+          <label for="newQualTitle">Qualification Title (e.g. Bachelor in Swimming Coaching)</label>
+          <input id="newQualTitle" required placeholder="Title">
+        </div>
+        <div class="form-group" style="margin-bottom:20px;">
+          <label for="newQualFile">Upload Certificate / Document</label>
+          <input id="newQualFile" type="file" required accept=".pdf,.jpg,.png">
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button type="submit" class="btn" style="flex:1;">Save Qualification</button>
+          <button type="button" class="btn btn-outline" id="closeQualModal" style="flex:1; background:#ccc; border:none; color:#333;">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADD PORTFOLIO -->
+  <div class="modal-overlay" id="portModal">
+    <div class="modal-content">
+      <h3 style="margin-bottom: 15px; color: #0752aa;">Add Portfolio / Project</h3>
+      <form id="addPortForm">
+        <div class="form-group" style="margin-bottom:15px;">
+          <label for="newPortTitle">Project Title / Name</label>
+          <input id="newPortTitle" required placeholder="e.g. E-Commerce Web App">
+        </div>
+        <div class="form-group" style="margin-bottom:15px;">
+          <label for="newPortLink">Project Link / GitHub / Demo URL (Optional)</label>
+          <input id="newPortLink" placeholder="https://...">
+        </div>
+        <div class="form-group" style="margin-bottom:20px;">
+          <label for="newPortFile">Or Upload Project File / Screenshot (Optional)</label>
+          <input id="newPortFile" type="file" accept=".pdf,.jpg,.png,.zip">
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <button type="submit" class="btn" style="flex:1;">Save Portfolio</button>
+          <button type="button" class="btn btn-outline" id="closePortModal" style="flex:1; background:#ccc; border:none; color:#333;">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
 
   <script>
     const savedName = localStorage.getItem("skillbridge-name");
@@ -142,20 +229,10 @@
         profileInitials.textContent = '';
       }
 
-      // Qualification Display
-      const qualTitle = localStorage.getItem("skillbridge-qual-title");
-      const qualFile = localStorage.getItem("skillbridge-qual-file");
-      const qualFilename = localStorage.getItem("skillbridge-qual-filename");
-      const qualArea = document.getElementById("qualDisplayArea");
-
-      if (qualTitle || qualFile) {
-        qualArea.innerHTML = `
-          <div style="background:#f8f9fa; padding:12px; border-radius:6px; border:1px solid #ddd;">
-            <p style="margin:0 0 5px 0;"><strong>Qualification:</strong> ${qualTitle || "Not specified"}</p>
-            ${qualFile ? `<a href="${qualFile}" download="${qualFilename || 'certificate'}" class="btn-sm" style="font-size:0.8rem; display:inline-block; background:#0752aa; color:#fff; padding:6px 12px; border-radius:4px; text-decoration:none;">Download Certificate (${qualFilename || 'View'})</a>` : ''}
-          </div>
-        `;
-      }
+      // Render Qualifications
+      renderQualifications();
+      // Render Portfolios
+      renderPortfolios();
 
       // Role Specific Card Content
       const container = document.getElementById("roleSpecificCardContainer");
@@ -163,15 +240,13 @@
         const institution = localStorage.getItem("skillbridge-institution") || "Tshwane University of Technology";
         const field = localStorage.getItem("skillbridge-field") || "Information Technology";
         const studyYear = localStorage.getItem("skillbridge-study-year") || "3rd Year";
-        const portfolio = localStorage.getItem("skillbridge-portfolio") || "https://github.com/demo-student-portfolio";
         
         container.style.display = "block";
         container.innerHTML = `
-          <h3>Student Academic & Portfolio Profile</h3>
+          <h3>Student Academic Profile</h3>
           <p style="margin-top:10px;"><strong>Institution:</strong> ${institution}</p>
           <p><strong>Year of Study:</strong> ${studyYear}</p>
           <p><strong>Field of Study:</strong> ${field}</p>
-          <p><strong>Portfolio / Demo Link:</strong> <a href="${portfolio}" target="_blank" style="color:#0752aa; font-weight:600;">${portfolio}</a></p>
           <p style="margin-top:10px; font-size:0.85rem; color:#555;">Your profile is active in the Student Talent Directory for internship scouting.</p>
         `;
       } else if (accountType === "Service provider") {
@@ -201,6 +276,149 @@
       }
     }
 
+    // QUALIFICATIONS FUNCTIONS
+    function renderQualifications() {
+      let quals = JSON.parse(localStorage.getItem("skillbridge-quals-list") || "[]");
+      // Migration fallback from single qual
+      const singleTitle = localStorage.getItem("skillbridge-qual-title");
+      const singleFile = localStorage.getItem("skillbridge-qual-file");
+      if (quals.length === 0 && (singleTitle || singleFile)) {
+        quals.push({ title: singleTitle || "Qualification", file: singleFile, filename: "certificate" });
+        localStorage.setItem("skillbridge-quals-list", JSON.stringify(quals));
+      }
+
+      const area = document.getElementById("qualDisplayArea");
+      if (quals.length === 0) {
+        area.innerHTML = `<p style="font-size: 0.9rem; color: #555;">No qualifications uploaded yet.</p>`;
+        return;
+      }
+
+      let html = "";
+      quals.forEach((q, idx) => {
+        html += `
+          <div class="item-card">
+            <div>
+              <p style="margin:0; font-weight:600; color:#0752aa;">${q.title}</p>
+            </div>
+            <div>
+              ${q.file ? `<a href="${q.file}" download="${q.filename || 'certificate'}" class="btn" style="font-size:0.75rem; padding:4px 8px; text-decoration:none;">Download File</a>` : ''}
+              <button onclick="removeQual(${idx})" style="background:none; border:none; color:#d90429; font-size:0.8rem; cursor:pointer; margin-left:10px;">Remove</button>
+            </div>
+          </div>
+        `;
+      });
+      area.innerHTML = html;
+    }
+
+    window.removeQual = function(idx) {
+      let quals = JSON.parse(localStorage.getItem("skillbridge-quals-list") || "[]");
+      quals.splice(idx, 1);
+      localStorage.setItem("skillbridge-quals-list", JSON.stringify(quals));
+      renderQualifications();
+    };
+
+    // PORTFOLIOS FUNCTIONS
+    function renderPortfolios() {
+      let ports = JSON.parse(localStorage.getItem("skillbridge-ports-list") || "[]");
+      // Migration fallback from student portfolio
+      const singlePort = localStorage.getItem("skillbridge-portfolio");
+      if (ports.length === 0 && singlePort) {
+        ports.push({ title: "Primary Portfolio", link: singlePort, file: null });
+        localStorage.setItem("skillbridge-ports-list", JSON.stringify(ports));
+      }
+
+      const area = document.getElementById("portDisplayArea");
+      if (ports.length === 0) {
+        area.innerHTML = `<p style="font-size: 0.9rem; color: #555;">No portfolios added yet.</p>`;
+        return;
+      }
+
+      let html = "";
+      ports.forEach((p, idx) => {
+        html += `
+          <div class="item-card">
+            <div>
+              <p style="margin:0; font-weight:600; color:#0752aa;">${p.title}</p>
+              ${p.link ? `<a href="${p.link}" target="_blank" style="font-size:0.8rem; color:#555; text-decoration:underline;">${p.link}</a>` : ''}
+            </div>
+            <div>
+              ${p.file ? `<a href="${p.file}" download="portfolio-file" class="btn" style="font-size:0.75rem; padding:4px 8px; text-decoration:none; margin-right:5px;">Download</a>` : ''}
+              <button onclick="removePort(${idx})" style="background:none; border:none; color:#d90429; font-size:0.8rem; cursor:pointer;">Remove</button>
+            </div>
+          </div>
+        `;
+      });
+      area.innerHTML = html;
+    }
+
+    window.removePort = function(idx) {
+      let ports = JSON.parse(localStorage.getItem("skillbridge-ports-list") || "[]");
+      ports.splice(idx, 1);
+      localStorage.setItem("skillbridge-ports-list", JSON.stringify(ports));
+      renderPortfolios();
+    };
+
+    // Modal Controllers
+    const qualModal = document.getElementById("qualModal");
+    document.getElementById("openQualModal").addEventListener("click", () => qualModal.style.display = "flex");
+    document.getElementById("closeQualModal").addEventListener("click", () => qualModal.style.display = "none");
+
+    const portModal = document.getElementById("portModal");
+    document.getElementById("openPortModal").addEventListener("click", () => portModal.style.display = "flex");
+    document.getElementById("closePortModal").addEventListener("click", () => portModal.style.display = "none");
+
+    // Add Qualification Form Submit
+    document.getElementById("addQualForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const title = document.getElementById("newQualTitle").value;
+      const fileInput = document.getElementById("newQualFile");
+
+      let quals = JSON.parse(localStorage.getItem("skillbridge-quals-list") || "[]");
+
+      if (fileInput.files && fileInput.files[0]) {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          quals.push({ title: title, file: evt.target.result, filename: file.name });
+          localStorage.setItem("skillbridge-quals-list", JSON.stringify(quals));
+          renderQualifications();
+          qualModal.style.display = "none";
+          document.getElementById("addQualForm").reset();
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Add Portfolio Form Submit
+    document.getElementById("addPortForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const title = document.getElementById("newPortTitle").value;
+      const link = document.getElementById("newPortLink").value;
+      const fileInput = document.getElementById("newPortFile");
+
+      let ports = JSON.parse(localStorage.getItem("skillbridge-ports-list") || "[]");
+
+      if (fileInput.files && fileInput.files[0]) {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          ports.push({ title: title, link: link, file: evt.target.result });
+          localStorage.setItem("skillbridge-ports-list", JSON.stringify(ports));
+          renderPortfolios();
+          portModal.style.display = "none";
+          document.getElementById("addPortForm").reset();
+        };
+        reader.readAsDataURL(file);
+      } else {
+        ports.push({ title: title, link: link || "https://github.com/demo-project", file: null });
+        localStorage.setItem("skillbridge-ports-list", JSON.stringify(ports));
+        renderPortfolios();
+        portModal.style.display = "none";
+        document.getElementById("addPortForm").reset();
+      }
+    });
+
+    // Avatar upload handler
     const avatarUpload = document.getElementById('avatarUpload');
     if (avatarUpload) {
       avatarUpload.addEventListener('change', function(e) {
