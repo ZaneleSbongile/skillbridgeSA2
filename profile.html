@@ -144,8 +144,8 @@
           <input id="newQualTitle" required placeholder="Title">
         </div>
         <div class="form-group" style="margin-bottom:20px;">
-          <label for="newQualFile">Upload Certificate / Document</label>
-          <input id="newQualFile" type="file" required accept=".pdf,.jpg,.png">
+          <label for="newQualFile">Upload Certificate / Document (Optional)</label>
+          <input id="newQualFile" type="file" accept=".pdf,.jpg,.png">
         </div>
         <div style="display: flex; gap: 10px;">
           <button type="submit" class="btn" style="flex:1;">Save Qualification</button>
@@ -229,9 +229,8 @@
         profileInitials.textContent = '';
       }
 
-      // Render Qualifications
+      // Render Qualifications & Portfolios
       renderQualifications();
-      // Render Portfolios
       renderPortfolios();
 
       // Role Specific Card Content
@@ -279,7 +278,6 @@
     // QUALIFICATIONS FUNCTIONS
     function renderQualifications() {
       let quals = JSON.parse(localStorage.getItem("skillbridge-quals-list") || "[]");
-      // Migration fallback from single qual
       const singleTitle = localStorage.getItem("skillbridge-qual-title");
       const singleFile = localStorage.getItem("skillbridge-qual-file");
       if (quals.length === 0 && (singleTitle || singleFile)) {
@@ -301,7 +299,7 @@
               <p style="margin:0; font-weight:600; color:#0752aa;">${q.title}</p>
             </div>
             <div>
-              ${q.file ? `<a href="${q.file}" download="${q.filename || 'certificate'}" class="btn" style="font-size:0.75rem; padding:4px 8px; text-decoration:none;">Download File</a>` : ''}
+              ${q.file ? `<a href="${q.file}" download="${q.filename || 'certificate'}" class="btn" style="font-size:0.75rem; padding:4px 8px; text-decoration:none;">Download File</a>` : '<span style="font-size:0.8rem; color:#888;">No file attached</span>'}
               <button onclick="removeQual(${idx})" style="background:none; border:none; color:#d90429; font-size:0.8rem; cursor:pointer; margin-left:10px;">Remove</button>
             </div>
           </div>
@@ -320,7 +318,6 @@
     // PORTFOLIOS FUNCTIONS
     function renderPortfolios() {
       let ports = JSON.parse(localStorage.getItem("skillbridge-ports-list") || "[]");
-      // Migration fallback from student portfolio
       const singlePort = localStorage.getItem("skillbridge-portfolio");
       if (ports.length === 0 && singlePort) {
         ports.push({ title: "Primary Portfolio", link: singlePort, file: null });
@@ -386,6 +383,12 @@
           document.getElementById("addQualForm").reset();
         };
         reader.readAsDataURL(file);
+      } else {
+        quals.push({ title: title, file: null, filename: null });
+        localStorage.setItem("skillbridge-quals-list", JSON.stringify(quals));
+        renderQualifications();
+        qualModal.style.display = "none";
+        document.getElementById("addQualForm").reset();
       }
     });
 
