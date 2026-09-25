@@ -250,18 +250,16 @@
         `;
       } else if (accountType === "Service provider") {
         const bizName = localStorage.getItem("skillbridge-bizname") || savedName + " Services";
-        const servicesDesc = localStorage.getItem("skillbridge-services-desc") || "Professional independent services rendered.";
-        const hourlyRate = localStorage.getItem("skillbridge-rate") || "R790/h";
+        const servicesDesc = localStorage.getItem("skillbridge-services-desc") || "Professional independent services rendered with customized pricing.";
 
         document.getElementById("displayName").textContent = savedName + " (" + bizName + ")";
         document.getElementById("sidebarName").textContent = bizName;
 
         container.style.display = "block";
         container.innerHTML = `
-          <h3>Service Provider & Pricing Details</h3>
+          <h3>Service Provider & Business Details</h3>
           <p style="margin-top:10px;"><strong>Business / Trading Name:</strong> ${bizName}</p>
-          <p style="margin-top:10px;"><strong>Charging Rate / Conditions:</strong> <span style="background:#e8f4fd; color:#0752aa; padding:3px 8px; border-radius:4px; font-weight:700;">${hourlyRate}</span></p>
-          <p style="margin-top:10px;"><strong>Services Description:</strong></p>
+          <p style="margin-top:8px;"><strong>Services Rendered & Pricing Conditions:</strong></p>
           <div style="background:#f8f9fa; padding:12px; border-radius:6px; border:1px solid #ddd; margin-top:5px;">
             <p style="margin:0; font-size:0.9rem; line-height:1.5;">${servicesDesc}</p>
           </div>
