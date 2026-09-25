@@ -22,19 +22,22 @@
 
   <style>
 
+    /* ================================
+       MODALS
+    ================================= */
+
     .modal-overlay {
 
       display: none;
 
       position: fixed;
 
-      top: 0;
-      left: 0;
+      inset: 0;
 
       width: 100%;
       height: 100%;
 
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.55);
 
       justify-content: center;
       align-items: center;
@@ -70,30 +73,9 @@
     }
 
 
-    .item-card {
-
-      background: #f8f9fa;
-
-      padding: 12px 15px;
-
-      border-radius: 6px;
-
-      border: 1px solid #ddd;
-
-      margin-bottom: 10px;
-
-      display: flex;
-
-      justify-content: space-between;
-
-      align-items: center;
-
-      gap: 15px;
-
-      flex-wrap: wrap;
-
-    }
-
+    /* ================================
+       DOCUMENT CARDS
+    ================================= */
 
     .document-card {
 
@@ -131,6 +113,125 @@
     }
 
 
+    /* ================================
+       PORTFOLIO GALLERY
+    ================================= */
+
+    .portfolio-gallery {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(auto-fill, minmax(180px, 1fr));
+
+      gap: 18px;
+
+      margin-top: 15px;
+
+    }
+
+
+    .portfolio-card {
+
+      border: 1px solid #ddd;
+
+      border-radius: 10px;
+
+      overflow: hidden;
+
+      background: #fff;
+
+      box-shadow:
+        0 2px 8px rgba(0,0,0,0.06);
+
+      transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+    }
+
+
+    .portfolio-card:hover {
+
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 5px 15px rgba(0,0,0,0.12);
+
+    }
+
+
+    .portfolio-image {
+
+      width: 100%;
+
+      height: 180px;
+
+      object-fit: cover;
+
+      display: block;
+
+      background: #eee;
+
+      cursor: pointer;
+
+    }
+
+
+    .portfolio-info {
+
+      padding: 12px;
+
+    }
+
+
+    .portfolio-title {
+
+      font-weight: 700;
+
+      color: #0752aa;
+
+      margin-bottom: 7px;
+
+      word-break: break-word;
+
+    }
+
+
+    .portfolio-actions {
+
+      display: flex;
+
+      gap: 7px;
+
+      flex-wrap: wrap;
+
+      margin-top: 10px;
+
+    }
+
+
+    .portfolio-document-icon {
+
+      height: 180px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      background: #f1f4f8;
+
+      font-size: 3rem;
+
+    }
+
+
+    /* ================================
+       SERVICE DESCRIPTION
+    ================================= */
+
     .service-description {
 
       background: #f8f9fa;
@@ -150,15 +251,6 @@
     }
 
 
-    .empty-message {
-
-      font-size: 0.9rem;
-
-      color: #555;
-
-    }
-
-
     .role-info-box {
 
       background: #f8f9fa;
@@ -174,12 +266,99 @@
     }
 
 
+    .empty-message {
+
+      font-size: 0.9rem;
+
+      color: #555;
+
+    }
+
+
+    /* ================================
+       IMAGE PREVIEW MODAL
+    ================================= */
+
+    .image-preview-overlay {
+
+      display: none;
+
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(0,0,0,0.85);
+
+      z-index: 2000;
+
+      justify-content: center;
+
+      align-items: center;
+
+      padding: 25px;
+
+      box-sizing: border-box;
+
+    }
+
+
+    .image-preview-overlay img {
+
+      max-width: 95%;
+
+      max-height: 90vh;
+
+      object-fit: contain;
+
+      border-radius: 8px;
+
+      box-shadow:
+        0 5px 30px rgba(0,0,0,0.4);
+
+    }
+
+
+    .close-preview {
+
+      position: absolute;
+
+      top: 20px;
+
+      right: 25px;
+
+      color: #fff;
+
+      font-size: 35px;
+
+      cursor: pointer;
+
+      line-height: 1;
+
+    }
+
+
     @media (max-width: 600px) {
 
-      .item-card,
-      .document-card {
+      .portfolio-gallery {
 
-        align-items: flex-start;
+        grid-template-columns:
+          repeat(2, 1fr);
+
+        gap: 10px;
+
+      }
+
+
+      .portfolio-image {
+
+        height: 140px;
+
+      }
+
+
+      .portfolio-document-icon {
+
+        height: 140px;
 
       }
 
@@ -375,37 +554,26 @@
         >
 
           <p
+            id="sidebarEmail"
             style="
               color:#c5d8ef;
               font-size:0.85rem;
               margin-bottom:5px;
             "
-            id="sidebarEmail"
           >
             <strong>Email:</strong> --
           </p>
 
 
           <p
-            style="
-              color:#c5d8ef;
-              font-size:0.85rem;
-              margin-bottom:5px;
-            "
             id="sidebarPhone"
-          >
-            <strong>Phone:</strong> --
-          </p>
-
-
-          <p
             style="
               color:#c5d8ef;
               font-size:0.85rem;
               margin-bottom:0;
             "
           >
-            <strong>Member Since:</strong> 2026
+            <strong>Phone:</strong> --
           </p>
 
         </div>
@@ -426,27 +594,19 @@
         </span>
 
 
-        <div
+        <a
+          class="btn"
+          href="deactivate.html"
           style="
-            display:flex;
-            flex-direction:column;
-            gap:10px;
+            background:#d90429;
+            text-align:center;
+            text-decoration:none;
+            width:100%;
+            display:block;
           "
         >
-
-          <a
-            class="btn"
-            href="deactivate.html"
-            style="
-              background:#d90429;
-              text-align:center;
-              text-decoration:none;
-            "
-          >
-            Deactivate Account
-          </a>
-
-        </div>
+          Deactivate Account
+        </a>
 
       </aside>
 
@@ -456,7 +616,7 @@
       <div class="profile-main">
 
 
-        <!-- ABOUT ME -->
+        <!-- ABOUT -->
 
         <div
           class="form-card"
@@ -501,7 +661,7 @@
         </div>
 
 
-        <!-- ROLE-SPECIFIC SECTION -->
+        <!-- ROLE-SPECIFIC -->
 
         <div
           class="form-card"
@@ -577,9 +737,24 @@
             "
           >
 
-            <h3>
-              Portfolios & Project Proofs
-            </h3>
+            <div>
+
+              <h3>
+                Portfolio & Project Showcase
+              </h3>
+
+              <p
+                style="
+                  font-size:0.85rem;
+                  color:#666;
+                  margin-top:5px;
+                "
+              >
+                Showcase your work with images,
+                documents and project links.
+              </p>
+
+            </div>
 
 
             <button
@@ -588,9 +763,10 @@
               style="
                 font-size:0.8rem;
                 padding:6px 12px;
+                white-space:nowrap;
               "
             >
-              + Add Portfolio Item
+              + Add Portfolio
             </button>
 
           </div>
@@ -599,7 +775,7 @@
           <div id="portDisplayArea">
 
             <p class="empty-message">
-              No portfolios added yet.
+              No portfolio items added yet.
             </p>
 
           </div>
@@ -616,7 +792,9 @@
 </main>
 
 
-<!-- QUALIFICATION MODAL -->
+<!-- ======================================================
+     ADD QUALIFICATION MODAL
+======================================================= -->
 
 <div
   class="modal-overlay"
@@ -670,7 +848,12 @@
           accept=".pdf,.jpg,.jpeg,.png"
         >
 
-        <p class="upload-help">
+        <p
+          style="
+            font-size:0.78rem;
+            color:#666;
+          "
+        >
           Maximum file size: 4 MB.
         </p>
 
@@ -689,18 +872,17 @@
           class="btn"
           style="flex:1;"
         >
-          Save Qualification
+          Save
         </button>
 
 
         <button
           type="button"
-          class="btn btn-outline"
+          class="btn"
           id="closeQualModal"
           style="
             flex:1;
             background:#ccc;
-            border:none;
             color:#333;
           "
         >
@@ -716,7 +898,9 @@
 </div>
 
 
-<!-- PORTFOLIO MODAL -->
+<!-- ======================================================
+     ADD PORTFOLIO MODAL
+======================================================= -->
 
 <div
   class="modal-overlay"
@@ -731,7 +915,7 @@
         color:#0752aa;
       "
     >
-      Add Portfolio / Project
+      Add Portfolio Item
     </h3>
 
 
@@ -744,13 +928,13 @@
       >
 
         <label for="newPortTitle">
-          Project Title / Name
+          Project / Work Title
         </label>
 
         <input
           id="newPortTitle"
           required
-          placeholder="e.g. E-Commerce Web App"
+          placeholder="e.g. Logo Design for ABC Company"
         >
 
       </div>
@@ -762,13 +946,24 @@
       >
 
         <label for="newPortLink">
-          Project Link / GitHub / Demo URL
+          Project Link
         </label>
 
         <input
           id="newPortLink"
-          placeholder="https://..."
+          type="url"
+          placeholder="https://github.com/..."
         >
+
+        <p
+          style="
+            font-size:0.78rem;
+            color:#666;
+          "
+        >
+          Optional — GitHub, website, LinkedIn,
+          Google Drive, etc.
+        </p>
 
       </div>
 
@@ -779,17 +974,23 @@
       >
 
         <label for="newPortFile">
-          Or Upload Project File / Screenshot
+          Upload Work
         </label>
 
         <input
           id="newPortFile"
           type="file"
-          accept=".pdf,.jpg,.jpeg,.png,.zip"
+          accept=".jpg,.jpeg,.png,.gif,.webp,.pdf,.zip"
         >
 
-        <p class="upload-help">
-          Maximum file size: 4 MB.
+        <p
+          style="
+            font-size:0.78rem;
+            color:#666;
+          "
+        >
+          You can upload an image, PDF or ZIP file.
+          Maximum 4 MB.
         </p>
 
       </div>
@@ -807,18 +1008,17 @@
           class="btn"
           style="flex:1;"
         >
-          Save Portfolio
+          Add to Portfolio
         </button>
 
 
         <button
           type="button"
-          class="btn btn-outline"
+          class="btn"
           id="closePortModal"
           style="
             flex:1;
             background:#ccc;
-            border:none;
             color:#333;
           "
         >
@@ -834,21 +1034,43 @@
 </div>
 
 
+<!-- ======================================================
+     IMAGE PREVIEW
+======================================================= -->
+
+<div
+  class="image-preview-overlay"
+  id="imagePreview"
+>
+
+  <span
+    class="close-preview"
+    id="closeImagePreview"
+  >
+    ×
+  </span>
+
+
+  <img
+    id="previewImage"
+    src=""
+    alt="Portfolio preview"
+  >
+
+</div>
+
+
 <script>
 
 
-/* =========================================================
-   HELPER FUNCTIONS
-   ========================================================= */
-
+/* ======================================================
+   FILE READER
+======================================================= */
 
 const MAX_FILE_SIZE =
   4 * 1024 * 1024;
 
 
-/*
- * Read a file as Base64.
- */
 function readFile(file) {
 
   return new Promise((resolve, reject) => {
@@ -915,9 +1137,10 @@ function readFile(file) {
 }
 
 
-/*
- * Create a document download button.
- */
+/* ======================================================
+   DOCUMENT BUTTON
+======================================================= */
+
 function documentButton(
   data,
   filename,
@@ -952,10 +1175,9 @@ function documentButton(
 }
 
 
-/* =========================================================
-   LOGIN / PROFILE INITIALISATION
-   ========================================================= */
-
+/* ======================================================
+   PROFILE INITIALISATION
+======================================================= */
 
 const savedName =
   localStorage.getItem(
@@ -1039,14 +1261,6 @@ if (
       "click",
       function() {
 
-        /*
-         * IMPORTANT:
-         * Do NOT clear all localStorage here.
-         * That would delete the entire profile.
-         *
-         * We only remove the login/session values.
-         */
-
         localStorage.removeItem(
           "skillbridge-name"
         );
@@ -1067,9 +1281,11 @@ if (
           "skillbridge-account-type"
         );
 
+
         alert(
           "You have been signed out."
         );
+
 
         window.location.href =
           "signin.html";
@@ -1079,7 +1295,7 @@ if (
 
 
   /*
-   * BASIC PROFILE INFORMATION
+   * BASIC DETAILS
    */
 
   document
@@ -1094,9 +1310,6 @@ if (
       savedName;
 
 
-  /*
-   * Convert role into readable display text.
-   */
   const roleLabels = {
 
     customer:
@@ -1137,10 +1350,6 @@ if (
     .textContent =
       readableRole;
 
-
-  /*
-   * EMAIL / PHONE / ABOUT
-   */
 
   const email =
     localStorage.getItem(
@@ -1191,7 +1400,7 @@ if (
 
 
   /*
-   * PROFILE PHOTO
+   * AVATAR
    */
 
   const profileInitials =
@@ -1232,10 +1441,6 @@ if (
   }
 
 
-  /*
-   * RENDER ALL SECTIONS
-   */
-
   renderQualifications();
 
   renderPortfolios();
@@ -1245,10 +1450,9 @@ if (
 }
 
 
-/* =========================================================
-   ROLE-SPECIFIC PROFILE
-   ========================================================= */
-
+/* ======================================================
+   ROLE SPECIFIC
+======================================================= */
 
 function renderRoleSpecificProfile() {
 
@@ -1275,9 +1479,7 @@ function renderRoleSpecificProfile() {
     "none";
 
 
-  /*
-   * STUDENT
-   */
+  /* ================= STUDENT ================= */
 
   if (role === "student") {
 
@@ -1309,7 +1511,8 @@ function renderRoleSpecificProfile() {
     const registrationFilename =
       localStorage.getItem(
         "skillbridge-registration-filename"
-      ) || "proof-of-registration";
+      ) ||
+      "proof-of-registration";
 
 
     container.style.display =
@@ -1361,6 +1564,7 @@ function renderRoleSpecificProfile() {
             <div class="document-card">
 
               <div>
+
                 <div class="document-name">
                   ${registrationFilename}
                 </div>
@@ -1368,13 +1572,17 @@ function renderRoleSpecificProfile() {
                 <small>
                   Registration document
                 </small>
+
               </div>
 
+
               <div>
+
                 ${documentButton(
                   registrationProof,
                   registrationFilename
                 )}
+
               </div>
 
             </div>
@@ -1391,26 +1599,12 @@ function renderRoleSpecificProfile() {
 
       </div>
 
-
-      <p
-        style="
-          margin-top:15px;
-          font-size:0.85rem;
-          color:#555;
-        "
-      >
-        Your profile is active in the Student Talent
-        Directory for internship scouting.
-      </p>
-
     `;
 
   }
 
 
-  /*
-   * SERVICE PROVIDER
-   */
+  /* ================= PROVIDER ================= */
 
   else if (role === "provider") {
 
@@ -1456,10 +1650,6 @@ function renderRoleSpecificProfile() {
     }
 
 
-    /*
-     * Change the heading/sidebar name.
-     */
-
     document
       .querySelector("#displayName")
       .textContent =
@@ -1489,11 +1679,13 @@ function renderRoleSpecificProfile() {
       <div class="role-info-box">
 
         <p>
+
           <strong>
             Business / Trading Name:
           </strong>
 
           ${bizName}
+
         </p>
 
 
@@ -1526,71 +1718,145 @@ function renderRoleSpecificProfile() {
       </div>
 
 
-      <div style="margin-top:20px;">
+      ${
+        providerProofs.length > 0
 
-        <h4 style="margin-bottom:10px;">
-          Previous Work / Portfolio Proof
-        </h4>
+        ?
+
+        `
+
+          <div style="margin-top:20px;">
+
+            <h4 style="margin-bottom:10px;">
+              Previous Work
+            </h4>
 
 
-        ${
-          providerProofs.length > 0
+            <div class="portfolio-gallery">
 
-          ?
+              ${providerProofs.map(
+                (proof, index) => {
 
-          providerProofs
-            .map(
-              (proof, index) => `
+                  const isImage =
+                    proof.type &&
+                    proof.type.startsWith(
+                      "image/"
+                    );
 
-                <div class="document-card">
 
-                  <div>
+                  if (isImage) {
 
-                    <div class="document-name">
-                      ${proof.name}
+                    return `
+
+                      <div class="portfolio-card">
+
+                        <img
+                          src="${proof.file}"
+                          alt="${proof.name}"
+                          class="portfolio-image"
+                          onclick="openImagePreview('${proof.file}')"
+                        >
+
+
+                        <div class="portfolio-info">
+
+                          <div class="portfolio-title">
+                            ${proof.name}
+                          </div>
+
+
+                          <div class="portfolio-actions">
+
+                            <a
+                              href="${proof.file}"
+                              download="${proof.name}"
+                              class="btn"
+                              style="
+                                font-size:0.7rem;
+                                padding:5px 8px;
+                                text-decoration:none;
+                              "
+                            >
+                              Download
+                            </a>
+
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    `;
+
+                  }
+
+
+                  return `
+
+                    <div class="portfolio-card">
+
+                      <div class="portfolio-document-icon">
+                        📄
+                      </div>
+
+
+                      <div class="portfolio-info">
+
+                        <div class="portfolio-title">
+                          ${proof.name}
+                        </div>
+
+
+                        <div class="portfolio-actions">
+
+                          ${documentButton(
+                            proof.file,
+                            proof.name,
+                            "View / Download"
+                          )}
+
+                        </div>
+
+                      </div>
+
                     </div>
 
-                    <small>
-                      Previous work / portfolio proof
-                    </small>
+                  `;
 
-                  </div>
+                }
+              ).join("")}
 
+            </div>
 
-                  <div>
+          </div>
 
-                    ${documentButton(
-                      proof.file,
-                      proof.name
-                    )}
+        `
 
-                  </div>
+        :
 
-                </div>
+        `
 
-              `
-            )
-            .join("")
+          <div style="margin-top:20px;">
 
-          :
+            <h4>
+              Previous Work
+            </h4>
 
-          `
             <p class="empty-message">
-              No previous work files uploaded yet.
+              No previous work uploaded yet.
             </p>
-          `
-        }
 
-      </div>
+          </div>
+
+        `
+      }
 
     `;
 
   }
 
 
-  /*
-   * BUSINESS OWNER
-   */
+  /* ================= BUSINESS ================= */
 
   else if (role === "business") {
 
@@ -1728,10 +1994,9 @@ function renderRoleSpecificProfile() {
 }
 
 
-/* =========================================================
+/* ======================================================
    QUALIFICATIONS
-   ========================================================= */
-
+======================================================= */
 
 function renderQualifications() {
 
@@ -1748,7 +2013,7 @@ function renderQualifications() {
         ) || "[]"
       );
 
-  } catch (error) {
+  } catch {
 
     quals = [];
 
@@ -1756,7 +2021,7 @@ function renderQualifications() {
 
 
   /*
-   * Compatibility with older signup data.
+   * Support older profiles.
    */
 
   const oldTitle =
@@ -1828,105 +2093,86 @@ function renderQualifications() {
   }
 
 
-  let html = "";
-
-
-  quals.forEach(
-    (qualification, index) => {
-
-
-      html += `
-
-        <div class="item-card">
-
-          <div>
-
-            <p
-              style="
-                margin:0;
-                font-weight:600;
-                color:#0752aa;
-              "
-            >
-              ${qualification.title}
-            </p>
-
-
-            ${
-              qualification.filename
-
-              ?
-
-              `
-                <small>
-                  ${qualification.filename}
-                </small>
-              `
-
-              :
-
-              `
-                <small>
-                  No document attached
-                </small>
-              `
-            }
-
-          </div>
-
-
-          <div>
-
-            ${
-              qualification.file
-
-              ?
-
-              documentButton(
-                qualification.file,
-                qualification.filename ||
-                "certificate"
-              )
-
-              :
-
-              ""
-            }
-
-
-            <button
-              onclick="removeQual(${index})"
-              style="
-                background:none;
-                border:none;
-                color:#d90429;
-                font-size:0.8rem;
-                cursor:pointer;
-                margin-left:10px;
-              "
-            >
-              Remove
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }
-  );
-
-
   area.innerHTML =
-    html;
+    quals
+      .map(
+        (qualification, index) => `
+
+          <div class="document-card">
+
+            <div>
+
+              <div class="document-name">
+                ${qualification.title}
+              </div>
+
+
+              ${
+                qualification.filename
+
+                ?
+
+                `
+                  <small>
+                    ${qualification.filename}
+                  </small>
+                `
+
+                :
+
+                `
+                  <small>
+                    No document attached
+                  </small>
+                `
+              }
+
+            </div>
+
+
+            <div>
+
+              ${
+                qualification.file
+
+                ?
+
+                documentButton(
+                  qualification.file,
+                  qualification.filename ||
+                  "certificate"
+                )
+
+                :
+
+                ""
+              }
+
+
+              <button
+                onclick="removeQual(${index})"
+                style="
+                  background:none;
+                  border:none;
+                  color:#d90429;
+                  cursor:pointer;
+                  margin-left:8px;
+                  font-size:0.8rem;
+                "
+              >
+                Remove
+              </button>
+
+            </div>
+
+          </div>
+
+        `
+      )
+      .join("");
 
 }
 
-
-/*
- * Remove qualification
- */
 
 window.removeQual =
   function(index) {
@@ -1957,10 +2203,9 @@ window.removeQual =
   };
 
 
-/* =========================================================
-   PORTFOLIOS
-   ========================================================= */
-
+/* ======================================================
+   PORTFOLIO RENDERING
+======================================================= */
 
 function renderPortfolios() {
 
@@ -1977,7 +2222,7 @@ function renderPortfolios() {
         ) || "[]"
       );
 
-  } catch (error) {
+  } catch {
 
     ports = [];
 
@@ -1985,7 +2230,7 @@ function renderPortfolios() {
 
 
   /*
-   * Compatibility with student signup portfolio.
+   * Support the old student portfolio URL.
    */
 
   const singlePort =
@@ -2008,6 +2253,12 @@ function renderPortfolios() {
         singlePort,
 
       file:
+        null,
+
+      filename:
+        null,
+
+      type:
         null
 
     });
@@ -2032,7 +2283,7 @@ function renderPortfolios() {
     area.innerHTML = `
 
       <p class="empty-message">
-        No portfolios added yet.
+        No portfolio items added yet.
       </p>
 
     `;
@@ -2042,109 +2293,271 @@ function renderPortfolios() {
   }
 
 
-  let html = "";
+  /*
+   * Build visual portfolio gallery.
+   */
+
+  area.innerHTML = `
+
+    <div class="portfolio-gallery">
+
+      ${
+        ports
+          .map(
+            (portfolio, index) => {
+
+              const isImage =
+                portfolio.file &&
+                (
+                  (
+                    portfolio.type &&
+                    portfolio.type.startsWith(
+                      "image/"
+                    )
+                  )
+                  ||
+                  /\.(jpg|jpeg|png|gif|webp)$/i.test(
+                    portfolio.filename ||
+                    ""
+                  )
+                );
 
 
-  ports.forEach(
-    (portfolio, index) => {
+              /*
+               * IMAGE PORTFOLIO ITEM
+               */
+
+              if (isImage) {
+
+                return `
+
+                  <div class="portfolio-card">
+
+                    <img
+                      src="${portfolio.file}"
+                      alt="${portfolio.title}"
+                      class="portfolio-image"
+                      onclick="openImagePreview('${portfolio.file}')"
+                    >
 
 
-      html += `
+                    <div class="portfolio-info">
 
-        <div class="item-card">
+                      <div class="portfolio-title">
 
-          <div>
+                        ${portfolio.title}
 
-            <p
-              style="
-                margin:0;
-                font-weight:600;
-                color:#0752aa;
-              "
-            >
-              ${portfolio.title}
-            </p>
+                      </div>
 
 
-            ${
-              portfolio.link
+                      ${
+                        portfolio.link
 
-              ?
+                        ?
 
-              `
-                <a
-                  href="${portfolio.link}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style="
-                    font-size:0.8rem;
-                    color:#555;
-                    text-decoration:underline;
-                    word-break:break-all;
-                  "
-                >
-                  ${portfolio.link}
-                </a>
-              `
+                        `
+                          <a
+                            href="${portfolio.link}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style="
+                              font-size:0.78rem;
+                              color:#0752aa;
+                              text-decoration:underline;
+                            "
+                          >
+                            Open Project Link
+                          </a>
+                        `
 
-              :
+                        :
 
-              ""
+                        ""
+                      }
+
+
+                      <div
+                        class="portfolio-actions"
+                      >
+
+                        <a
+                          href="${portfolio.file}"
+                          download="${portfolio.filename || "portfolio-image"}"
+                          class="btn"
+                          style="
+                            font-size:0.7rem;
+                            padding:5px 8px;
+                            text-decoration:none;
+                          "
+                        >
+                          Download
+                        </a>
+
+
+                        <button
+                          onclick="removePort(${index})"
+                          style="
+                            background:none;
+                            border:none;
+                            color:#d90429;
+                            cursor:pointer;
+                            font-size:0.7rem;
+                          "
+                        >
+                          Remove
+                        </button>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                `;
+
+              }
+
+
+              /*
+               * PDF / ZIP / OTHER DOCUMENT
+               */
+
+              return `
+
+                <div class="portfolio-card">
+
+                  <div class="portfolio-document-icon">
+
+                    ${
+                      portfolio.type ===
+                      "application/pdf"
+
+                      ?
+
+                      "📄"
+
+                      :
+
+                      "📁"
+
+                    }
+
+                  </div>
+
+
+                  <div class="portfolio-info">
+
+                    <div class="portfolio-title">
+
+                      ${portfolio.title}
+
+                    </div>
+
+
+                    ${
+                      portfolio.filename
+
+                      ?
+
+                      `
+                        <small>
+                          ${portfolio.filename}
+                        </small>
+                      `
+
+                      :
+
+                      ""
+                    }
+
+
+                    ${
+                      portfolio.link
+
+                      ?
+
+                      `
+                        <div style="margin-top:6px;">
+
+                          <a
+                            href="${portfolio.link}"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style="
+                              font-size:0.78rem;
+                              color:#0752aa;
+                              text-decoration:underline;
+                            "
+                          >
+                            Open Project Link
+                          </a>
+
+                        </div>
+                      `
+
+                      :
+
+                      ""
+                    }
+
+
+                    <div
+                      class="portfolio-actions"
+                    >
+
+                      ${
+                        portfolio.file
+
+                        ?
+
+                        documentButton(
+                          portfolio.file,
+                          portfolio.filename ||
+                          "portfolio-file",
+                          "View / Download"
+                        )
+
+                        :
+
+                        ""
+                      }
+
+
+                      <button
+                        onclick="removePort(${index})"
+                        style="
+                          background:none;
+                          border:none;
+                          color:#d90429;
+                          cursor:pointer;
+                          font-size:0.7rem;
+                        "
+                      >
+                        Remove
+                      </button>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              `;
+
             }
+          )
+          .join("")
+      }
 
-          </div>
+    </div>
 
-
-          <div>
-
-            ${
-              portfolio.file
-
-              ?
-
-              documentButton(
-                portfolio.file,
-                "portfolio-file",
-                "Download"
-              )
-
-              :
-
-              ""
-            }
-
-
-            <button
-              onclick="removePort(${index})"
-              style="
-                background:none;
-                border:none;
-                color:#d90429;
-                font-size:0.8rem;
-                cursor:pointer;
-              "
-            >
-              Remove
-            </button>
-
-          </div>
-
-        </div>
-
-      `;
-
-    }
-  );
-
-
-  area.innerHTML =
-    html;
+  `;
 
 }
 
 
 /*
- * Remove portfolio
+ * Remove portfolio item.
  */
 
 window.removePort =
@@ -2176,10 +2589,79 @@ window.removePort =
   };
 
 
-/* =========================================================
-   MODALS
-   ========================================================= */
+/* ======================================================
+   IMAGE PREVIEW
+======================================================= */
 
+window.openImagePreview =
+  function(imageSrc) {
+
+
+    const overlay =
+      document.getElementById(
+        "imagePreview"
+      );
+
+
+    const image =
+      document.getElementById(
+        "previewImage"
+      );
+
+
+    image.src =
+      imageSrc;
+
+
+    overlay.style.display =
+      "flex";
+
+  };
+
+
+document
+  .getElementById(
+    "closeImagePreview"
+  )
+  .addEventListener(
+    "click",
+    function() {
+
+      document
+        .getElementById(
+          "imagePreview"
+        )
+        .style.display =
+          "none";
+
+    }
+  );
+
+
+document
+  .getElementById(
+    "imagePreview"
+  )
+  .addEventListener(
+    "click",
+    function(e) {
+
+      if (
+        e.target === this
+      ) {
+
+        this.style.display =
+          "none";
+
+      }
+
+    }
+  );
+
+
+/* ======================================================
+   QUALIFICATION MODAL
+======================================================= */
 
 const qualModal =
   document.getElementById(
@@ -2193,7 +2675,7 @@ document
   )
   .addEventListener(
     "click",
-    () => {
+    function() {
 
       qualModal.style.display =
         "flex";
@@ -2208,7 +2690,7 @@ document
   )
   .addEventListener(
     "click",
-    () => {
+    function() {
 
       qualModal.style.display =
         "none";
@@ -2216,6 +2698,10 @@ document
     }
   );
 
+
+/* ======================================================
+   PORTFOLIO MODAL
+======================================================= */
 
 const portModal =
   document.getElementById(
@@ -2229,7 +2715,7 @@ document
   )
   .addEventListener(
     "click",
-    () => {
+    function() {
 
       portModal.style.display =
         "flex";
@@ -2244,7 +2730,7 @@ document
   )
   .addEventListener(
     "click",
-    () => {
+    function() {
 
       portModal.style.display =
         "none";
@@ -2253,16 +2739,17 @@ document
   );
 
 
-/*
- * Close modal when clicking outside.
- */
+/* ======================================================
+   CLOSE MODALS WHEN CLICKING OUTSIDE
+======================================================= */
 
 window.addEventListener(
   "click",
   function(event) {
 
     if (
-      event.target === qualModal
+      event.target ===
+      qualModal
     ) {
 
       qualModal.style.display =
@@ -2272,7 +2759,8 @@ window.addEventListener(
 
 
     if (
-      event.target === portModal
+      event.target ===
+      portModal
     ) {
 
       portModal.style.display =
@@ -2284,10 +2772,9 @@ window.addEventListener(
 );
 
 
-/* =========================================================
+/* ======================================================
    ADD QUALIFICATION
-   ========================================================= */
-
+======================================================= */
 
 document
   .getElementById(
@@ -2393,10 +2880,9 @@ document
   );
 
 
-/* =========================================================
+/* ======================================================
    ADD PORTFOLIO
-   ========================================================= */
-
+======================================================= */
 
 document
   .getElementById(
@@ -2431,6 +2917,27 @@ document
         document.getElementById(
           "newPortFile"
         );
+
+
+      /*
+       * At least a link OR a file should be supplied.
+       */
+
+      if (
+        !link &&
+        !(
+          fileInput.files &&
+          fileInput.files[0]
+        )
+      ) {
+
+        alert(
+          "Please provide a project link or upload a portfolio file."
+        );
+
+        return;
+
+      }
 
 
       try {
@@ -2476,6 +2983,11 @@ document
           filename:
             savedFile
               ? savedFile.name
+              : null,
+
+          type:
+            savedFile
+              ? savedFile.type
               : null
 
         });
@@ -2509,10 +3021,9 @@ document
   );
 
 
-/* =========================================================
+/* ======================================================
    AVATAR UPLOAD
-   ========================================================= */
-
+======================================================= */
 
 const avatarUpload =
   document.getElementById(
@@ -2520,67 +3031,63 @@ const avatarUpload =
   );
 
 
-if (avatarUpload) {
+avatarUpload.addEventListener(
+  "change",
+  async function(e) {
 
 
-  avatarUpload.addEventListener(
-    "change",
-    async function(e) {
+    const file =
+      e.target.files[0];
 
 
-      const file =
-        e.target.files[0];
+    if (!file) {
 
-
-      if (!file) {
-
-        return;
-
-      }
-
-
-      try {
-
-
-        const savedFile =
-          await readFile(file);
-
-
-        const profileInitials =
-          document.getElementById(
-            "profileInitials"
-          );
-
-
-        profileInitials.style.backgroundImage =
-          `url("${savedFile.data}")`;
-
-
-        profileInitials.textContent =
-          "";
-
-
-        localStorage.setItem(
-          "skillbridge-avatar",
-          savedFile.data
-        );
-
-
-      } catch (error) {
-
-        alert(
-          error.message
-        );
-
-      }
+      return;
 
     }
-  );
 
-}
+
+    try {
+
+
+      const savedFile =
+        await readFile(file);
+
+
+      const profileInitials =
+        document.getElementById(
+          "profileInitials"
+        );
+
+
+      profileInitials.style.backgroundImage =
+        `url("${savedFile.data}")`;
+
+
+      profileInitials.textContent =
+        "";
+
+
+      localStorage.setItem(
+        "skillbridge-avatar",
+        savedFile.data
+      );
+
+
+    } catch (error) {
+
+      alert(
+        error.message
+      );
+
+    }
+
+  }
+);
 
 </script>
 
 </body>
+
 </html>
 ```
