@@ -1,4 +1,3 @@
-```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -702,6 +701,22 @@
 
             <div class="form-group wide">
 
+              <label for="providerContactPhone">
+                Direct Contact / WhatsApp Number for Customers
+              </label>
+
+              <input
+                id="providerContactPhone"
+                type="tel"
+                required
+                placeholder="e.g. 071 234 5678 (for client inquiries)"
+              >
+
+            </div>
+
+
+            <div class="form-group wide">
+
               <label for="servicesRendered">
                 Services Rendered & Pricing Conditions
               </label>
@@ -1237,6 +1252,11 @@
               .querySelector("#providerBusinessName")
               .value.trim();
 
+          const providerPhone =
+            document
+              .querySelector("#providerContactPhone")
+              .value.trim();
+
           const services =
             document
               .querySelector("#servicesRendered")
@@ -1253,9 +1273,11 @@
             bizName
           );
 
-          /*
-           * THIS IS THE FIELD THAT WAS NOT DISPLAYING
-           */
+          localStorage.setItem(
+            "skillbridge-provider-phone",
+            providerPhone
+          );
+
           localStorage.setItem(
             "skillbridge-services-desc",
             services
@@ -1426,4 +1448,3 @@
 
 </body>
 </html>
-```
