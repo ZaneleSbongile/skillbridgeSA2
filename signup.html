@@ -237,61 +237,46 @@
           </div>
 
 
-          <!-- QUALIFICATIONS -->
+          <!-- QUALIFICATIONS CONTAINER (Dynamically shown/hidden per role) -->
+          <div id="qualificationContainer" style="grid-column:1 / -1; display:contents;">
+            <div class="form-group">
+              <label for="hasQualifications">
+                Do you have any qualifications?
+              </label>
+              <select id="hasQualifications">
+                <option value="no">No</option>
+                <option value="yes">Yes</option>
+              </select>
+            </div>
 
-          <div class="form-group">
-
-            <label for="hasQualifications">
-              Do you have any qualifications?
-            </label>
-
-            <select id="hasQualifications">
-
-              <option value="no">
-                No
-              </option>
-
-              <option value="yes">
-                Yes
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <div
-            class="form-group"
-            id="qualDetailsGroup"
-            style="display:none; grid-column:1 / -1;"
-          >
-
-            <label for="qualificationTitle">
-              Specify Qualification
-            </label>
-
-            <input
-              id="qualificationTitle"
-              placeholder="e.g. National Diploma in IT"
+            <div
+              class="form-group"
+              id="qualDetailsGroup"
+              style="display:none; grid-column:1 / -1;"
             >
+              <label for="qualificationTitle">
+                Specify Qualification
+              </label>
+              <input
+                id="qualificationTitle"
+                placeholder="e.g. National Diploma in IT"
+              >
 
-            <label
-              for="qualificationProof"
-              style="margin-top:10px; display:block;"
-            >
-              Upload qualification certificate
-            </label>
-
-            <input
-              id="qualificationProof"
-              type="file"
-              accept=".pdf,.jpg,.jpeg,.png"
-            >
-
-            <p class="upload-help">
-              Maximum recommended size: 4 MB
-            </p>
-
+              <label
+                for="qualificationProof"
+                style="margin-top:10px; display:block;"
+              >
+                Upload qualification certificate
+              </label>
+              <input
+                id="qualificationProof"
+                type="file"
+                accept=".pdf,.jpg,.jpeg,.png"
+              >
+              <p class="upload-help">
+                Maximum recommended size: 4 MB
+              </p>
+            </div>
           </div>
 
 
@@ -426,6 +411,9 @@
   const roleSpecificFields =
     document.querySelector("#roleSpecificFields");
 
+  const qualificationContainer =
+    document.querySelector("#qualificationContainer");
+
   const hasQualifications =
     document.querySelector("#hasQualifications");
 
@@ -522,22 +510,27 @@
 
 
       /*
-       * CUSTOMER
+       * CUSTOMER (Hide qualifications for customers)
        */
       if (role === "customer") {
 
         formHeading.textContent =
           "Customer Registration";
 
+        qualificationContainer.style.display = "none";
+        hasQualifications.removeAttribute("required");
         roleSpecificFields.innerHTML = "";
 
+      } else {
+        // Show qualifications for students, service providers, and business owners
+        qualificationContainer.style.display = "contents";
       }
 
 
       /*
        * STUDENT
        */
-      else if (role === "student") {
+      if (role === "student") {
 
         formHeading.textContent =
           "Student Registration & Talent Profile";
@@ -1025,9 +1018,10 @@
 
 
         /*
-         * QUALIFICATION
+         * QUALIFICATION (Skipped for customers)
          */
         if (
+          role !== "customer" &&
           hasQualifications.value === "yes"
         ) {
 
